@@ -27,22 +27,6 @@
     [self setValue:value forKey:key];
 };
 
-- (void)receiveDeltas {
-    //for delta in deltas {
-    //     record = [self find:gid]
-    //     if (record) {
-    //        [record resolveConflict]
-    //     } else {
-    //        [newInstance createFromDelta:delta]
-    //     }
-    //   }
-    // [TODO]
-};
-
-- (NSArray *)extractDeltas {
-    return [AQModel dirtyRecords];
-};
-
 + (NSArray *)dirtyRecords {
     return @[
              @{
@@ -54,6 +38,29 @@
                  @"hogahoga": @"hugahugasafsdf"
                  }
     ]; // [TODO]
+};
+
+// - @pragma mark AQModelProtocol Methods
+
+
+- (void)aq_receiveDeltas {
+    //for delta in deltas {
+    //     record = [self find:gid]
+    //     if (record) {
+    //        [record resolveConflict]
+    //     } else {
+    //        [newInstance createFromDelta:delta]
+    //     }
+    //   }
+    // [TODO]
+};
+
+- (NSArray *)aq_extractDeltas {
+    return [AQModel dirtyRecords];
+};
+
+- (NSString *)aq_modelName {
+    return @"";
 };
 
 // - @pragma mark Private Methods

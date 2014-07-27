@@ -37,8 +37,8 @@
 - (NSDictionary *)getDeltas {
     NSDictionary *deltas = @{};
     for(NSString* key in models) {
-        AQModel *model = [models objectForKey:key];
-        [deltas setValue:[model extractDeltas] forKey:key];
+        id<AQModelProtocol> model = [models objectForKey:key];
+        [deltas setValue:[model aq_extractDeltas] forKey:key];
     }
     return deltas;
 };

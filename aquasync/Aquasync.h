@@ -2,3 +2,4 @@
 #import "AQModel.h"
 #import "AQSyncManager.h"
 #import "AQDeltaPack.h"
+#import "AQModelProtocol.h"
