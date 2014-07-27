@@ -13,4 +13,6 @@
 - (id)get:(NSString *)key;
 - (void)set:(id)value forKey:(NSString *)key;
 
+- (void)sync;
+
 @end
