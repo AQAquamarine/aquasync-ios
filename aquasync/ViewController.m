@@ -20,8 +20,11 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
     
-    int timeStamp = [AQUtil getCurrentTimestamp];
-    NSLog(@"%d", timeStamp);
+    AQModel *model = [AQModel new];
+    NSLog(@"%d", model.localTimestamp);
+    NSLog(@"%@", model.deviceToken);
+    NSLog(@"%@", model.gid);
+    NSLog(@"%hhu", model.isDirty);
 }
 
 - (void)didReceiveMemoryWarning {

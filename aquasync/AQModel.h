@@ -8,4 +8,9 @@
 @property (nonatomic, assign) Boolean isDirty;
 @property (nonatomic, assign) NSDate *deletedAt;
 
+- (id)init;
+- (void)destroy;
+- (id)get:(NSString *)key;
+- (void)set:(id)value forKey:(NSString *)key;
+
 @end

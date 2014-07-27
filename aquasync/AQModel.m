@@ -4,12 +4,27 @@
 
 @synthesize gid, deviceToken, isDirty, localTimestamp, deletedAt;
 
-- init {
-    [self beforeCreate];
+- (id)init {
+    self = [super init];
+    if (self) {
+        [self beforeCreate];
+        [self beforeUpdateOrCreate];
+    }
+    return self;
 };
 
 - (void)destroy {
     [self setDeletedAt:[NSDate new]];
+};
+
+
+- (id)get:(NSString *)key {
+    return [self valueForKey:key];
+};
+
+- (void)set:(id)value forKey:(NSString *)key {
+    [self beforeUpdateOrCreate];
+    [self setValue:value forKey:key];
 };
 
 // - @pragma mark Private Methods
