@@ -14,6 +14,7 @@
 		D4FB25071985255D00362657 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D4FB25061985255D00362657 /* Images.xcassets */; };
 		D4FB25131985255E00362657 /* aquasyncTests.m in Sources */ = {isa = PBXBuildFile; fileRef = D4FB25121985255E00362657 /* aquasyncTests.m */; };
 		D4FB251E19852A6E00362657 /* AQModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D4FB251D19852A6E00362657 /* AQModel.m */; };
+		D4FB252119852EE400362657 /* AQUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = D4FB252019852EE400362657 /* AQUtil.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -41,6 +42,9 @@
 		D4FB25121985255E00362657 /* aquasyncTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = aquasyncTests.m; sourceTree = "<group>"; };
 		D4FB251C19852A6E00362657 /* AQModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AQModel.h; sourceTree = "<group>"; };
 		D4FB251D19852A6E00362657 /* AQModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AQModel.m; sourceTree = "<group>"; };
+		D4FB251F19852EE400362657 /* AQUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AQUtil.h; sourceTree = "<group>"; };
+		D4FB252019852EE400362657 /* AQUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AQUtil.m; sourceTree = "<group>"; };
+		D4FB252219852F6500362657 /* Aquasync.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Aquasync.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -86,6 +90,9 @@
 				D4FB24FE1985255D00362657 /* AppDelegate.m */,
 				D4FB25001985255D00362657 /* ViewController.h */,
 				D4FB25011985255D00362657 /* ViewController.m */,
+				D4FB251F19852EE400362657 /* AQUtil.h */,
+				D4FB252019852EE400362657 /* AQUtil.m */,
+				D4FB252219852F6500362657 /* Aquasync.h */,
 				D4FB251C19852A6E00362657 /* AQModel.h */,
 				D4FB251D19852A6E00362657 /* AQModel.m */,
 				D4FB25031985255D00362657 /* Main.storyboard */,
@@ -220,6 +227,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D4FB252119852EE400362657 /* AQUtil.m in Sources */,
 				D4FB25021985255D00362657 /* ViewController.m in Sources */,
 				D4FB24FF1985255D00362657 /* AppDelegate.m in Sources */,
 				D4FB24FC1985255D00362657 /* main.m in Sources */,

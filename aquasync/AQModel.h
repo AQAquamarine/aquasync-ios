@@ -11,7 +11,7 @@
 @interface AQModel : NSObject
 
 @property (nonatomic, retain) NSString *gid, *deviceToken, *isDirty;
-@property (nonatomic, assign) NSInteger localTimestamp;
+@property (nonatomic, retain) NSString *localTimestamp;
 @property (nonatomic, assign) NSDate *deletedAt;
 
 @end

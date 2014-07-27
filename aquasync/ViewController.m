@@ -7,6 +7,7 @@
 //
 
 #import "ViewController.h"
+#import "Aquasync.h"
 
 @interface ViewController ()
             
@@ -18,6 +19,9 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
+    
+    int timeStamp = [AQUtil getCurrentTimestamp];
+    NSLog(@"%d", timeStamp);
 }
 
 - (void)didReceiveMemoryWarning {
