@@ -22,7 +22,6 @@
     
     AQSyncManager *manager = [AQSyncManager sharedInstance];
     [manager.models setObject:[AQModel class] forKey:@"somemodel"];
-    NSLog(@"%@", manager.models);
     NSDictionary *dic = [manager getDeltas];
     NSLog(@"%@", dic);
     

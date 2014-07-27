@@ -44,10 +44,11 @@
 
 - (NSDictionary *)getDeltas {
     NSMutableDictionary *deltas = [[NSMutableDictionary alloc] init];
+    NSString *uuid = [AQUtil getUUID];
+    [deltas setObject:uuid forKey:@"_id"];
     for(NSString* key in models) {
         id<AQModelProtocol> model = [models objectForKey:key];
         [deltas setObject:[model aq_extractDeltas] forKey:key];
-        NSLog(@"%@", key);
     }
     return deltas;
 };
