@@ -2,6 +2,8 @@
 
 @implementation AQSyncManager
 
+@synthesize models;
+
 + (AQSyncManager *)sharedInstance {
     static AQSyncManager *_instance = nil;
     static dispatch_once_t onceToken;
