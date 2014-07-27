@@ -27,27 +27,20 @@
     [self setValue:value forKey:key];
 };
 
-- (void)sync {
-    [self pullSync];
-    [self pushSync];
-};
-
-- (void)pullSync {
-    // deltas = [[AQClient sharedInstance] pullDeltas:latestUST];
-    // for delta in deltas {
-    //   record = [self find:gid]
-    //   if (record) {
-    //      [record resolveConflict]
-    //   } else {
-    //      [newInstance createFromDelta:delta]
+- (void)receiveDeltas {
+    //for delta in deltas {
+    //     record = [self find:gid]
+    //     if (record) {
+    //        [record resolveConflict]
+    //     } else {
+    //        [newInstance createFromDelta:delta]
+    //     }
     //   }
-    // }
 };
 
-- (void)pushSync {
-    // deltas = [AQModel packedDeltas]
-    // unless [AQClient pushDeltas:deltas]
-    //   [AQQueue push:@"pushSync"]
+- (id)getDeltas {
+    // return [AQDelta initiWithRecords:[self dirtyRecords]]
+    return @"NOT_IMPLEMENTED_YET"; // [TODO]
 };
 
 // - @pragma mark Private Methods
