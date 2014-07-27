@@ -1,3 +1,4 @@
+aquasync.xcodeproj
 build/
 *.pbxuser
 !default.pbxuser
