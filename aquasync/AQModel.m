@@ -36,11 +36,24 @@
     //        [newInstance createFromDelta:delta]
     //     }
     //   }
+    // [TODO]
 };
 
-- (id)getDeltas {
-    // return [AQDelta initiWithRecords:[self dirtyRecords]]
-    return @"NOT_IMPLEMENTED_YET"; // [TODO]
+- (NSArray *)extractDeltas {
+    return [AQModel dirtyRecords];
+};
+
++ (NSArray *)dirtyRecords {
+    return @[
+             @{
+                 @"hoge": @"huga",
+                 @"hogahoga": @"hugahuga"
+                 },
+             @{
+                 @"huga": @"hugagahu",
+                 @"hogahoga": @"hugahugasafsdf"
+                 }
+    ]; // [TODO]
 };
 
 // - @pragma mark Private Methods

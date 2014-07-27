@@ -34,4 +34,13 @@
     //   [[AQQueue sharedInstance] push:"pushDeltas" param:deltas]
 };
 
+- (NSDictionary *)getDeltas {
+    NSDictionary *deltas = @{};
+    for(NSString* key in models) {
+        AQModel *model = [models objectForKey:key];
+        [deltas setValue:[model extractDeltas] forKey:key];
+    }
+    return deltas;
+};
+
 @end

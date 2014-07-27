@@ -1,8 +1,10 @@
+#import "Aquasync.h"
 #import <Foundation/Foundation.h>
 
 @interface AQSyncManager : NSObject
 
-@property (nonatomic, assign) NSMutableArray *models;
+// MODEL_NAME: [Model class]
+@property (nonatomic, assign) NSDictionary *models;
 
 + (AQSyncManager *)sharedInstance;
 - (void)sync;

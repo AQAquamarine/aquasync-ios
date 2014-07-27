@@ -16,6 +16,7 @@
 		D4FB251E19852A6E00362657 /* AQModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D4FB251D19852A6E00362657 /* AQModel.m */; };
 		D4FB252119852EE400362657 /* AQUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = D4FB252019852EE400362657 /* AQUtil.m */; };
 		D4FB25251985417300362657 /* AQSyncManager.m in Sources */ = {isa = PBXBuildFile; fileRef = D4FB25241985417300362657 /* AQSyncManager.m */; };
+		D4FB25281985623500362657 /* AQDeltaPack.m in Sources */ = {isa = PBXBuildFile; fileRef = D4FB25271985623500362657 /* AQDeltaPack.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -48,6 +49,8 @@
 		D4FB252219852F6500362657 /* Aquasync.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Aquasync.h; sourceTree = "<group>"; };
 		D4FB25231985417300362657 /* AQSyncManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AQSyncManager.h; sourceTree = "<group>"; };
 		D4FB25241985417300362657 /* AQSyncManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AQSyncManager.m; sourceTree = "<group>"; };
+		D4FB25261985623500362657 /* AQDeltaPack.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AQDeltaPack.h; sourceTree = "<group>"; };
+		D4FB25271985623500362657 /* AQDeltaPack.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AQDeltaPack.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -96,6 +99,8 @@
 				D4FB251F19852EE400362657 /* AQUtil.h */,
 				D4FB252019852EE400362657 /* AQUtil.m */,
 				D4FB252219852F6500362657 /* Aquasync.h */,
+				D4FB25261985623500362657 /* AQDeltaPack.h */,
+				D4FB25271985623500362657 /* AQDeltaPack.m */,
 				D4FB251C19852A6E00362657 /* AQModel.h */,
 				D4FB251D19852A6E00362657 /* AQModel.m */,
 				D4FB25031985255D00362657 /* Main.storyboard */,
@@ -237,6 +242,7 @@
 				D4FB24FF1985255D00362657 /* AppDelegate.m in Sources */,
 				D4FB24FC1985255D00362657 /* main.m in Sources */,
 				D4FB25251985417300362657 /* AQSyncManager.m in Sources */,
+				D4FB25281985623500362657 /* AQDeltaPack.m in Sources */,
 				D4FB251E19852A6E00362657 /* AQModel.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -14,6 +14,6 @@
 - (void)set:(id)value forKey:(NSString *)key;
 
 - (void)receiveDeltas;
-- (id)getDeltas;
+- (NSArray *)extractDeltas;
 
 @end
