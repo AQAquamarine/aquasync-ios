@@ -14,4 +14,12 @@
     return @"MOCK"; // [TODO] implement getDeviceToken
 };
 
++ (NSString *)joinString:(NSString *)aStr and:(NSString *)bStr {
+    return [NSString stringWithFormat:@"%@%@", aStr, bStr];
+};
+
++ (NSString *)parseInt:(NSInteger)aInt {
+    return [NSString stringWithFormat:@"%d", aInt];
+};
+
 @end

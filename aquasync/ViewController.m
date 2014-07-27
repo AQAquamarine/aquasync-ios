@@ -25,6 +25,10 @@
     NSDictionary *dic = [manager getDeltas];
     NSLog(@"%@", dic);
     
+    [AQDeltaClient sharedInstance].baseURI = @"https://BASE_URI/";
+    [[AQDeltaClient sharedInstance] pullDeltas:2344];
+    [[AQDeltaClient sharedInstance] pushDeltas:nil];
+    
 }
 
 - (void)didReceiveMemoryWarning {
