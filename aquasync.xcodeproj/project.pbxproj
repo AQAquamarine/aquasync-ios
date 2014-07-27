@@ -51,6 +51,7 @@
 		D4FB25241985417300362657 /* AQSyncManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AQSyncManager.m; sourceTree = "<group>"; };
 		D4FB25261985623500362657 /* AQDeltaPack.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AQDeltaPack.h; sourceTree = "<group>"; };
 		D4FB25271985623500362657 /* AQDeltaPack.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AQDeltaPack.m; sourceTree = "<group>"; };
+		D4FB25291985686D00362657 /* AQModelProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AQModelProtocol.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -101,6 +102,7 @@
 				D4FB252219852F6500362657 /* Aquasync.h */,
 				D4FB25261985623500362657 /* AQDeltaPack.h */,
 				D4FB25271985623500362657 /* AQDeltaPack.m */,
+				D4FB25291985686D00362657 /* AQModelProtocol.h */,
 				D4FB251C19852A6E00362657 /* AQModel.h */,
 				D4FB251D19852A6E00362657 /* AQModel.m */,
 				D4FB25031985255D00362657 /* Main.storyboard */,
