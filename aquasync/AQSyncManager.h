@@ -2,7 +2,7 @@
 
 @interface AQSyncManager : NSObject
 
-+ (AQSyncManager *)sharedIntance;
++ (AQSyncManager *)sharedInstance;
 - (void)sync;
 
 @end
