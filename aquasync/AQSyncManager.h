@@ -4,9 +4,11 @@
 @interface AQSyncManager : NSObject
 
 // MODEL_NAME: [Model class]
-@property (nonatomic, assign) NSDictionary *models;
+@property (nonatomic, retain) NSMutableDictionary *models;
 
 + (AQSyncManager *)sharedInstance;
 - (void)sync;
+
+- (NSDictionary *)getDeltas;
 
 @end

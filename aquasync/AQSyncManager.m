@@ -13,6 +13,14 @@
     return _instance;
 };
 
+- (instancetype)init {
+    self = [super init];
+    if (self) {
+        self.models = [[NSMutableDictionary alloc] init];
+    }
+    return self;
+};
+
 - (void)sync {
     [self pullSync];
     [self pushSync];
@@ -35,10 +43,11 @@
 };
 
 - (NSDictionary *)getDeltas {
-    NSDictionary *deltas = @{};
+    NSMutableDictionary *deltas = [[NSMutableDictionary alloc] init];
     for(NSString* key in models) {
         id<AQModelProtocol> model = [models objectForKey:key];
-        [deltas setValue:[model aq_extractDeltas] forKey:key];
+        [deltas setObject:[model aq_extractDeltas] forKey:key];
+        NSLog(@"%@", key);
     }
     return deltas;
 };

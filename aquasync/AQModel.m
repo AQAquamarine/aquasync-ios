@@ -42,8 +42,7 @@
 
 // - @pragma mark AQModelProtocol Methods
 
-
-- (void)aq_receiveDeltas {
++ (void)aq_receiveDeltas {
     //for delta in deltas {
     //     record = [self find:gid]
     //     if (record) {
@@ -55,12 +54,8 @@
     // [TODO]
 };
 
-- (NSArray *)aq_extractDeltas {
++ (NSArray *)aq_extractDeltas {
     return [AQModel dirtyRecords];
-};
-
-- (NSString *)aq_modelName {
-    return @"";
 };
 
 // - @pragma mark Private Methods

@@ -1,10 +1,9 @@
 #import "Aquasync.h"
 #import <Foundation/Foundation.h>
 
-@protocol AQModelProtocol : NSObject
+@protocol AQModelProtocol
 
-- (NSString *)aq_modelName;
-- (NSDictionary *)aq_extractDeltas;
-- (void)aq_receiveDeltas;
++ (NSDictionary *)aq_extractDeltas;
++ (void)aq_receiveDeltas;
 
 @end
