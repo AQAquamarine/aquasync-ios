@@ -27,19 +27,14 @@
 };
 
 - (void)pullSync {
-    // deltas = [[AQClient sharedInstance] pullDeltas:latestUST];
-    // delta.models.each do
-    //   [AQModel receiveDeltas:deltas]
-    // end
+    int ust = [self getLatestUST];
+    [[AQDeltaClient sharedInstance] pullDeltas:ust];
+    // [TODO] .then delta models each do AQModel aq_receiveDeltas};
 };
 
 - (void)pushSync {
-    // deltas = [AQDelta new]
-    // models.each do
-    //   deltas += [model getDeltas]
-    // end
-    // unless [[AQClient sharedInstance] pushDeltas: deltas]
-    //   [[AQQueue sharedInstance] push:"pushDeltas" param:deltas]
+    NSDictionary *deltas = [self getDeltas];
+    [[AQDeltaClient sharedInstance] pushDeltas:deltas]; // [TODO] success, error handling
 };
 
 - (NSDictionary *)getDeltas {
@@ -51,6 +46,10 @@
         [deltas setObject:[model aq_extractDeltas] forKey:key];
     }
     return deltas;
+};
+
+- (int) getLatestUST {
+    return 1234567; // [TODO] mock implementation
 };
 
 @end
