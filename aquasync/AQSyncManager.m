@@ -28,13 +28,16 @@
 
 - (void)pullSync {
     int ust = [self getLatestUST];
-    [[AQDeltaClient sharedInstance] pullDeltas:ust];
-    // [TODO] .then delta models each do AQModel aq_receiveDeltas};
+    [[[AQDeltaClient sharedInstance] pullDeltas:ust] subscribeNext:^(id JSON) {
+        // [TODO] .then delta models each do AQModel aq_receiveDeltas};
+    }];
 };
 
 - (void)pushSync {
     NSDictionary *deltas = [self getDeltas];
-    [[AQDeltaClient sharedInstance] pushDeltas:deltas]; // [TODO] success, error handling
+    [[[[AQDeltaClient sharedInstance] pushDeltas:deltas] subscribeNext:^(id JSON) {
+        // [TODO] success, error handling
+    }];
 };
 
 - (NSDictionary *)getDeltas {
