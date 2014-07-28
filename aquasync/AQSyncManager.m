@@ -30,6 +30,8 @@
     int ust = [self getLatestUST];
     [[[AQDeltaClient sharedInstance] pullDeltas:ust] subscribeNext:^(id JSON) {
         // [TODO] .then delta models each do AQModel aq_receiveDeltas};
+    } error:^(NSError *error) {
+        // [TODO] retry, or queuing. Reachability observing.
     }];
 };
 
@@ -37,6 +39,8 @@
     NSDictionary *deltas = [self getDeltas];
     [[[AQDeltaClient sharedInstance] pushDeltas:deltas] subscribeNext:^(id JSON) {
         // [TODO] success, error handling
+    } error:^(NSError *error) {
+        // [TODO] error! have to retry?
     }];
 };
 
