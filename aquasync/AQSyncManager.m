@@ -35,7 +35,7 @@
 
 - (void)pushSync {
     NSDictionary *deltas = [self getDeltas];
-    [[[[AQDeltaClient sharedInstance] pushDeltas:deltas] subscribeNext:^(id JSON) {
+    [[[AQDeltaClient sharedInstance] pushDeltas:deltas] subscribeNext:^(id JSON) {
         // [TODO] success, error handling
     }];
 };
