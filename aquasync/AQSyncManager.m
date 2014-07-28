@@ -28,9 +28,17 @@
 
 - (void)pullSync {
     int ust = [self getLatestUST];
-    [[[AQDeltaClient sharedInstance] pullDeltas:ust] subscribeNext:^(id JSON) {
+    [[[AQDeltaClient sharedInstance] pullDeltas:ust] subscribeNext:^(NSDictionary *JSON) {
+        NSLog(@"%@", JSON[@"_id"]);
+        for (NSString *model in JSON.allKeys) {
+            if ([model isEqual: @"_id"]) {continue;}
+            [[self getModelFromName:model] aq_receiveDeltas];
+        }
+        
+        NSLog(@"%@", JSON.allKeys);
         // [TODO] .then delta models each do AQModel aq_receiveDeltas};
     } error:^(NSError *error) {
+        NSLog(@"%@", error);
         // [TODO] retry, or queuing. Reachability observing.
     }];
 };
@@ -40,8 +48,13 @@
     [[[AQDeltaClient sharedInstance] pushDeltas:deltas] subscribeNext:^(id JSON) {
         // [TODO] success, error handling
     } error:^(NSError *error) {
+        NSLog(@"%@", error);
         // [TODO] error! have to retry?
     }];
+};
+
+- (id) getModelFromName:(NSString *)name {
+    return [AQModel class]; // [TODO] mock
 };
 
 - (NSDictionary *)getDeltas {

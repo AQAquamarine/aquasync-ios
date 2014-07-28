@@ -9,6 +9,8 @@
 + (AQSyncManager *)sharedInstance;
 - (void)sync;
 
+- (void)pullSync;
+
 - (NSDictionary *)getDeltas;
 
 @end

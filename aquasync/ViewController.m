@@ -21,13 +21,16 @@
     // Do any additional setup after loading the view, typically from a nib.
     
     AQSyncManager *manager = [AQSyncManager sharedInstance];
-    [manager.models setObject:[AQModel class] forKey:@"somemodel"];
+    [manager.models setObject:[AQModel class] forKey:@"model1"];
+    [manager.models setObject:[AQModel class] forKey:@"model2"];
     NSDictionary *dic = [manager getDeltas];
     NSLog(@"%@", dic);
     
-    [AQDeltaClient sharedInstance].baseURI = @"https://BASE_URI/";
+    [AQDeltaClient sharedInstance].baseURI = @"http://0.0.0.0:4567/";
     [[AQDeltaClient sharedInstance] pullDeltas:2344];
     [[AQDeltaClient sharedInstance] pushDeltas:nil];
+    
+    [[AQSyncManager sharedInstance] pullSync];
     
 }
 

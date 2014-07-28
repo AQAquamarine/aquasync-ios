@@ -17,8 +17,9 @@
 };
 
 - (RACSignal *)pullDeltas:(NSInteger)latestUST {
-    NSString *beforeFrom = [AQUtil joinString:self.baseURI and:@"deltas/from:"];
-    NSString *path = [AQUtil joinString:beforeFrom and:[AQUtil parseInt:latestUST]];
+    //NSString *beforeFrom = [AQUtil joinString:self.baseURI and:@"deltas/from:"];
+    //NSString *path = [AQUtil joinString:beforeFrom and:[AQUtil parseInt:latestUST]];
+    NSString *path = [AQUtil joinString:self.baseURI and:@"deltas"];
     return [[AFHTTPRequestOperationManager manager] rac_GET:path parameters:nil];
 };
 

@@ -43,6 +43,7 @@
 // - @pragma mark AQModelProtocol Methods
 
 + (void)aq_receiveDeltas {
+    NSLog(@"aq_receiveDelta invoked.");
     //for delta in deltas {
     //     record = [self find:gid]
     //     if (record) {
