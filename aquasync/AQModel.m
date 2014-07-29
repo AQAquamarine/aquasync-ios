@@ -4,6 +4,8 @@
 
 @synthesize gid, deviceToken, isDirty, localTimestamp, isDeleted;
 
+# pragma mark - Lifecycle
+
 - (instancetype)init {
     self = [super init];
     if (self) {
@@ -12,6 +14,8 @@
     }
     return self;
 };
+
+# pragma mark - Public Methods
 
 // Gets value.
 - (id)get:(NSString *)key {
