@@ -20,15 +20,6 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
     
-    //[RLMRealm useInMemoryDefaultRealm];
-    
-    AQModel *model = [[AQModel alloc] init];
-    [model save];
-    AQModel *model2 = [[AQModel alloc] init];
-    [model2 save];
-    
-    NSLog(@"%@", [AQModel className]);
-    
     [AQDeltaClient sharedInstance].baseURI = @"http://0.0.0.0:4567/";
     AQSyncManager *manager = [AQSyncManager sharedInstance];
     [manager registModelManager:[AQModel class] forName:@"model1"];

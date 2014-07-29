@@ -51,6 +51,7 @@
 };
 
 + (void)createFromDictionary:(NSDictionary *)dictionary {
+    NSLog(@"createFromDictionary");
     AQModel *model = [self newFromDictionary:dictionary];
     [model save];
 };
@@ -61,6 +62,7 @@
 
 + (instancetype)find:(NSString *)gid {
     NSString *query = [NSString stringWithFormat:@"gid == '%@'", gid];
+    NSLog(@"find: %@", query);
     return [self objectsWhere:query].firstObject;
 };
 
@@ -69,19 +71,21 @@
 + (void)aq_receiveDeltas:(NSArray *)deltas {
     NSLog(@"aq_receiveDelta: invoked. with %@", deltas);
     for (NSDictionary *delta in deltas) {
-        NSLog(@"aq_receiveDelta: should save delta: %@", delta);
+        NSLog(@"aq_receiveDelta: should negotiate delta: %@", delta);
+        NSString *gid = delta[@"gid"];
+        AQModel *record = [self find:gid];
+        NSLog(@"%@", record);
+        if (record) {
+            [record resolveConflict:delta];
+        } else {
+            [self createFromDictionary:delta];
+        }
     }
-    //for delta in deltas {
-    //     record = [self find:gid]
-    //     if (record) {
-    //        [record resolveConflict]
-    //     } else {
-    //        [newInstance createFromDictionary:delta]
-    //     }
-    //   }
-    // [TODO]
-    
 };
+
+- (void)resolveConflict:(NSDictionary *)delta {
+    
+}
 
 + (NSArray *)aq_extractDeltas {
     return [[AQModel dirtyRecords] aq_toDictionaryArray];
