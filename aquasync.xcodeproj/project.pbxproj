@@ -53,7 +53,7 @@
 		D4FB252219852F6500362657 /* Aquasync.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Aquasync.h; sourceTree = "<group>"; };
 		D4FB25231985417300362657 /* AQSyncManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AQSyncManager.h; sourceTree = "<group>"; };
 		D4FB25241985417300362657 /* AQSyncManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AQSyncManager.m; sourceTree = "<group>"; };
-		D4FB25291985686D00362657 /* AQModelProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AQModelProtocol.h; sourceTree = "<group>"; };
+		D4FB25291985686D00362657 /* AQModelManagerProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AQModelManagerProtocol.h; sourceTree = "<group>"; };
 		D4FB252C198571D600362657 /* Podfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Podfile; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		D4FB252E198578F800362657 /* AQDeltaClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AQDeltaClient.h; sourceTree = "<group>"; };
 		D4FB252F198578F800362657 /* AQDeltaClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AQDeltaClient.m; sourceTree = "<group>"; };
@@ -109,7 +109,7 @@
 				D4FB251F19852EE400362657 /* AQUtil.h */,
 				D4FB252019852EE400362657 /* AQUtil.m */,
 				D4FB252219852F6500362657 /* Aquasync.h */,
-				D4FB25291985686D00362657 /* AQModelProtocol.h */,
+				D4FB25291985686D00362657 /* AQModelManagerProtocol.h */,
 				D4FB252E198578F800362657 /* AQDeltaClient.h */,
 				D4FB252F198578F800362657 /* AQDeltaClient.m */,
 				D4FB251C19852A6E00362657 /* AQModel.h */,

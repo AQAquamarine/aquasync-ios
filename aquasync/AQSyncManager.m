@@ -21,6 +21,8 @@ NSString *const kAQLatestUSTKey = @"AQLatestUST";
 };
 
 // Regists a model which to be synchronized.
+// @param klass ModelManager class
+// @param name Model name to tie DeltaPack's model key and Model class.
 - (void)registModelManager:(id)klass forName:(NSString *)name {
     models[name] = klass;
 };
@@ -47,15 +49,24 @@ NSString *const kAQLatestUSTKey = @"AQLatestUST";
 
 // Performs #pushSync described in https://github.com/AQAquamarine/aquasync-protocol#pushsync
 - (void)pushSync {
-    NSDictionary *deltas = [self getDeltaPack];
-    [[[AQDeltaClient sharedInstance] pushDeltaPack:deltas] subscribeNext:^(id JSON) {
-        // [TODO] success handling
+    NSDictionary *deltapack = [self getDeltaPack];
+    [[[AQDeltaClient sharedInstance] pushDeltaPack:deltapack] subscribeNext:^(id JSON) {
+        [self successPushSync:deltapack];
     } error:^(NSError *error) {
-        NSLog(@"%@", error);
-        // [TODO] error! have to retry?
+        [self handleErrorInPullSync:error];
     }];
 };
 
+// Saves push-succeed DeltaPack id.
+// @param deltapack Pushed DeltaPack
+- (void)successPushSync:(id)deltapack {
+    NSLog(@"should save %@", deltapack[@"_id"]);
+};
+
+- (void)handleErrorInPushSync:(NSError *)error {
+    NSLog(@"%@", error);
+    // [TODO] error! have to retry?
+};
 
 // Unpack a DeltaPack and pass parsed deltas to [models aq_receiveDeltas:delta]
 // @param deltapack DeltaPack Dictionary (https://github.com/AQAquamarine/aquasync-protocol/blob/master/deltapack.md)
@@ -87,7 +98,7 @@ NSString *const kAQLatestUSTKey = @"AQLatestUST";
     NSString *uuid = [AQUtil getUUID];
     [deltas setObject:uuid forKey:@"_id"];
     for(NSString* key in models) {
-        id<AQModelProtocol> model = [models objectForKey:key];
+        id<AQModelManagerProtocol> model = [models objectForKey:key];
         [deltas setObject:[model aq_extractDeltas] forKey:key];
     }
     return deltas;

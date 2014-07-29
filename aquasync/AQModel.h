@@ -1,7 +1,7 @@
 #import <Foundation/Foundation.h>
 #import "Aquasync.h"
 
-@interface AQModel : NSObject <AQModelProtocol>
+@interface AQModel : NSObject <AQModelManagerProtocol>
 
 @property (nonatomic, retain) NSString *gid, *deviceToken;
 @property (nonatomic, assign) int localTimestamp;

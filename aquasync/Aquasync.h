@@ -1,4 +1,4 @@
-#import "AQModelProtocol.h"
+#import "AQModelManagerProtocol.h"
 #import "AQUtil.h"
 #import "AQModel.h"
 #import "AQSyncManager.h"

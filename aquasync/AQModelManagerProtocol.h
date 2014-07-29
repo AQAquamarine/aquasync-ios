@@ -1,7 +1,7 @@
 #import "Aquasync.h"
 #import <Foundation/Foundation.h>
 
-@protocol AQModelProtocol
+@protocol AQModelManagerProtocol
 
 // Gets records where dirty=true and return them as an array.
 // @return An array of NSDictionary
