@@ -32,7 +32,8 @@
         NSLog(@"%@", JSON[@"_id"]);
         for (NSString *model in JSON.allKeys) {
             if ([model isEqual: @"_id"]) {continue;}
-            [[self getModelFromName:model] aq_receiveDeltas];
+            NSDictionary *deltas = JSON[model];
+            [[self getModelFromName:model] aq_receiveDeltas: deltas];
         }
         
         NSLog(@"%@", JSON.allKeys);

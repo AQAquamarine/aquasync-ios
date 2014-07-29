@@ -4,6 +4,6 @@
 @protocol AQModelProtocol
 
 + (NSDictionary *)aq_extractDeltas;
-+ (void)aq_receiveDeltas;
++ (void)aq_receiveDeltas:(NSDictionary *)deltas;
 
 @end
