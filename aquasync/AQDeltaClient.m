@@ -9,6 +9,7 @@
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
         _instance = [[AQDeltaClient alloc] init];
+        _instance.manager = [[AFHTTPRequestOperationManager alloc] init];
     });
     return _instance;
 };
@@ -22,7 +23,7 @@
 // @return AFNetworking RACSignal
 - (RACSignal *)pushDeltaPack:(NSDictionary *)deltapack {
     NSString *path = [AQUtil joinString:self.baseURI and:@"deltas"];
-    return [[AFHTTPRequestOperationManager manager] rac_POST:path parameters:deltapack];
+    return [self.manager rac_POST:path parameters:deltapack];
 };
 
 // Pulls DeltaPack from the backend.
@@ -33,8 +34,14 @@
 - (RACSignal *)pullDeltaPack:(NSInteger)latestUST {
     NSString *beforeFrom = [AQUtil joinString:self.baseURI and:@"deltas/from:"];
     NSString *path = [AQUtil joinString:beforeFrom and:[AQUtil parseInt:latestUST]];
-    return [[AFHTTPRequestOperationManager manager] rac_GET:path parameters:nil];
+    return [self.manager rac_GET:path parameters:nil];
 };
 
+// Set BASIC Authentication Header
+// @param username
+// @param password
+- (void)setBasicAuthorizationWithUsername:(NSString *)username password:(NSString *)password {
+    [self.manager.requestSerializer setAuthorizationHeaderFieldWithUsername:username password:password];
+};
 
 @end

@@ -7,6 +7,7 @@
 @interface AQDeltaClient : NSObject
 
 @property (nonatomic, assign) NSString *baseURI;
+@property (nonatomic, retain) AFHTTPRequestOperationManager *manager;
 
 + (instancetype)sharedInstance;
 - (RACSignal *)pushDeltaPack:(NSDictionary *)deltapack;
