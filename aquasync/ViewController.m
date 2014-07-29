@@ -33,7 +33,7 @@
     [[AQDeltaClient sharedInstance] pullDeltas:2344];
     [[AQDeltaClient sharedInstance] pushDeltas:nil];
     
-    [[AQSyncManager sharedInstance] pullSync];
+    [[AQSyncManager sharedInstance] sync];
     
 }
 

@@ -40,9 +40,9 @@
     ]; // [TODO]
 };
 
-// - @pragma mark AQModelProtocol Methods
+# pragma mark - AQModelProtocol Methods
 
-+ (void)aq_receiveDeltas:(NSDictionary *)deltas {
++ (void)aq_receiveDeltas:(NSArray *)deltas {
     NSLog(@"aq_receiveDelta invoked. with %@", deltas);
     //for delta in deltas {
     //     record = [self find:gid]
@@ -59,7 +59,7 @@
     return [AQModel dirtyRecords];
 };
 
-// - @pragma mark Private Methods
+# pragma mark - Private Methods
 
 - (void)beforeCreate {
     self.gid = [AQUtil getUUID];
