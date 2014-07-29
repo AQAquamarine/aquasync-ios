@@ -1,6 +1,8 @@
 #import "Aquasync.h"
 #import <Foundation/Foundation.h>
 
+extern NSString *const kAQLatestUSTKey;
+
 @interface AQSyncManager : NSObject
 
 // MODEL_NAME: [Model class]

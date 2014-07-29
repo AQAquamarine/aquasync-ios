@@ -1,5 +1,7 @@
 #import "AQSyncManager.h"
 
+NSString *const kAQLatestUSTKey = @"AQLatestUST";
+
 @implementation AQSyncManager
 
 @synthesize models;
@@ -33,7 +35,7 @@
         for (NSString *model in JSON.allKeys) {
             if ([model isEqual: @"_id"]) {continue;}
             NSDictionary *deltas = JSON[model];
-            [[self getModelFromName:model] aq_receiveDeltas: deltas];
+            [[self getModelClassFromName:model] aq_receiveDeltas: deltas];
         }
         
         NSLog(@"%@", JSON.allKeys);
@@ -54,7 +56,7 @@
     }];
 };
 
-- (id) getModelFromName:(NSString *)name {
+- (id) getModelClassFromName:(NSString *)name {
     return models[name];
 };
 
@@ -71,7 +73,7 @@
 // [REFACTOR] should be handled by AQDeltaPackBuilder, or AQDeltaPack
 
 - (int) getLatestUST {
-    return 1234567; // [TODO] mock implementation
-};
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    return [defaults integerForKey:kAQLatestUSTKey];};
 
 @end

@@ -20,6 +20,9 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
     
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    [defaults setInteger:1234234 forKey:kAQLatestUSTKey];
+    
     AQSyncManager *manager = [AQSyncManager sharedInstance];
     [manager.models setObject:[AQModel class] forKey:@"model1"];
     [manager.models setObject:[AQModel class] forKey:@"model2"];
