@@ -55,7 +55,7 @@
 };
 
 - (id) getModelFromName:(NSString *)name {
-    return [AQModel class]; // [TODO] mock
+    return models[name];
 };
 
 - (NSDictionary *)getDeltas {
@@ -68,6 +68,7 @@
     }
     return deltas;
 };
+// [REFACTOR] should be handled by AQDeltaPackBuilder, or AQDeltaPack
 
 - (int) getLatestUST {
     return 1234567; // [TODO] mock implementation

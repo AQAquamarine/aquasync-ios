@@ -2,6 +2,8 @@
 
 @implementation AQDeltaClient
 
+@synthesize baseURI;
+
 + (instancetype)sharedInstance {
     static AQDeltaClient *_instance = nil;
     static dispatch_once_t onceToken;
