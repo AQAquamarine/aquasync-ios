@@ -84,8 +84,25 @@
 };
 
 - (void)resolveConflict:(NSDictionary *)delta {
-    
+    long long  deltaTimestamp = [delta[@"localTimestamp"] longLongValue];
+    if (deltaTimestamp > self.localTimestamp) {
+        [self updateFromDelta:delta];
+    } else {
+        NSLog(@"Skipped update delta due to delta's local Timestamp is older than current record.");
+    }
 }
+
+- (void)updateFromDelta:(NSDictionary *)delta {
+    NSLog(@"updateFromDelta invoked: %@", delta);
+    RLMRealm *realm = [RLMRealm defaultRealm];
+    [realm beginWriteTransaction];
+    for (NSString *key in delta.allKeys) {
+        id value = delta[key];
+        [self setValue:value forKey:key];
+    }
+    NSLog(@"%@", self);
+    [realm commitWriteTransaction];
+};
 
 + (NSArray *)aq_extractDeltas {
     return [[AQModel dirtyRecords] aq_toDictionaryArray];
