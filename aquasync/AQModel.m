@@ -44,6 +44,9 @@
 
 + (void)aq_receiveDeltas:(NSArray *)deltas {
     NSLog(@"aq_receiveDelta invoked. with %@", deltas);
+    for (NSDictionary *delta in deltas) {
+        NSLog(@"should save delta: %@", delta);
+    }
     //for delta in deltas {
     //     record = [self find:gid]
     //     if (record) {
@@ -53,6 +56,7 @@
     //     }
     //   }
     // [TODO]
+    
 };
 
 + (NSArray *)aq_extractDeltas {

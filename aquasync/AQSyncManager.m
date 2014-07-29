@@ -60,7 +60,7 @@ NSString *const kAQLatestUSTKey = @"AQLatestUST";
     NSLog(@"%@", deltapack[@"_id"]);
     for (NSString *model in deltapack.allKeys) {
         if ([model isEqual: @"_id"]) {continue;}
-        NSDictionary *deltas = deltapack[model];
+        NSArray *deltas = deltapack[model];
         [[self getModelClassFromName:model] aq_receiveDeltas: deltas];
     }
 };
