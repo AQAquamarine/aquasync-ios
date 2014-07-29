@@ -19,16 +19,15 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
+    [RLMRealm useInMemoryDefaultRealm];
     
     AQModel *model = [[AQModel alloc] init];
-    NSLog(@"%hhd", model.isDeleted);
-    NSLog(@"%@", model.deviceToken);
-    NSLog(@"%@", model.gid);
-    NSLog(@"%ld", model.localTimestamp);
-    NSLog(@"%hhd", model.isDirty);
     [model save];
+    AQModel *model2 = [[AQModel alloc] init];
+    [model2 save];
+    NSLog(@"%@", [model toDictionary]);
     
-    RLMArray *r = [AQModel objectsWhere:@"localTimestamp < 8"];
+    RLMArray *r = [AQModel objectsWhere:@"isDirty = true"];
     NSLog(@"%@", r);
     
     [AQDeltaClient sharedInstance].baseURI = @"http://0.0.0.0:4567/";

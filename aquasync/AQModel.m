@@ -28,7 +28,6 @@
 };
 
 - (void)save {
-    [RLMRealm useInMemoryDefaultRealm]; 
     NSLog(@"saving %@", self);
     
     RLMRealm *realm = [RLMRealm defaultRealm];
@@ -72,9 +71,18 @@
 
 + (NSArray *)aq_extractDeltas {
     return [AQModel dirtyRecords];
+    //[self objectsWhere:@"isDirty = true"];
 };
 
 # pragma mark - Private Methods
+
+- (NSDictionary *)toDictionary {
+    NSMutableDictionary *dic = [[NSMutableDictionary alloc] init];
+    for (RLMProperty *p in self.objectSchema.properties) {
+        dic[p.name] = [self get:p.name];
+    }
+    return dic;
+}
 
 - (void)beforeCreate {
     self.isDeleted = NO;

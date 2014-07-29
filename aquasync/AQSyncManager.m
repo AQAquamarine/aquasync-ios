@@ -49,7 +49,7 @@ NSString *const kAQLatestUSTKey = @"AQLatestUST";
 
 // Performs #pushSync described in https://github.com/AQAquamarine/aquasync-protocol#pushsync
 - (void)pushSync {
-    NSDictionary *deltapack = [self getDeltaPack];
+    NSDictionary *deltapack = [self buildDeltaPack];
     [[[AQDeltaClient sharedInstance] pushDeltaPack:deltapack] subscribeNext:^(id JSON) {
         [self successPushSync:deltapack];
     } error:^(NSError *error) {
@@ -93,10 +93,10 @@ NSString *const kAQLatestUSTKey = @"AQLatestUST";
 
 // Collects and build DeltaPack from registered ModelManagers.
 // @return DeltaPack Dictionary (https://github.com/AQAquamarine/aquasync-protocol/blob/master/deltapack.md)
-- (NSDictionary *)getDeltaPack {// [REFACTOR] should be handled by AQDeltaPackBuilder, or AQDeltaPack
+- (NSDictionary *)buildDeltaPack {// [REFACTOR] should be handled by AQDeltaPackBuilder, or AQDeltaPack
     NSMutableDictionary *deltas = [[NSMutableDictionary alloc] init];
     NSString *uuid = [AQUtil getUUID];
-    [deltas setObject:uuid forKey:@"_id"];
+    deltas[@"_id"] = uuid;
     for(NSString* key in models) {
         id<AQModelManagerProtocol> model = [models objectForKey:key];
         [deltas setObject:[model aq_extractDeltas] forKey:key];
