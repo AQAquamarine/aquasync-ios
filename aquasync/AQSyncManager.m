@@ -57,10 +57,21 @@ NSString *const kAQLatestUSTKey = @"AQLatestUST";
     }];
 };
 
-// Saves push-succeed DeltaPack id.
+// Saves push-succeed DeltaPack id and undirty records.
 // @param deltapack Pushed DeltaPack
 - (void)successPushSync:(id)deltapack {
     NSLog(@"should save %@", deltapack[@"_id"]);
+    [self undirtyRecordsFromDeltaPack:deltapack];
+};
+
+// Undirty records when pushSync is succeeded.
+// @param deltapack A DeltaPack which is synced successfully.
+- (void)undirtyRecordsFromDeltaPack:(NSDictionary *)deltapack {
+    for (NSString *model in deltapack.allKeys) {
+        if ([model isEqual: @"_id"]) {continue;}
+        NSArray *deltas = deltapack[model];
+        [[self getModelClassFromName:model] aq_undirtyRecordsFromDeltas:deltas];
+    }
 };
 
 - (void)handleErrorInPushSync:(NSError *)error {

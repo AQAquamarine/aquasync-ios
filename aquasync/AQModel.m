@@ -36,17 +36,8 @@
     [realm commitWriteTransaction];
 };
 
-+ (NSArray *)dirtyRecords {
-    return @[
-             @{
-                 @"hoge": @"huga",
-                 @"hogahoga": @"hugahuga"
-                 },
-             @{
-                 @"huga": @"hugagahu",
-                 @"hogahoga": @"hugahugasafsdf"
-                 }
-    ]; // [TODO]
++ (RLMArray *)dirtyRecords {
+    return [self objectsWhere:@"isDirty = true"];
 };
 
 
@@ -70,8 +61,11 @@
 };
 
 + (NSArray *)aq_extractDeltas {
-    return [AQModel dirtyRecords];
-    //[self objectsWhere:@"isDirty = true"];
+    return [[AQModel dirtyRecords] aq_toDictionaryArray];
+};
+
++ (void)aq_undirtyRecordsFromDeltas:(NSArray *)deltas {
+    NSLog(@"aq_undirtyRecordsDromDeltas invoked with %@", deltas);
 };
 
 # pragma mark - Private Methods
