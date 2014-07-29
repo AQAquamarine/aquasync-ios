@@ -24,8 +24,8 @@
     [defaults setInteger:1234234 forKey:kAQLatestUSTKey];
     
     AQSyncManager *manager = [AQSyncManager sharedInstance];
-    [manager.models setObject:[AQModel class] forKey:@"model1"];
-    [manager.models setObject:[AQModel class] forKey:@"model2"];
+    [manager registModelManager:[AQModel class] forName:@"model1"];
+    [manager registModelManager:[AQModel class] forName:@"model2"];
     NSDictionary *dic = [manager getDeltas];
     NSLog(@"%@", dic);
     

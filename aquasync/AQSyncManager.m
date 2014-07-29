@@ -15,6 +15,17 @@ NSString *const kAQLatestUSTKey = @"AQLatestUST";
     return _instance;
 };
 
+- (void)sync {
+    [self pullSync];
+    [self pushSync];
+};
+
+- (void)registModelManager:(id)klass forName:(NSString *)name {
+    models[name] = klass;
+};
+
+# pragma mark - Private Methods
+
 - (instancetype)init {
     self = [super init];
     if (self) {
@@ -23,44 +34,52 @@ NSString *const kAQLatestUSTKey = @"AQLatestUST";
     return self;
 };
 
-- (void)sync {
-    [self pullSync];
-    [self pushSync];
-};
-
 - (void)pullSync {
     int ust = [self getLatestUST];
-    [[[AQDeltaClient sharedInstance] pullDeltas:ust] subscribeNext:^(NSDictionary *JSON) {
-        NSLog(@"%@", JSON[@"_id"]);
-        for (NSString *model in JSON.allKeys) {
-            if ([model isEqual: @"_id"]) {continue;}
-            NSDictionary *deltas = JSON[model];
-            [[self getModelClassFromName:model] aq_receiveDeltas: deltas];
-        }
-        
-        NSLog(@"%@", JSON.allKeys);
-        // [TODO] .then delta models each do AQModel aq_receiveDeltas};
+    [[[AQDeltaClient sharedInstance] pullDeltas:ust] subscribeNext:^(NSDictionary *deltapack) {
+        [self parseAndSaveDeltaPack:deltapack];
     } error:^(NSError *error) {
-        NSLog(@"%@", error);
-        // [TODO] retry, or queuing. Reachability observing.
+        [self handleErrorInPullSync:error];
     }];
 };
 
 - (void)pushSync {
     NSDictionary *deltas = [self getDeltas];
     [[[AQDeltaClient sharedInstance] pushDeltas:deltas] subscribeNext:^(id JSON) {
-        // [TODO] success, error handling
+        // [TODO] success handling
     } error:^(NSError *error) {
         NSLog(@"%@", error);
         // [TODO] error! have to retry?
     }];
 };
 
-- (id) getModelClassFromName:(NSString *)name {
+
+// Unpack a DeltaPack and pass parsed deltas to [models aq_receiveDeltas:delta]
+// @param deltapack DeltaPack Dictionary (https://github.com/AQAquamarine/aquasync-protocol/blob/master/deltapack.md)
+- (void)parseAndSaveDeltaPack:(NSDictionary *)deltapack {
+    NSLog(@"%@", deltapack[@"_id"]);
+    for (NSString *model in deltapack.allKeys) {
+        if ([model isEqual: @"_id"]) {continue;}
+        NSDictionary *deltas = deltapack[model];
+        [[self getModelClassFromName:model] aq_receiveDeltas: deltas];
+    }
+};
+
+- (void)handleErrorInPullSync:(NSError *)error {
+    NSLog(@"%@", error);
+    // [TODO] retry, or queuing. Reachability observing.
+};
+
+
+// Gets model class from registered models.
+// @return ModelManager class
+- (id)getModelClassFromName:(NSString *)name {
     return models[name];
 };
 
-- (NSDictionary *)getDeltas {
+// Collects and build DeltaPack from registered ModelManagers.
+// @return DeltaPack Dictionary (https://github.com/AQAquamarine/aquasync-protocol/blob/master/deltapack.md)
+- (NSDictionary *)getDeltas {// [REFACTOR] should be handled by AQDeltaPackBuilder, or AQDeltaPack
     NSMutableDictionary *deltas = [[NSMutableDictionary alloc] init];
     NSString *uuid = [AQUtil getUUID];
     [deltas setObject:uuid forKey:@"_id"];
@@ -70,10 +89,10 @@ NSString *const kAQLatestUSTKey = @"AQLatestUST";
     }
     return deltas;
 };
-// [REFACTOR] should be handled by AQDeltaPackBuilder, or AQDeltaPack
 
-- (int) getLatestUST {
+- (int)getLatestUST {
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    return [defaults integerForKey:kAQLatestUSTKey];};
+    return [defaults integerForKey:kAQLatestUSTKey];
+};
 
 @end

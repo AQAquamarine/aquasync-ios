@@ -10,9 +10,10 @@ extern NSString *const kAQLatestUSTKey;
 
 + (AQSyncManager *)sharedInstance;
 - (void)sync;
+- (void)registModelManager:(id)klass forName:(NSString *)name;
 
+// [TODO] for Dev
 - (void)pullSync;
-
 - (NSDictionary *)getDeltas;
 
 @end
