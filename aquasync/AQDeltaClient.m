@@ -13,12 +13,12 @@
     return _instance;
 };
 
-- (RACSignal *)pushDeltas:(NSDictionary *)deltas {
+- (RACSignal *)pushDeltaPack:(NSDictionary *)deltas {
     NSString *path = [AQUtil joinString:self.baseURI and:@"deltas"];
     return [[AFHTTPRequestOperationManager manager] rac_POST:path parameters:deltas];
 };
 
-- (RACSignal *)pullDeltas:(NSInteger)latestUST {
+- (RACSignal *)pullDeltaPack:(NSInteger)latestUST {
     NSString *beforeFrom = [AQUtil joinString:self.baseURI and:@"deltas/from:"];
     NSString *path = [AQUtil joinString:beforeFrom and:[AQUtil parseInt:latestUST]];
     return [[AFHTTPRequestOperationManager manager] rac_GET:path parameters:nil];

@@ -15,6 +15,6 @@ extern NSString *const kAQLatestUSTKey;
 // [TODO] for Dev
 - (void)pullSync;
 - (void)pushSync;
-- (NSDictionary *)getDeltas;
+- (NSDictionary *)getDeltaPack;
 
 @end

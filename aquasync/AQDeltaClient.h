@@ -9,7 +9,7 @@
 @property (nonatomic, assign) NSString *baseURI;
 
 + (instancetype)sharedInstance;
-- (RACSignal *)pushDeltas:(NSDictionary *)deltas;
-- (RACSignal *)pullDeltas:(int)latestUST;
+- (RACSignal *)pushDeltaPack:(NSDictionary *)deltas;
+- (RACSignal *)pullDeltaPack:(int)latestUST;
 
 @end

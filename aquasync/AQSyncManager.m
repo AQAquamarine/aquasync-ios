@@ -20,6 +20,7 @@ NSString *const kAQLatestUSTKey = @"AQLatestUST";
     [self pushSync];
 };
 
+// Regists a model which to be synchronized.
 - (void)registModelManager:(id)klass forName:(NSString *)name {
     models[name] = klass;
 };
@@ -34,18 +35,20 @@ NSString *const kAQLatestUSTKey = @"AQLatestUST";
     return self;
 };
 
+// Performs #pullSync described in https://github.com/AQAquamarine/aquasync-protocol#pullsync
 - (void)pullSync {
     int ust = [self getLatestUST];
-    [[[AQDeltaClient sharedInstance] pullDeltas:ust] subscribeNext:^(NSDictionary *deltapack) {
+    [[[AQDeltaClient sharedInstance] pullDeltaPack:ust] subscribeNext:^(NSDictionary *deltapack) {
         [self parseAndSaveDeltaPack:deltapack];
     } error:^(NSError *error) {
         [self handleErrorInPullSync:error];
     }];
 };
 
+// Performs #pushSync described in https://github.com/AQAquamarine/aquasync-protocol#pushsync
 - (void)pushSync {
-    NSDictionary *deltas = [self getDeltas];
-    [[[AQDeltaClient sharedInstance] pushDeltas:deltas] subscribeNext:^(id JSON) {
+    NSDictionary *deltas = [self getDeltaPack];
+    [[[AQDeltaClient sharedInstance] pushDeltaPack:deltas] subscribeNext:^(id JSON) {
         // [TODO] success handling
     } error:^(NSError *error) {
         NSLog(@"%@", error);
@@ -79,7 +82,7 @@ NSString *const kAQLatestUSTKey = @"AQLatestUST";
 
 // Collects and build DeltaPack from registered ModelManagers.
 // @return DeltaPack Dictionary (https://github.com/AQAquamarine/aquasync-protocol/blob/master/deltapack.md)
-- (NSDictionary *)getDeltas {// [REFACTOR] should be handled by AQDeltaPackBuilder, or AQDeltaPack
+- (NSDictionary *)getDeltaPack {// [REFACTOR] should be handled by AQDeltaPackBuilder, or AQDeltaPack
     NSMutableDictionary *deltas = [[NSMutableDictionary alloc] init];
     NSString *uuid = [AQUtil getUUID];
     [deltas setObject:uuid forKey:@"_id"];
@@ -93,6 +96,11 @@ NSString *const kAQLatestUSTKey = @"AQLatestUST";
 - (int)getLatestUST {
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     return [defaults integerForKey:kAQLatestUSTKey];
+};
+
+- (void)setLatestUST:(int)ust {
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    [defaults setInteger:ust forKey:kAQLatestUSTKey];
 };
 
 - (NSString *)getDeviceToken {
