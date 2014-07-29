@@ -52,6 +52,8 @@ NSString *const kAQLatestUSTKey = @"AQLatestUST";
     NSDictionary *deltapack = [self buildDeltaPack];
     [[[AQDeltaClient sharedInstance] pushDeltaPack:deltapack] subscribeNext:^(id JSON) {
         [self successPushSync:deltapack];
+        
+        NSLog(@"all: %@", [AQModel allObjects]);
     } error:^(NSError *error) {
         [self handleErrorInPullSync:error];
     }];
@@ -82,7 +84,6 @@ NSString *const kAQLatestUSTKey = @"AQLatestUST";
 // Unpack a DeltaPack and pass parsed deltas to [models aq_receiveDeltas:delta]
 // @param deltapack DeltaPack Dictionary (https://github.com/AQAquamarine/aquasync-protocol/blob/master/deltapack.md)
 - (void)parseAndSaveDeltaPack:(NSDictionary *)deltapack {
-    NSLog(@"%@", deltapack[@"_id"]);
     for (NSString *model in deltapack.allKeys) {
         if ([model isEqual: @"_id"]) {continue;}
         NSArray *deltas = deltapack[model];

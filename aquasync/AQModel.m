@@ -27,9 +27,15 @@
     [self setValue:value forKey:key];
 };
 
+- (void)undirty {
+    RLMRealm *realm = [RLMRealm defaultRealm];
+    [realm beginWriteTransaction];
+    self.isDirty = false;
+    [realm addObject:self];
+    [realm commitWriteTransaction];
+};
+
 - (void)save {
-    NSLog(@"saving %@", self);
-    
     RLMRealm *realm = [RLMRealm defaultRealm];
     [realm beginWriteTransaction];
     [realm addObject:self];
@@ -40,13 +46,17 @@
     return [self objectsWhere:@"isDirty = true"];
 };
 
++ (instancetype)find:(NSString *)gid {
+    NSString *query = [NSString stringWithFormat:@"gid == '%@'", gid];
+    return [self objectsWhere:query].firstObject;
+};
 
 # pragma mark - AQModelProtocol Methods
 
 + (void)aq_receiveDeltas:(NSArray *)deltas {
-    NSLog(@"aq_receiveDelta invoked. with %@", deltas);
+    NSLog(@"aq_receiveDelta: invoked. with %@", deltas);
     for (NSDictionary *delta in deltas) {
-        NSLog(@"should save delta: %@", delta);
+        NSLog(@"aq_receiveDelta: should save delta: %@", delta);
     }
     //for delta in deltas {
     //     record = [self find:gid]
@@ -65,7 +75,12 @@
 };
 
 + (void)aq_undirtyRecordsFromDeltas:(NSArray *)deltas {
-    NSLog(@"aq_undirtyRecordsDromDeltas invoked with %@", deltas);
+    for (NSDictionary *delta in deltas) {
+        NSString *gid = delta[@"gid"];
+        AQModel *object = [self find:gid];
+        [object undirty];
+        // [TODO] negotiate localTimestamp
+    }
 };
 
 # pragma mark - Private Methods
