@@ -12,9 +12,4 @@ extern NSString *const kAQLatestUSTKey;
 - (void)sync;
 - (void)registModelManager:(id)klass forName:(NSString *)name;
 
-// [TODO] for Dev
-- (void)pullSync;
-- (void)pushSync;
-- (NSDictionary *)buildDeltaPack;
-
 @end
