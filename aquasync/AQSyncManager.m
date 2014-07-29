@@ -95,4 +95,8 @@ NSString *const kAQLatestUSTKey = @"AQLatestUST";
     return [defaults integerForKey:kAQLatestUSTKey];
 };
 
+- (NSString *)getDeviceToken {
+    return @"8932-3292-9323-9323"; // [TODO] mock implementation
+};
+
 @end
