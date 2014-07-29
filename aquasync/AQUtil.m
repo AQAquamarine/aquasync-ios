@@ -2,8 +2,8 @@
 
 @implementation AQUtil
 
-+ (int)getCurrentTimestamp {
-    return [[NSString stringWithFormat:@"%ld",(long)[[NSDate date] timeIntervalSince1970] * 1000] integerValue];
++ (long)getCurrentTimestamp {
+    return [[NSDate date] timeIntervalSince1970];
 }
 
 + (NSString *)getUUID {

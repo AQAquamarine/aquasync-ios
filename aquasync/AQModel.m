@@ -2,9 +2,9 @@
 
 @implementation AQModel
 
-@synthesize gid, deviceToken, isDirty, localTimestamp, deletedAt;
+@synthesize gid, deviceToken, isDirty, localTimestamp, isDeleted;
 
-- (id)init {
+- (instancetype)init {
     self = [super init];
     if (self) {
         [self beforeCreate];
@@ -14,7 +14,7 @@
 };
 
 - (void)destroy {
-    [self setDeletedAt:[NSDate new]];
+    [self set:false forKey:@"isDeleted"];
 };
 
 
@@ -25,6 +25,16 @@
 - (void)set:(id)value forKey:(NSString *)key {
     [self beforeUpdateOrCreate];
     [self setValue:value forKey:key];
+};
+
+- (void)save {
+    [RLMRealm useInMemoryDefaultRealm]; 
+    NSLog(@"saving %@", self);
+    
+    RLMRealm *realm = [RLMRealm defaultRealm];
+    [realm beginWriteTransaction];
+    [realm addObject:self];
+    [realm commitWriteTransaction];
 };
 
 + (NSArray *)dirtyRecords {
@@ -39,6 +49,7 @@
                  }
     ]; // [TODO]
 };
+
 
 # pragma mark - AQModelProtocol Methods
 
@@ -66,12 +77,13 @@
 # pragma mark - Private Methods
 
 - (void)beforeCreate {
+    self.isDeleted = NO;
     self.gid = [AQUtil getUUID];
     self.deviceToken = [AQUtil getDeviceToken];
 };
 
 - (void)beforeUpdateOrCreate {
-    self.isDirty = true;
+    self.isDirty = YES;
     self.localTimestamp = [AQUtil getCurrentTimestamp];
 };
 

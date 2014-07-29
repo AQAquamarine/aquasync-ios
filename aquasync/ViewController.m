@@ -20,6 +20,17 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
     
+    AQModel *model = [[AQModel alloc] init];
+    NSLog(@"%hhd", model.isDeleted);
+    NSLog(@"%@", model.deviceToken);
+    NSLog(@"%@", model.gid);
+    NSLog(@"%ld", model.localTimestamp);
+    NSLog(@"%hhd", model.isDirty);
+    [model save];
+    
+    RLMArray *r = [AQModel objectsWhere:@"localTimestamp < 8"];
+    NSLog(@"%@", r);
+    
     [AQDeltaClient sharedInstance].baseURI = @"http://0.0.0.0:4567/";
     AQSyncManager *manager = [AQSyncManager sharedInstance];
     [manager registModelManager:[AQModel class] forName:@"model1"];

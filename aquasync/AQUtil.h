@@ -2,7 +2,7 @@
 
 @interface AQUtil : NSObject
 
-+ (int)getCurrentTimestamp;
++ (long)getCurrentTimestamp;
 + (NSString *)getUUID;
 + (NSString *)getDeviceToken;
 + (NSString *)joinString:(NSString *)aStr and:(NSString *)bStr;
