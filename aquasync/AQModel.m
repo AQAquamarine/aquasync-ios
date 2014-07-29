@@ -42,6 +42,19 @@
     [realm commitWriteTransaction];
 };
 
++ (instancetype)newFromDictionary:(NSDictionary *)dictionary {
+    AQModel *model = [[self alloc] init];
+    for (NSString *key in dictionary.allKeys) {
+        [model setValue:dictionary[key] forKey:key];
+    }
+    return model;
+};
+
++ (void)createFromDictionary:(NSDictionary *)dictionary {
+    AQModel *model = [self newFromDictionary:dictionary];
+    [model save];
+};
+
 + (RLMArray *)dirtyRecords {
     return [self objectsWhere:@"isDirty = true"];
 };
@@ -63,7 +76,7 @@
     //     if (record) {
     //        [record resolveConflict]
     //     } else {
-    //        [newInstance createFromDelta:delta]
+    //        [newInstance createFromDictionary:delta]
     //     }
     //   }
     // [TODO]
