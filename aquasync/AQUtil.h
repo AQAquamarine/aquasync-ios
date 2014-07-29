@@ -1,5 +1,7 @@
 #import <Foundation/Foundation.h>
 
+NSString *const kAQDeviceTokenKey;
+
 @interface AQUtil : NSObject
 
 + (long)getCurrentTimestamp;

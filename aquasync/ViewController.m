@@ -20,7 +20,7 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
     
-    NSLog(@"%ld", [AQUtil getCurrentTimestamp]);
+    NSLog(@"%@", [AQUtil getDeviceToken]);
     
     [AQDeltaClient sharedInstance].baseURI = @"http://0.0.0.0:4567/";
     AQSyncManager *manager = [AQSyncManager sharedInstance];

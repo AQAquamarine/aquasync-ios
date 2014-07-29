@@ -1,5 +1,7 @@
 #import "AQUtil.h"
 
+NSString *const kAQDeviceTokenKey = @"AQDeviceToken";
+
 @implementation AQUtil
 
 + (long)getCurrentTimestamp {
@@ -11,7 +13,12 @@
 };
 
 + (NSString *)getDeviceToken {
-    return @"MOCK"; // [TODO] implement getDeviceToken
+    NSString *token = [[NSUserDefaults standardUserDefaults] stringForKey:kAQDeviceTokenKey];
+    if (token) {
+        return token;
+    } else {
+        return [self setDeviceToken];
+    }
 };
 
 + (NSString *)joinString:(NSString *)aStr and:(NSString *)bStr {
@@ -20,6 +27,14 @@
 
 + (NSString *)parseInt:(NSInteger)aInt {
     return [NSString stringWithFormat:@"%d", aInt];
+};
+
+# pragma mark - Private Methods
+
++ (NSString *)setDeviceToken {
+    NSString *newToken = [self getUUID];
+    [[NSUserDefaults standardUserDefaults] setObject:newToken forKey:kAQDeviceTokenKey];
+    return newToken;
 };
 
 @end
