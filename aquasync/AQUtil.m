@@ -12,12 +12,14 @@ NSString *const kAQDeviceTokenKey = @"AQDeviceToken";
     return [[NSUUID UUID] UUIDString];
 };
 
+// Gets device token. If device token is not stored, it automarically generate a token by UUID.
+// @return UUID
 + (NSString *)getDeviceToken {
     NSString *token = [[NSUserDefaults standardUserDefaults] stringForKey:kAQDeviceTokenKey];
     if (token) {
         return token;
     } else {
-        return [self setDeviceToken];
+        return [self generateDeviceToken];
     }
 };
 
@@ -31,7 +33,7 @@ NSString *const kAQDeviceTokenKey = @"AQDeviceToken";
 
 # pragma mark - Private Methods
 
-+ (NSString *)setDeviceToken {
++ (NSString *)generateDeviceToken {
     NSString *newToken = [self getUUID];
     [[NSUserDefaults standardUserDefaults] setObject:newToken forKey:kAQDeviceTokenKey];
     return newToken;
