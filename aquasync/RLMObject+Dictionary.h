@@ -3,6 +3,6 @@
 
 @interface RLMObject (DictionaryMethods)
 
-- (NSDictionary *)toDictionary;
+- (NSDictionary *)aq_toDictionary;
 
 @end

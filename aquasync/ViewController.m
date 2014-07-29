@@ -25,10 +25,10 @@
     [model save];
     AQModel *model2 = [[AQModel alloc] init];
     [model2 save];
-    NSLog(@"%@", [model toDictionary]);
+    NSLog(@"%@", [model aq_toDictionary]);
     
     RLMArray *r = [AQModel objectsWhere:@"isDirty = true"];
-    NSLog(@"%@", [r toDictionaryArray]);
+    NSLog(@"%@", [r aq_toDictionaryArray]);
     
     [AQDeltaClient sharedInstance].baseURI = @"http://0.0.0.0:4567/";
     AQSyncManager *manager = [AQSyncManager sharedInstance];

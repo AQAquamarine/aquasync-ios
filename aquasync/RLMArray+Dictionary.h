@@ -4,6 +4,6 @@
 
 @interface RLMArray (DictionaryMethods)
 
-- (NSArray *) toDictionaryArray;
+- (NSArray *) aq_toDictionaryArray;
 
 @end
