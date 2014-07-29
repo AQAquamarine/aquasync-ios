@@ -12,5 +12,6 @@
 + (instancetype)sharedInstance;
 - (RACSignal *)pushDeltaPack:(NSDictionary *)deltapack;
 - (RACSignal *)pullDeltaPack:(int)latestUST;
+- (void)setBasicAuthorization:(NSString *)username password:(NSString *)password;
 
 @end
