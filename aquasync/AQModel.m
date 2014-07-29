@@ -76,14 +76,6 @@
 
 # pragma mark - Private Methods
 
-- (NSDictionary *)toDictionary {
-    NSMutableDictionary *dic = [[NSMutableDictionary alloc] init];
-    for (RLMProperty *p in self.objectSchema.properties) {
-        dic[p.name] = [self get:p.name];
-    }
-    return dic;
-}
-
 - (void)beforeCreate {
     self.isDeleted = NO;
     self.gid = [AQUtil getUUID];

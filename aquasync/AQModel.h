@@ -14,6 +14,4 @@
 - (void)set:(id)value forKey:(NSString *)key;
 - (void)save;
 
-- (NSDictionary *)toDictionary;
-
 @end
