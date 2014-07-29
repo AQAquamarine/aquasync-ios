@@ -15,6 +15,11 @@ NSString *const kAQLatestUSTKey = @"AQLatestUST";
     return _instance;
 };
 
+
+# pragma mark - Public Methods
+
+// Performs synchronization.
+// Before call the method, you should set baseURI of AQDeltaClient.
 - (void)sync {
     [self pullSync];
     [self pushSync];
@@ -127,7 +132,7 @@ NSString *const kAQLatestUSTKey = @"AQLatestUST";
 };
 
 - (NSString *)getDeviceToken {
-    return @"8932-3292-9323-9323"; // [TODO] mock implementation
+    return [AQUtil getDeviceToken];
 };
 
 @end
