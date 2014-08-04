@@ -8,6 +8,7 @@
 
 #import "ViewController.h"
 #import "Aquasync.h"
+#import "FLMAlbum.h"
 
 @interface ViewController ()
             
@@ -21,10 +22,10 @@
     // Do any additional setup after loading the view, typically from a nib.
     
     NSLog(@"%@", [AQUtil getDeviceToken]);
-    
-    [AQDeltaClient sharedInstance].baseURI = @"http://0.0.0.0:4567/";
+    [AQDeltaClient sharedInstance].baseURI = @"http://0.0.0.0:3000/api/v1/";
+    [[AQDeltaClient sharedInstance] setBasicAuthorizationWithUsername:@"hogehoge" password:@"hogehoge"];
     AQSyncManager *manager = [AQSyncManager sharedInstance];
-    [manager registModelManager:[AQModel class] forName:@"model1"];
+    [manager registModelManager:[FLMAlbum class] forName:@"Album"];
     [manager sync];
 }
 
