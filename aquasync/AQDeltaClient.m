@@ -32,7 +32,7 @@
 // @param latestUST latestUST described in https://github.com/AQAquamarine/aquasync-protocol#get-deltasfromust
 // @return AFNetworking RACSignal
 - (RACSignal *)pullDeltaPack:(NSInteger)latestUST {
-    NSString *beforeFrom = [AQUtil joinString:self.baseURI and:@"deltas/from:"];
+    NSString *beforeFrom = [AQUtil joinString:self.baseURI and:@"deltas/ust:"];
     NSString *path = [AQUtil joinString:beforeFrom and:[AQUtil parseInt:latestUST]];
     return [self.manager rac_GET:path parameters:nil];
 };
