@@ -10,6 +10,7 @@
     dispatch_once(&onceToken, ^{
         _instance = [[AQDeltaClient alloc] init];
         _instance.manager = [[AFHTTPRequestOperationManager alloc] init];
+        _instance.manager.requestSerializer = [AFJSONRequestSerializer serializer];
     });
     return _instance;
 };
