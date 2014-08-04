@@ -9,7 +9,7 @@ NSString *const kAQDeviceTokenKey = @"AQDeviceToken";
 }
 
 + (NSString *)getUUID {
-    return [[NSUUID UUID] UUIDString];
+    return [[[NSUUID UUID] UUIDString] lowercaseString];
 };
 
 // Gets device token. If device token is not stored, it automarically generate a token by UUID.
