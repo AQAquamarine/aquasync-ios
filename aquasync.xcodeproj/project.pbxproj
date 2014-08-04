@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		D434788F198768BA00E4C26B /* RLMArray+Dictionary.m in Sources */ = {isa = PBXBuildFile; fileRef = D434788E198768BA00E4C26B /* RLMArray+Dictionary.m */; };
 		D43478911987696600E4C26B /* RLMObject+Dictionary.m in Sources */ = {isa = PBXBuildFile; fileRef = D43478901987696600E4C26B /* RLMObject+Dictionary.m */; };
+		D471F117198FCA87009522DD /* FLMAlbum.m in Sources */ = {isa = PBXBuildFile; fileRef = D471F116198FCA87009522DD /* FLMAlbum.m */; };
 		D4FB24FC1985255D00362657 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = D4FB24FB1985255D00362657 /* main.m */; };
 		D4FB24FF1985255D00362657 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = D4FB24FE1985255D00362657 /* AppDelegate.m */; };
 		D4FB25021985255D00362657 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D4FB25011985255D00362657 /* ViewController.m */; };
@@ -40,6 +41,8 @@
 		D43478901987696600E4C26B /* RLMObject+Dictionary.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "RLMObject+Dictionary.m"; sourceTree = "<group>"; };
 		D434789219876A1C00E4C26B /* RLMArray+Dictionary.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "RLMArray+Dictionary.h"; sourceTree = "<group>"; };
 		D434789319876A3F00E4C26B /* RLMObject+Dictionary.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "RLMObject+Dictionary.h"; sourceTree = "<group>"; };
+		D471F115198FCA87009522DD /* FLMAlbum.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLMAlbum.h; sourceTree = "<group>"; };
+		D471F116198FCA87009522DD /* FLMAlbum.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLMAlbum.m; sourceTree = "<group>"; };
 		D4FB24F61985255D00362657 /* aquasync.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = aquasync.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D4FB24FA1985255D00362657 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D4FB24FB1985255D00362657 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -129,6 +132,8 @@
 				D4FB24F91985255D00362657 /* Supporting Files */,
 				D4FB25231985417300362657 /* AQSyncManager.h */,
 				D4FB25241985417300362657 /* AQSyncManager.m */,
+				D471F115198FCA87009522DD /* FLMAlbum.h */,
+				D471F116198FCA87009522DD /* FLMAlbum.m */,
 			);
 			path = aquasync;
 			sourceTree = "<group>";
@@ -309,6 +314,7 @@
 				D4FB24FC1985255D00362657 /* main.m in Sources */,
 				D4FB25251985417300362657 /* AQSyncManager.m in Sources */,
 				D43478911987696600E4C26B /* RLMObject+Dictionary.m in Sources */,
+				D471F117198FCA87009522DD /* FLMAlbum.m in Sources */,
 				D4FB2530198578F800362657 /* AQDeltaClient.m in Sources */,
 				D4FB251E19852A6E00362657 /* AQModel.m in Sources */,
 			);
