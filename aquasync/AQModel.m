@@ -57,6 +57,7 @@
 };
 
 // New a record from a dictionary. (Typically from a delta.)
+// It will not invoke beforeCreateOrUpdte / beforeUpdate.
 // @param dictionary Unnamed root dictionary.
 + (instancetype)newFromDictionary:(NSDictionary *)dictionary {
     AQModel *model = [[self alloc] init];
@@ -67,6 +68,7 @@
 };
 
 // Creates a record from a dictionary and commits the change.
+// It will not invoke beforeCreateOrUpdte / beforeUpdate.
 // @param dictionary Unnamed root dictionary.
 + (void)createFromDictionary:(NSDictionary *)dictionary {
     NSLog(@"createFromDictionary");
