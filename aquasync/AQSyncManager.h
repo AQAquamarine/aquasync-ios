@@ -10,6 +10,6 @@ extern NSString *const kAQLatestUSTKey;
 
 + (AQSyncManager *)sharedInstance;
 - (void)sync;
-- (void)registModelManager:(id)klass forName:(NSString *)name;
+- (void)registModelManager:(Class)klass forName:(NSString *)name;
 
 @end

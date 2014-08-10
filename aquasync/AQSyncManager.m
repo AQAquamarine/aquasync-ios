@@ -28,7 +28,7 @@ NSString *const kAQLatestUSTKey = @"AQLatestUST";
 // Regists a model which to be synchronized.
 // @param klass ModelManager class
 // @param name Model name to tie DeltaPack's model key and Model class.
-- (void)registModelManager:(id)klass forName:(NSString *)name {
+- (void)registModelManager:(Class)klass forName:(NSString *)name {
     models[name] = klass;
 };
 
@@ -104,7 +104,7 @@ NSString *const kAQLatestUSTKey = @"AQLatestUST";
 
 // Gets model class from registered models.
 // @return ModelManager class
-- (id)getModelClassFromName:(NSString *)name {
+- (Class)getModelClassFromName:(NSString *)name {
     return models[name];
 };
 
