@@ -29,7 +29,7 @@
     [realm deleteObjects: [FLMAlbum allObjects]];
     [realm commitWriteTransaction];
     
-    FLMAlbum *album1 = [[FLMAlbum alloc] init];
+    FLMAlbum *album1 = [FLMAlbum new];
     [album1 save];
     
     FLMAlbum *album2 = [[FLMAlbum alloc] init];
@@ -39,7 +39,7 @@
     [[AQDeltaClient sharedInstance] setBasicAuthorizationWithUsername:@"hogehoge" password:@"hogehoge"];
     AQSyncManager *manager = [AQSyncManager sharedInstance];
     [manager registModelManager:[FLMAlbum class] forName:@"Album"];
-    [manager sync];
+    //[manager sync];
 }
 
 - (void)didReceiveMemoryWarning {

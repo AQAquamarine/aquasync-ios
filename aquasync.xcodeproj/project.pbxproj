@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		D41076D319973CF50061B6CD /* aquasync.podspec in Resources */ = {isa = PBXBuildFile; fileRef = D41076D219973CF50061B6CD /* aquasync.podspec */; };
 		D434788F198768BA00E4C26B /* RLMArray+Dictionary.m in Sources */ = {isa = PBXBuildFile; fileRef = D434788E198768BA00E4C26B /* RLMArray+Dictionary.m */; };
 		D43478911987696600E4C26B /* RLMObject+Dictionary.m in Sources */ = {isa = PBXBuildFile; fileRef = D43478901987696600E4C26B /* RLMObject+Dictionary.m */; };
 		D471F117198FCA87009522DD /* FLMAlbum.m in Sources */ = {isa = PBXBuildFile; fileRef = D471F116198FCA87009522DD /* FLMAlbum.m */; };
@@ -37,6 +38,7 @@
 /* Begin PBXFileReference section */
 		ABBB516DB75B46249C738F9E /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		B0DF8CE1B5C94B8EB0DFBA23 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
+		D41076D219973CF50061B6CD /* aquasync.podspec */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = aquasync.podspec; sourceTree = "<group>"; };
 		D434788E198768BA00E4C26B /* RLMArray+Dictionary.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "RLMArray+Dictionary.m"; sourceTree = "<group>"; };
 		D43478901987696600E4C26B /* RLMObject+Dictionary.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "RLMObject+Dictionary.m"; sourceTree = "<group>"; };
 		D434789219876A1C00E4C26B /* RLMArray+Dictionary.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "RLMArray+Dictionary.h"; sourceTree = "<group>"; };
@@ -91,6 +93,7 @@
 			isa = PBXGroup;
 			children = (
 				D4FB252C198571D600362657 /* Podfile */,
+				D41076D219973CF50061B6CD /* aquasync.podspec */,
 				D4FB24F81985255D00362657 /* aquasync */,
 				D4FB250F1985255E00362657 /* aquasyncTests */,
 				D4FB24F71985255D00362657 /* Products */,
@@ -255,6 +258,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D4FB252D198571D600362657 /* Podfile in Resources */,
+				D41076D319973CF50061B6CD /* aquasync.podspec in Resources */,
 				D4FB25051985255D00362657 /* Main.storyboard in Resources */,
 				D4FB25071985255D00362657 /* Images.xcassets in Resources */,
 			);
