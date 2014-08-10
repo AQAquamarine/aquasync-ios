@@ -89,6 +89,29 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		D41076D4199742C00061B6CD /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				D4FB25231985417300362657 /* AQSyncManager.h */,
+				D4FB25241985417300362657 /* AQSyncManager.m */,
+				D471F115198FCA87009522DD /* FLMAlbum.h */,
+				D471F116198FCA87009522DD /* FLMAlbum.m */,
+				D434788E198768BA00E4C26B /* RLMArray+Dictionary.m */,
+				D434789219876A1C00E4C26B /* RLMArray+Dictionary.h */,
+				D43478901987696600E4C26B /* RLMObject+Dictionary.m */,
+				D434789319876A3F00E4C26B /* RLMObject+Dictionary.h */,
+				D4FB251F19852EE400362657 /* AQUtil.h */,
+				D4FB252019852EE400362657 /* AQUtil.m */,
+				D4FB252219852F6500362657 /* Aquasync.h */,
+				D4FB25291985686D00362657 /* AQModelManagerProtocol.h */,
+				D4FB252E198578F800362657 /* AQDeltaClient.h */,
+				D4FB252F198578F800362657 /* AQDeltaClient.m */,
+				D4FB251C19852A6E00362657 /* AQModel.h */,
+				D4FB251D19852A6E00362657 /* AQModel.m */,
+			);
+			name = Classes;
+			sourceTree = "<group>";
+		};
 		D4FB24ED1985255D00362657 = {
 			isa = PBXGroup;
 			children = (
@@ -114,29 +137,14 @@
 		D4FB24F81985255D00362657 /* aquasync */ = {
 			isa = PBXGroup;
 			children = (
+				D41076D4199742C00061B6CD /* Classes */,
 				D4FB24FD1985255D00362657 /* AppDelegate.h */,
 				D4FB24FE1985255D00362657 /* AppDelegate.m */,
 				D4FB25001985255D00362657 /* ViewController.h */,
 				D4FB25011985255D00362657 /* ViewController.m */,
-				D4FB251F19852EE400362657 /* AQUtil.h */,
-				D4FB252019852EE400362657 /* AQUtil.m */,
-				D4FB252219852F6500362657 /* Aquasync.h */,
-				D4FB25291985686D00362657 /* AQModelManagerProtocol.h */,
-				D4FB252E198578F800362657 /* AQDeltaClient.h */,
-				D4FB252F198578F800362657 /* AQDeltaClient.m */,
-				D4FB251C19852A6E00362657 /* AQModel.h */,
-				D4FB251D19852A6E00362657 /* AQModel.m */,
 				D4FB25031985255D00362657 /* Main.storyboard */,
-				D434788E198768BA00E4C26B /* RLMArray+Dictionary.m */,
-				D434789219876A1C00E4C26B /* RLMArray+Dictionary.h */,
-				D43478901987696600E4C26B /* RLMObject+Dictionary.m */,
-				D434789319876A3F00E4C26B /* RLMObject+Dictionary.h */,
 				D4FB25061985255D00362657 /* Images.xcassets */,
 				D4FB24F91985255D00362657 /* Supporting Files */,
-				D4FB25231985417300362657 /* AQSyncManager.h */,
-				D4FB25241985417300362657 /* AQSyncManager.m */,
-				D471F115198FCA87009522DD /* FLMAlbum.h */,
-				D471F116198FCA87009522DD /* FLMAlbum.m */,
 			);
 			path = aquasync;
 			sourceTree = "<group>";
