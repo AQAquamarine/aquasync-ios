@@ -18,6 +18,7 @@
 		D4C00E48199919990065E9F4 /* RLMObject+LogicalDeletion.m in Sources */ = {isa = PBXBuildFile; fileRef = D4C00E47199919990065E9F4 /* RLMObject+LogicalDeletion.m */; };
 		D4C00E4B1999202D0065E9F4 /* RLMObject+Transaction.m in Sources */ = {isa = PBXBuildFile; fileRef = D4C00E4A1999202D0065E9F4 /* RLMObject+Transaction.m */; };
 		D4C00E4E19992B6F0065E9F4 /* RLMObject+AquasyncModelRequirement.m in Sources */ = {isa = PBXBuildFile; fileRef = D4C00E4D19992B6F0065E9F4 /* RLMObject+AquasyncModelRequirement.m */; };
+		D4C00E52199931600065E9F4 /* AQJSONAdapter.m in Sources */ = {isa = PBXBuildFile; fileRef = D4C00E51199931600065E9F4 /* AQJSONAdapter.m */; };
 		D4FB24FC1985255D00362657 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = D4FB24FB1985255D00362657 /* main.m */; };
 		D4FB24FF1985255D00362657 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = D4FB24FE1985255D00362657 /* AppDelegate.m */; };
 		D4FB25021985255D00362657 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D4FB25011985255D00362657 /* ViewController.m */; };
@@ -65,6 +66,8 @@
 		D4C00E4C19992B6F0065E9F4 /* RLMObject+AquasyncModelRequirement.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "RLMObject+AquasyncModelRequirement.h"; sourceTree = "<group>"; };
 		D4C00E4D19992B6F0065E9F4 /* RLMObject+AquasyncModelRequirement.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "RLMObject+AquasyncModelRequirement.m"; sourceTree = "<group>"; };
 		D4C00E4F19992ED40065E9F4 /* AQJSONSerializeProtocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AQJSONSerializeProtocol.h; sourceTree = "<group>"; };
+		D4C00E50199931600065E9F4 /* AQJSONAdapter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AQJSONAdapter.h; sourceTree = "<group>"; };
+		D4C00E51199931600065E9F4 /* AQJSONAdapter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AQJSONAdapter.m; sourceTree = "<group>"; };
 		D4FB24F61985255D00362657 /* aquasync.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = aquasync.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D4FB24FA1985255D00362657 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D4FB24FB1985255D00362657 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -125,6 +128,8 @@
 				D4FB252F198578F800362657 /* AQDeltaClient.m */,
 				D4FB251C19852A6E00362657 /* AQModel.h */,
 				D4FB251D19852A6E00362657 /* AQModel.m */,
+				D4C00E50199931600065E9F4 /* AQJSONAdapter.h */,
+				D4C00E51199931600065E9F4 /* AQJSONAdapter.m */,
 			);
 			name = Classes;
 			sourceTree = "<group>";
@@ -411,6 +416,7 @@
 				D4FB25021985255D00362657 /* ViewController.m in Sources */,
 				D4FB24FF1985255D00362657 /* AppDelegate.m in Sources */,
 				D4C00E43199912BD0065E9F4 /* RLMObject+AquasyncModelManagerMethods.m in Sources */,
+				D4C00E52199931600065E9F4 /* AQJSONAdapter.m in Sources */,
 				D4C00E4019990B320065E9F4 /* RLMObject+AquasyncModelCallbacks.m in Sources */,
 				D4FB24FC1985255D00362657 /* main.m in Sources */,
 				D4FB25251985417300362657 /* AQSyncManager.m in Sources */,
