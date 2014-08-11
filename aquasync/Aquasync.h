@@ -2,6 +2,7 @@
 #import "AQAquasyncModelProtocol.h"
 #import "AQUtil.h"
 #import "AQModel.h"
+#import "AQModel+AquasyncModelCallbacks.h"
 #import "AQSyncManager.h"
 #import "AQDeltaClient.h"
 #import "RLMObject+Dictionary.h"
