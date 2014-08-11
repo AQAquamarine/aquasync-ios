@@ -39,25 +39,4 @@
     }];
 };
 
-
-// Resolves conflict with considering which record is newer (localTimestamp).
-// @param delta A delta. https://github.com/AQAquamarine/aquasync-protocol/blob/master/delta.md
-- (void)resolveConflict:(NSDictionary *)delta {
-    long long  deltaTimestamp = [delta[@"localTimestamp"] longLongValue];
-    if (deltaTimestamp > self.localTimestamp) {
-        [self updateFromDelta:delta];
-    } else {
-        NSLog(@"Skipped update delta due to delta's local Timestamp is older than current record.");
-    }
-}
-
-// Updates record from a delta.
-// @param delta A delta. https://github.com/AQAquamarine/aquasync-protocol/blob/master/delta.md
-- (void)updateFromDelta:(NSDictionary *)delta {
-    [self updateWithBlock:^{
-        [self aq_updateFromDictionary:delta];
-    }];
-}
-
-
 @end

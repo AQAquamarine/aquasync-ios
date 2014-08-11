@@ -1,11 +1,3 @@
-//
-//  RLMObject+AquasyncModelManagerMethods.m
-//  aquasync
-//
-//  Created by kaiinui on 2014/08/12.
-//  Copyright (c) 2014年 Aquamarine. All rights reserved.
-//
-
 #import "Aquasync.h"
 #import "RLMObject+LogicalDeletion.h"
 #import "RLMObject+Serialization.h"
@@ -14,12 +6,9 @@
 @implementation RLMObject (AquasyncModelManagerMethods)
 
 + (void)aq_receiveDeltas:(NSArray *)deltas {
-    NSLog(@"aq_receiveDelta: invoked. with %@", deltas);
     for (NSDictionary *delta in deltas) {
-        NSLog(@"aq_receiveDelta: should negotiate delta: %@", delta);
         NSString *gid = delta[@"gid"];
         id<AQAquasyncModelProtocol> record = [self find:gid];
-        NSLog(@"%@", record);
         if (record) {
             [record resolveConflict:delta];
         } else {
@@ -48,9 +37,7 @@
 // @param dictionary Unnamed root dictionary.
 + (instancetype)newFromDictionary:(NSDictionary *)dictionary {
     AQModel *model = [[self alloc] init];
-    for (NSString *key in dictionary.allKeys) {
-        [model setValue:dictionary[key] forKey:key];
-    }
+    [model aq_updateFromDictionary:dictionary];
     return model;
 };
 
@@ -58,7 +45,6 @@
 // It will not invoke beforeCreateOrUpdte / beforeUpdate.
 // @param dictionary Unnamed root dictionary.
 + (void)createFromDictionary:(NSDictionary *)dictionary {
-    NSLog(@"createFromDictionary");
     AQModel *model = [self newFromDictionary:dictionary];
     [model save];
 };
@@ -73,18 +59,7 @@
 // @return If found, it returns a record. It not, it returns nil.
 + (instancetype)find:(NSString *)gid {
     NSString *query = [NSString stringWithFormat:@"gid == '%@'", gid];
-    NSLog(@"find: %@", query);
-    return [self objectsWhere:query].firstObject;
+    return [[self all] objectsWhere:query].firstObject;
 };
-
-// Makes the record undirty. (It automatically commits the change.)
-- (void)undirty {
-    RLMRealm *realm = [RLMRealm defaultRealm];
-    [realm beginWriteTransaction];
-    [self setValue:[NSNumber numberWithBool:NO] forKey:@"isDirty"];
-    [realm addObject:self];
-    [realm commitWriteTransaction];
-};
-
 
 @end

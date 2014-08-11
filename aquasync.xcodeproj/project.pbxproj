@@ -17,6 +17,7 @@
 		D4C00E43199912BD0065E9F4 /* RLMObject+AquasyncModelManagerMethods.m in Sources */ = {isa = PBXBuildFile; fileRef = D4C00E42199912BD0065E9F4 /* RLMObject+AquasyncModelManagerMethods.m */; };
 		D4C00E48199919990065E9F4 /* RLMObject+LogicalDeletion.m in Sources */ = {isa = PBXBuildFile; fileRef = D4C00E47199919990065E9F4 /* RLMObject+LogicalDeletion.m */; };
 		D4C00E4B1999202D0065E9F4 /* RLMObject+Transaction.m in Sources */ = {isa = PBXBuildFile; fileRef = D4C00E4A1999202D0065E9F4 /* RLMObject+Transaction.m */; };
+		D4C00E4E19992B6F0065E9F4 /* RLMObject+AquasyncModelRequirement.m in Sources */ = {isa = PBXBuildFile; fileRef = D4C00E4D19992B6F0065E9F4 /* RLMObject+AquasyncModelRequirement.m */; };
 		D4FB24FC1985255D00362657 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = D4FB24FB1985255D00362657 /* main.m */; };
 		D4FB24FF1985255D00362657 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = D4FB24FE1985255D00362657 /* AppDelegate.m */; };
 		D4FB25021985255D00362657 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D4FB25011985255D00362657 /* ViewController.m */; };
@@ -61,6 +62,9 @@
 		D4C00E47199919990065E9F4 /* RLMObject+LogicalDeletion.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "RLMObject+LogicalDeletion.m"; sourceTree = "<group>"; };
 		D4C00E491999202D0065E9F4 /* RLMObject+Transaction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "RLMObject+Transaction.h"; sourceTree = "<group>"; };
 		D4C00E4A1999202D0065E9F4 /* RLMObject+Transaction.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "RLMObject+Transaction.m"; sourceTree = "<group>"; };
+		D4C00E4C19992B6F0065E9F4 /* RLMObject+AquasyncModelRequirement.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "RLMObject+AquasyncModelRequirement.h"; sourceTree = "<group>"; };
+		D4C00E4D19992B6F0065E9F4 /* RLMObject+AquasyncModelRequirement.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "RLMObject+AquasyncModelRequirement.m"; sourceTree = "<group>"; };
+		D4C00E4F19992ED40065E9F4 /* AQJSONSerializeProtocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AQJSONSerializeProtocol.h; sourceTree = "<group>"; };
 		D4FB24F61985255D00362657 /* aquasync.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = aquasync.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D4FB24FA1985255D00362657 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D4FB24FB1985255D00362657 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -140,6 +144,8 @@
 				D4C00E47199919990065E9F4 /* RLMObject+LogicalDeletion.m */,
 				D4C00E491999202D0065E9F4 /* RLMObject+Transaction.h */,
 				D4C00E4A1999202D0065E9F4 /* RLMObject+Transaction.m */,
+				D4C00E4C19992B6F0065E9F4 /* RLMObject+AquasyncModelRequirement.h */,
+				D4C00E4D19992B6F0065E9F4 /* RLMObject+AquasyncModelRequirement.m */,
 			);
 			name = Categories;
 			sourceTree = "<group>";
@@ -149,6 +155,7 @@
 			children = (
 				D4FB25291985686D00362657 /* AQModelManagerProtocol.h */,
 				D4C00E3C199906000065E9F4 /* AQAquasyncModelProtocol.h */,
+				D4C00E4F19992ED40065E9F4 /* AQJSONSerializeProtocol.h */,
 			);
 			name = Protocols;
 			sourceTree = "<group>";
@@ -399,6 +406,7 @@
 			files = (
 				D434788F198768BA00E4C26B /* RLMArray+Serialization.m in Sources */,
 				D4C00E4B1999202D0065E9F4 /* RLMObject+Transaction.m in Sources */,
+				D4C00E4E19992B6F0065E9F4 /* RLMObject+AquasyncModelRequirement.m in Sources */,
 				D4FB252119852EE400362657 /* AQUtil.m in Sources */,
 				D4FB25021985255D00362657 /* ViewController.m in Sources */,
 				D4FB24FF1985255D00362657 /* AppDelegate.m in Sources */,

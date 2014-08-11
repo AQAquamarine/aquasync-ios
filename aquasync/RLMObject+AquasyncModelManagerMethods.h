@@ -1,12 +1,6 @@
-//
-//  RLMObject+AquasyncModelManagerMethods.h
-//  aquasync
-//
-//  Created by kaiinui on 2014/08/12.
-//  Copyright (c) 2014年 Aquamarine. All rights reserved.
-//
-
 #import <Realm/Realm.h>
+#import "RLMObject+AquasyncModelRequirement.h"
+#import "RLMObject+Serialization.h"
 
 @interface RLMObject (AquasyncModelManagerMethods)
 

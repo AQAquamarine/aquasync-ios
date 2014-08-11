@@ -8,6 +8,7 @@
 #import "RLMObject+LogicalDeletion.h"
 #import "RLMObject+AquasyncModelCallbacks.h"
 #import "RLMObject+AquasyncModelManagerMethods.h"
+#import "RLMObject+AquasyncModelRequirement.h"
 
 @interface AQModel : RLMObject <AQModelManagerProtocol, AQAquasyncModelProtocol>
 
