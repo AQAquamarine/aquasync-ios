@@ -5,7 +5,24 @@
 #import "AQSyncManager.h"
 #import "AQUtil.h"
 
-SpecBegin(AQModel)
+#import "AQJSONAdapter.h"
+#import "Dog.h"
+
+SpecBegin(AQJSONAdapter)
+
+describe(@"AQJSONAdapter", ^{
+    describe(@"-serializeToJSONDictionary", ^{
+        it(@"serialize a dog to dictionary", ^{
+            Dog *dog = [Dog new];
+            dog.dogName = @"pochi";
+            expect([AQJSONAdapter serializeToJSONDictionary:dog][@"dog_name"]).to.equal(@"pochi");
+        });
+    });
+});
+
+SpecEnd
+
+SpecBegin(AQSyncManager)
 
 describe(@"AQSyncManager", ^{
     describe(@"registModelManager", ^{

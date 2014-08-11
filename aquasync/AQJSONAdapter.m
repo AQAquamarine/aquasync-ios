@@ -4,9 +4,10 @@
 
 + (NSDictionary *)serializeToJSONDictionary:(NSObject<AQJSONSerializeProtocol> *)obj {
     NSMutableDictionary *dic = [[NSMutableDictionary alloc] init];
-    for (NSString *key in [[obj class] keyMap]) {
-        NSString *jsonKey = [[obj class] keyMap][key];
-        dic[jsonKey] = [self valueForKey:key];
+    NSDictionary *keyMap = [[obj class] keyMap];
+    for (NSString *key in keyMap) {
+        NSString *jsonKey = keyMap[key];
+        dic[jsonKey] = [obj valueForKey:key];
     }
     return dic;
 }
