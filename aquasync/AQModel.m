@@ -10,7 +10,7 @@
     self = [super init];
     if (self) {
         [self beforeCreate];
-        [self beforeUpdateOrCreate];
+        [self beforeSave];
     }
     return self;
 };
@@ -24,7 +24,7 @@
 
 // Sets value with invoking beforeUpdateOrCreate (so that the record will be dirty.)
 - (void)set:(id)value forKey:(NSString *)key {
-    [self beforeUpdateOrCreate];
+    [self beforeSave];
     [self setValue:value forKey:key];
 };
 
@@ -43,7 +43,7 @@
     RLMRealm *realm = [RLMRealm defaultRealm];
     [realm beginWriteTransaction];
     self.isDeleted = YES;
-    [self beforeUpdateOrCreate];
+    [self beforeSave];
     [realm addObject:self];
     [realm commitWriteTransaction];
 };
@@ -81,10 +81,5 @@
     NSLog(@"%@", self);
     [realm commitWriteTransaction];
 };
-
-
-# pragma mark - AQModelProtocol Methods
-
-
 
 @end

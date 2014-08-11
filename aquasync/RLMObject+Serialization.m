@@ -1,6 +1,6 @@
-#import "RLMObject+Dictionary.h"
+#import "RLMObject+Serialization.h"
 
-@implementation RLMObject (DictionaryMethods)
+@implementation RLMObject (Serialization)
 
 - (NSDictionary *)aq_toDictionary {
     NSMutableDictionary *dic = [[NSMutableDictionary alloc] init];

@@ -9,12 +9,13 @@
 /* Begin PBXBuildFile section */
 		B16ED902495A41848024FEEB /* libPods-aquasyncTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C6659ABAF218440699BC17FA /* libPods-aquasyncTests.a */; };
 		D41076D319973CF50061B6CD /* aquasync.podspec in Resources */ = {isa = PBXBuildFile; fileRef = D41076D219973CF50061B6CD /* aquasync.podspec */; };
-		D434788F198768BA00E4C26B /* RLMArray+Dictionary.m in Sources */ = {isa = PBXBuildFile; fileRef = D434788E198768BA00E4C26B /* RLMArray+Dictionary.m */; };
-		D43478911987696600E4C26B /* RLMObject+Dictionary.m in Sources */ = {isa = PBXBuildFile; fileRef = D43478901987696600E4C26B /* RLMObject+Dictionary.m */; };
+		D434788F198768BA00E4C26B /* RLMArray+Serialization.m in Sources */ = {isa = PBXBuildFile; fileRef = D434788E198768BA00E4C26B /* RLMArray+Serialization.m */; };
+		D43478911987696600E4C26B /* RLMObject+Serialization.m in Sources */ = {isa = PBXBuildFile; fileRef = D43478901987696600E4C26B /* RLMObject+Serialization.m */; };
 		D471F117198FCA87009522DD /* FLMAlbum.m in Sources */ = {isa = PBXBuildFile; fileRef = D471F116198FCA87009522DD /* FLMAlbum.m */; };
 		D4C00E3B1999006C0065E9F4 /* libPods-aquasync.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 526C9AB990594D6EA9ED853E /* libPods-aquasync.a */; };
 		D4C00E4019990B320065E9F4 /* RLMObject+AquasyncModelCallbacks.m in Sources */ = {isa = PBXBuildFile; fileRef = D4C00E3F19990B320065E9F4 /* RLMObject+AquasyncModelCallbacks.m */; };
 		D4C00E43199912BD0065E9F4 /* RLMObject+AquasyncModelManagerMethods.m in Sources */ = {isa = PBXBuildFile; fileRef = D4C00E42199912BD0065E9F4 /* RLMObject+AquasyncModelManagerMethods.m */; };
+		D4C00E48199919990065E9F4 /* RLMObject+LogicalDeletion.m in Sources */ = {isa = PBXBuildFile; fileRef = D4C00E47199919990065E9F4 /* RLMObject+LogicalDeletion.m */; };
 		D4FB24FC1985255D00362657 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = D4FB24FB1985255D00362657 /* main.m */; };
 		D4FB24FF1985255D00362657 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = D4FB24FE1985255D00362657 /* AppDelegate.m */; };
 		D4FB25021985255D00362657 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D4FB25011985255D00362657 /* ViewController.m */; };
@@ -44,10 +45,10 @@
 		B0DF8CE1B5C94B8EB0DFBA23 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
 		C6659ABAF218440699BC17FA /* libPods-aquasyncTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-aquasyncTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D41076D219973CF50061B6CD /* aquasync.podspec */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = aquasync.podspec; sourceTree = "<group>"; };
-		D434788E198768BA00E4C26B /* RLMArray+Dictionary.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "RLMArray+Dictionary.m"; sourceTree = "<group>"; };
-		D43478901987696600E4C26B /* RLMObject+Dictionary.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "RLMObject+Dictionary.m"; sourceTree = "<group>"; };
-		D434789219876A1C00E4C26B /* RLMArray+Dictionary.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "RLMArray+Dictionary.h"; sourceTree = "<group>"; };
-		D434789319876A3F00E4C26B /* RLMObject+Dictionary.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "RLMObject+Dictionary.h"; sourceTree = "<group>"; };
+		D434788E198768BA00E4C26B /* RLMArray+Serialization.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "RLMArray+Serialization.m"; sourceTree = "<group>"; };
+		D43478901987696600E4C26B /* RLMObject+Serialization.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "RLMObject+Serialization.m"; sourceTree = "<group>"; };
+		D434789219876A1C00E4C26B /* RLMArray+Serialization.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "RLMArray+Serialization.h"; sourceTree = "<group>"; };
+		D434789319876A3F00E4C26B /* RLMObject+Serialization.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "RLMObject+Serialization.h"; sourceTree = "<group>"; };
 		D471F115198FCA87009522DD /* FLMAlbum.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLMAlbum.h; sourceTree = "<group>"; };
 		D471F116198FCA87009522DD /* FLMAlbum.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLMAlbum.m; sourceTree = "<group>"; };
 		D4C00E3C199906000065E9F4 /* AQAquasyncModelProtocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AQAquasyncModelProtocol.h; sourceTree = "<group>"; };
@@ -55,6 +56,8 @@
 		D4C00E3F19990B320065E9F4 /* RLMObject+AquasyncModelCallbacks.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "RLMObject+AquasyncModelCallbacks.m"; sourceTree = "<group>"; };
 		D4C00E41199912BD0065E9F4 /* RLMObject+AquasyncModelManagerMethods.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "RLMObject+AquasyncModelManagerMethods.h"; sourceTree = "<group>"; };
 		D4C00E42199912BD0065E9F4 /* RLMObject+AquasyncModelManagerMethods.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "RLMObject+AquasyncModelManagerMethods.m"; sourceTree = "<group>"; };
+		D4C00E46199919990065E9F4 /* RLMObject+LogicalDeletion.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "RLMObject+LogicalDeletion.h"; sourceTree = "<group>"; };
+		D4C00E47199919990065E9F4 /* RLMObject+LogicalDeletion.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "RLMObject+LogicalDeletion.m"; sourceTree = "<group>"; };
 		D4FB24F61985255D00362657 /* aquasync.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = aquasync.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D4FB24FA1985255D00362657 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D4FB24FB1985255D00362657 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -128,10 +131,12 @@
 				D4C00E42199912BD0065E9F4 /* RLMObject+AquasyncModelManagerMethods.m */,
 				D4C00E3E19990B320065E9F4 /* RLMObject+AquasyncModelCallbacks.h */,
 				D4C00E3F19990B320065E9F4 /* RLMObject+AquasyncModelCallbacks.m */,
-				D43478901987696600E4C26B /* RLMObject+Dictionary.m */,
-				D434789319876A3F00E4C26B /* RLMObject+Dictionary.h */,
-				D434788E198768BA00E4C26B /* RLMArray+Dictionary.m */,
-				D434789219876A1C00E4C26B /* RLMArray+Dictionary.h */,
+				D43478901987696600E4C26B /* RLMObject+Serialization.m */,
+				D434789319876A3F00E4C26B /* RLMObject+Serialization.h */,
+				D434788E198768BA00E4C26B /* RLMArray+Serialization.m */,
+				D434789219876A1C00E4C26B /* RLMArray+Serialization.h */,
+				D4C00E46199919990065E9F4 /* RLMObject+LogicalDeletion.h */,
+				D4C00E47199919990065E9F4 /* RLMObject+LogicalDeletion.m */,
 			);
 			name = Categories;
 			sourceTree = "<group>";
@@ -387,7 +392,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D434788F198768BA00E4C26B /* RLMArray+Dictionary.m in Sources */,
+				D434788F198768BA00E4C26B /* RLMArray+Serialization.m in Sources */,
 				D4FB252119852EE400362657 /* AQUtil.m in Sources */,
 				D4FB25021985255D00362657 /* ViewController.m in Sources */,
 				D4FB24FF1985255D00362657 /* AppDelegate.m in Sources */,
@@ -395,10 +400,11 @@
 				D4C00E4019990B320065E9F4 /* RLMObject+AquasyncModelCallbacks.m in Sources */,
 				D4FB24FC1985255D00362657 /* main.m in Sources */,
 				D4FB25251985417300362657 /* AQSyncManager.m in Sources */,
-				D43478911987696600E4C26B /* RLMObject+Dictionary.m in Sources */,
+				D43478911987696600E4C26B /* RLMObject+Serialization.m in Sources */,
 				D471F117198FCA87009522DD /* FLMAlbum.m in Sources */,
 				D4FB2530198578F800362657 /* AQDeltaClient.m in Sources */,
 				D4FB251E19852A6E00362657 /* AQModel.m in Sources */,
+				D4C00E48199919990065E9F4 /* RLMObject+LogicalDeletion.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

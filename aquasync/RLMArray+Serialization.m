@@ -1,6 +1,6 @@
-#import "RLMArray+Dictionary.h"
+#import "RLMArray+Serialization.h"
 
-@implementation RLMArray (DictionaryMethods)
+@implementation RLMArray (Serialization)
 
 - (NSArray *)aq_toDictionaryArray {
     NSMutableArray *array = [[NSMutableArray alloc] init];
