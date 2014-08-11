@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9E2AD22E70CE420991B3CBBC /* libPods-aquasync.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 526C9AB990594D6EA9ED853E /* libPods-aquasync.a */; };
+		B16ED902495A41848024FEEB /* libPods-aquasyncTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C6659ABAF218440699BC17FA /* libPods-aquasyncTests.a */; };
 		D41076D319973CF50061B6CD /* aquasync.podspec in Resources */ = {isa = PBXBuildFile; fileRef = D41076D219973CF50061B6CD /* aquasync.podspec */; };
 		D434788F198768BA00E4C26B /* RLMArray+Dictionary.m in Sources */ = {isa = PBXBuildFile; fileRef = D434788E198768BA00E4C26B /* RLMArray+Dictionary.m */; };
 		D43478911987696600E4C26B /* RLMObject+Dictionary.m in Sources */ = {isa = PBXBuildFile; fileRef = D43478901987696600E4C26B /* RLMObject+Dictionary.m */; };
@@ -22,7 +24,6 @@
 		D4FB25251985417300362657 /* AQSyncManager.m in Sources */ = {isa = PBXBuildFile; fileRef = D4FB25241985417300362657 /* AQSyncManager.m */; };
 		D4FB252D198571D600362657 /* Podfile in Resources */ = {isa = PBXBuildFile; fileRef = D4FB252C198571D600362657 /* Podfile */; };
 		D4FB2530198578F800362657 /* AQDeltaClient.m in Sources */ = {isa = PBXBuildFile; fileRef = D4FB252F198578F800362657 /* AQDeltaClient.m */; };
-		E4D7B8446BEE455D944E1F24 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = ABBB516DB75B46249C738F9E /* libPods.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -36,8 +37,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		ABBB516DB75B46249C738F9E /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		36C91F6CCBB04340933AA90A /* Pods-aquasync.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-aquasync.xcconfig"; path = "Pods/Pods-aquasync.xcconfig"; sourceTree = "<group>"; };
+		526C9AB990594D6EA9ED853E /* libPods-aquasync.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-aquasync.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B0DF8CE1B5C94B8EB0DFBA23 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
+		C6659ABAF218440699BC17FA /* libPods-aquasyncTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-aquasyncTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D41076D219973CF50061B6CD /* aquasync.podspec */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = aquasync.podspec; sourceTree = "<group>"; };
 		D434788E198768BA00E4C26B /* RLMArray+Dictionary.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "RLMArray+Dictionary.m"; sourceTree = "<group>"; };
 		D43478901987696600E4C26B /* RLMObject+Dictionary.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "RLMObject+Dictionary.m"; sourceTree = "<group>"; };
@@ -68,6 +71,7 @@
 		D4FB252C198571D600362657 /* Podfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Podfile; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		D4FB252E198578F800362657 /* AQDeltaClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AQDeltaClient.h; sourceTree = "<group>"; };
 		D4FB252F198578F800362657 /* AQDeltaClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AQDeltaClient.m; sourceTree = "<group>"; };
+		FEF59097A2C94C5C9244983F /* Pods-aquasyncTests.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-aquasyncTests.xcconfig"; path = "Pods/Pods-aquasyncTests.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -75,7 +79,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E4D7B8446BEE455D944E1F24 /* libPods.a in Frameworks */,
+				9E2AD22E70CE420991B3CBBC /* libPods-aquasync.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -83,6 +87,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B16ED902495A41848024FEEB /* libPods-aquasyncTests.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -122,6 +127,8 @@
 				D4FB24F71985255D00362657 /* Products */,
 				B0DF8CE1B5C94B8EB0DFBA23 /* Pods.xcconfig */,
 				E7C341806051400E8D07DE69 /* Frameworks */,
+				36C91F6CCBB04340933AA90A /* Pods-aquasync.xcconfig */,
+				FEF59097A2C94C5C9244983F /* Pods-aquasyncTests.xcconfig */,
 			);
 			sourceTree = "<group>";
 		};
@@ -178,7 +185,8 @@
 		E7C341806051400E8D07DE69 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				ABBB516DB75B46249C738F9E /* libPods.a */,
+				526C9AB990594D6EA9ED853E /* libPods-aquasync.a */,
+				C6659ABAF218440699BC17FA /* libPods-aquasyncTests.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -209,9 +217,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = D4FB25191985255E00362657 /* Build configuration list for PBXNativeTarget "aquasyncTests" */;
 			buildPhases = (
+				EB1C9753195C4675921F2C41 /* Check Pods Manifest.lock */,
 				D4FB25081985255E00362657 /* Sources */,
 				D4FB25091985255E00362657 /* Frameworks */,
 				D4FB250A1985255E00362657 /* Resources */,
+				6812D059037049E4A272CC20 /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -294,10 +304,40 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Pods-resources.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Pods-aquasync-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		6812D059037049E4A272CC20 /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Pods-aquasyncTests-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		9A7537749935403DB8139A64 /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		EB1C9753195C4675921F2C41 /* Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -440,11 +480,12 @@
 		};
 		D4FB25171985255E00362657 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = B0DF8CE1B5C94B8EB0DFBA23 /* Pods.xcconfig */;
+			baseConfigurationReference = 36C91F6CCBB04340933AA90A /* Pods-aquasync.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				INFOPLIST_FILE = aquasync/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
@@ -452,11 +493,12 @@
 		};
 		D4FB25181985255E00362657 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = B0DF8CE1B5C94B8EB0DFBA23 /* Pods.xcconfig */;
+			baseConfigurationReference = 36C91F6CCBB04340933AA90A /* Pods-aquasync.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				INFOPLIST_FILE = aquasync/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
@@ -464,6 +506,7 @@
 		};
 		D4FB251A1985255E00362657 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = FEF59097A2C94C5C9244983F /* Pods-aquasyncTests.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/aquasync.app/aquasync";
 				FRAMEWORK_SEARCH_PATHS = (
@@ -484,6 +527,7 @@
 		};
 		D4FB251B1985255E00362657 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = FEF59097A2C94C5C9244983F /* Pods-aquasyncTests.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/aquasync.app/aquasync";
 				FRAMEWORK_SEARCH_PATHS = (

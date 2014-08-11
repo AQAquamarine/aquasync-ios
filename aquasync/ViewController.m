@@ -39,7 +39,7 @@
     [[AQDeltaClient sharedInstance] setBasicAuthorizationWithUsername:@"hogehoge" password:@"hogehoge"];
     AQSyncManager *manager = [AQSyncManager sharedInstance];
     [manager registModelManager:[FLMAlbum class] forName:@"Album"];
-    //[manager sync];
+    [manager sync];
 }
 
 - (void)didReceiveMemoryWarning {

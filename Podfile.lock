@@ -23,6 +23,11 @@ PODS:
   - AFNetworking/UIKit (2.3.1):
     - AFNetworking/NSURLConnection
     - AFNetworking/NSURLSession
+  - Expecta (0.3.1)
+  - OCHamcrest (4.0.1)
+  - OCMockito (1.3.0):
+    - OCHamcrest (~> 4.0)
+    - TPWeakProxy (~> 1.0)
   - ReactiveCocoa (2.3.1):
     - ReactiveCocoa/UI
   - ReactiveCocoa/Core (2.3.1):
@@ -31,17 +36,27 @@ PODS:
   - ReactiveCocoa/UI (2.3.1):
     - ReactiveCocoa/Core
   - Realm (0.81.0)
+  - Specta (0.2.1)
+  - TPWeakProxy (1.0.0)
 
 DEPENDENCIES:
   - AFNetworking
   - AFNetworking-RACExtensions
+  - Expecta
+  - OCMockito
   - ReactiveCocoa
   - Realm
+  - Specta
 
 SPEC CHECKSUMS:
   AFNetworking: 6d7b76aa5d04c8c37daad3eef4b7e3f2a7620da3
   AFNetworking-RACExtensions: 1d7fbc98d11e9e02ae26faed0c777c6e840464b5
+  Expecta: 03aabd0a89d8dea843baecb19a7fd7466a69a31d
+  OCHamcrest: b464725bbb48d0f1cd9c6f4ec3cb35fe0c4f2b94
+  OCMockito: eca2670b3ce4a457d316b046a36d6f2b980a4da7
   ReactiveCocoa: dca75777b9d18990c8714a3a6f2149f29b4d1462
   Realm: 18d96d4c565c5fd7d12d17ef45ee78551e8ee365
+  Specta: 9141310f46b1f68b676650ff2854e1ed0b74163a
+  TPWeakProxy: a23251ba7fbe268c93f809cc072ef834f5063798
 
 COCOAPODS: 0.33.1
