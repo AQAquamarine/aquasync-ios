@@ -24,6 +24,7 @@
 };
 
 - (void)beforeUpdateOrCreate {
+    NSLog(@"DEPRECATED! use beforeSave instead of beforeUpdateOrCreate");
     [self beforeSave];
 };
 
