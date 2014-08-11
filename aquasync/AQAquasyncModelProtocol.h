@@ -10,4 +10,6 @@
 @property (nonatomic, assign) BOOL isDirty;
 @property (nonatomic, assign) BOOL isDeleted;
 
+- (void)resolveConflict:(NSDictionary *)delta;
+
 @end

@@ -1,4 +1,4 @@
-#import "AQModel+AquasyncModelCallbacks.h"
+#import "RLMObject+AquasyncModelCallbacks.h"
 
 @implementation RLMObject (AquasyncModelCallbacks)
 

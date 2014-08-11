@@ -56,39 +56,6 @@
     [realm commitWriteTransaction];
 };
 
-// New a record from a dictionary. (Typically from a delta.)
-// It will not invoke beforeCreateOrUpdte / beforeUpdate.
-// @param dictionary Unnamed root dictionary.
-+ (instancetype)newFromDictionary:(NSDictionary *)dictionary {
-    AQModel *model = [[self alloc] init];
-    for (NSString *key in dictionary.allKeys) {
-        [model setValue:dictionary[key] forKey:key];
-    }
-    return model;
-};
-
-// Creates a record from a dictionary and commits the change.
-// It will not invoke beforeCreateOrUpdte / beforeUpdate.
-// @param dictionary Unnamed root dictionary.
-+ (void)createFromDictionary:(NSDictionary *)dictionary {
-    NSLog(@"createFromDictionary");
-    AQModel *model = [self newFromDictionary:dictionary];
-    [model save];
-};
-
-// Find all dirty records.
-// @return Dirty records
-+ (RLMArray *)dirtyRecords {
-    return [self objectsWhere:@"isDirty = true"];
-};
-
-// Find a record with gid.
-// @return If found, it returns a record. It not, it returns nil.
-+ (instancetype)find:(NSString *)gid {
-    NSString *query = [NSString stringWithFormat:@"gid == '%@'", gid];
-    NSLog(@"find: %@", query);
-    return [self objectsWhere:query].firstObject;
-};
 
 // Resolves conflict with considering which record is newer (localTimestamp).
 // @param delta A delta. https://github.com/AQAquamarine/aquasync-protocol/blob/master/delta.md
@@ -118,32 +85,6 @@
 
 # pragma mark - AQModelProtocol Methods
 
-+ (void)aq_receiveDeltas:(NSArray *)deltas {
-    NSLog(@"aq_receiveDelta: invoked. with %@", deltas);
-    for (NSDictionary *delta in deltas) {
-        NSLog(@"aq_receiveDelta: should negotiate delta: %@", delta);
-        NSString *gid = delta[@"gid"];
-        AQModel *record = [self find:gid];
-        NSLog(@"%@", record);
-        if (record) {
-            [record resolveConflict:delta];
-        } else {
-            [self createFromDictionary:delta];
-        }
-    }
-};
 
-+ (NSArray *)aq_extractDeltas {
-    return [[AQModel dirtyRecords] aq_toDictionaryArray];
-};
-
-+ (void)aq_undirtyRecordsFromDeltas:(NSArray *)deltas {
-    for (NSDictionary *delta in deltas) {
-        NSString *gid = delta[@"gid"];
-        AQModel *object = [self find:gid];
-        [object undirty];
-        // [TODO] negotiate localTimestamp
-    }
-};
 
 @end
