@@ -11,4 +11,11 @@
     return dic;
 };
 
+- (void)aq_updateFromDictionary:(NSDictionary *)dictionary {
+    for (NSString *key in dictionary.allKeys) {
+        id value = dictionary[key];
+        [self setValue:value forKey:key];
+    }
+}
+
 @end

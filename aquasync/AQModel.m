@@ -55,10 +55,7 @@
 // @param delta A delta. https://github.com/AQAquamarine/aquasync-protocol/blob/master/delta.md
 - (void)updateFromDelta:(NSDictionary *)delta {
     [self updateWithBlock:^{
-        for (NSString *key in delta.allKeys) {
-            id value = delta[key];
-            [self setValue:value forKey:key];
-        }
+        [self aq_updateFromDictionary:delta];
     }];
 }
 
