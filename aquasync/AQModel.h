@@ -13,8 +13,6 @@
 
 - (instancetype)init;
 - (void)destroy;
-- (id)get:(NSString *)key;
-- (void)set:(id)value forKey:(NSString *)key;
 - (void)save;
 
 @end

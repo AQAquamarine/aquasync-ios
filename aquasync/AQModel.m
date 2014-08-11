@@ -15,19 +15,6 @@
     return self;
 };
 
-# pragma mark - Public Methods
-
-// Gets value.
-- (id)get:(NSString *)key {
-    return [self valueForKey:key];
-};
-
-// Sets value with invoking beforeUpdateOrCreate (so that the record will be dirty.)
-- (void)set:(id)value forKey:(NSString *)key {
-    [self beforeSave];
-    [self setValue:value forKey:key];
-};
-
 # pragma mark - Realm Extensions
 
 // Makes the record undirty. (It automatically commits the change.)
@@ -37,6 +24,7 @@
     }];
 };
 
+// Destroys the object.
 - (void)destroy {
     [self updateWithBlock:^{
         self.isDeleted = YES;
@@ -46,7 +34,9 @@
 
 // Commits the change.
 - (void)save {
-    [self updateWithBlock:^() {}];
+    [self updateWithBlock:^() {
+        [self beforeSave];
+    }];
 };
 
 
