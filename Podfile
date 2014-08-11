@@ -5,6 +5,7 @@ target :aquasync do
   pod "ReactiveCocoa"
   pod "AFNetworking-RACExtensions"
   pod "Realm"
+  pod "Mantle"
 end
 
 target :aquasyncTests do

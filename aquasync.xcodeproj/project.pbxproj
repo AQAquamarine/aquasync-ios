@@ -7,12 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		9E2AD22E70CE420991B3CBBC /* libPods-aquasync.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 526C9AB990594D6EA9ED853E /* libPods-aquasync.a */; };
 		B16ED902495A41848024FEEB /* libPods-aquasyncTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C6659ABAF218440699BC17FA /* libPods-aquasyncTests.a */; };
 		D41076D319973CF50061B6CD /* aquasync.podspec in Resources */ = {isa = PBXBuildFile; fileRef = D41076D219973CF50061B6CD /* aquasync.podspec */; };
 		D434788F198768BA00E4C26B /* RLMArray+Dictionary.m in Sources */ = {isa = PBXBuildFile; fileRef = D434788E198768BA00E4C26B /* RLMArray+Dictionary.m */; };
 		D43478911987696600E4C26B /* RLMObject+Dictionary.m in Sources */ = {isa = PBXBuildFile; fileRef = D43478901987696600E4C26B /* RLMObject+Dictionary.m */; };
 		D471F117198FCA87009522DD /* FLMAlbum.m in Sources */ = {isa = PBXBuildFile; fileRef = D471F116198FCA87009522DD /* FLMAlbum.m */; };
+		D4C00E3B1999006C0065E9F4 /* libPods-aquasync.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 526C9AB990594D6EA9ED853E /* libPods-aquasync.a */; };
 		D4FB24FC1985255D00362657 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = D4FB24FB1985255D00362657 /* main.m */; };
 		D4FB24FF1985255D00362657 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = D4FB24FE1985255D00362657 /* AppDelegate.m */; };
 		D4FB25021985255D00362657 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D4FB25011985255D00362657 /* ViewController.m */; };
@@ -48,6 +48,7 @@
 		D434789319876A3F00E4C26B /* RLMObject+Dictionary.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "RLMObject+Dictionary.h"; sourceTree = "<group>"; };
 		D471F115198FCA87009522DD /* FLMAlbum.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLMAlbum.h; sourceTree = "<group>"; };
 		D471F116198FCA87009522DD /* FLMAlbum.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLMAlbum.m; sourceTree = "<group>"; };
+		D4C00E3C199906000065E9F4 /* AQAquasyncModelProtocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AQAquasyncModelProtocol.h; sourceTree = "<group>"; };
 		D4FB24F61985255D00362657 /* aquasync.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = aquasync.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D4FB24FA1985255D00362657 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D4FB24FB1985255D00362657 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -79,7 +80,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9E2AD22E70CE420991B3CBBC /* libPods-aquasync.a in Frameworks */,
+				D4C00E3B1999006C0065E9F4 /* libPods-aquasync.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -110,6 +111,7 @@
 				D4FB252219852F6500362657 /* Aquasync.h */,
 				D4FB25291985686D00362657 /* AQModelManagerProtocol.h */,
 				D4FB252E198578F800362657 /* AQDeltaClient.h */,
+				D4C00E3C199906000065E9F4 /* AQAquasyncModelProtocol.h */,
 				D4FB252F198578F800362657 /* AQDeltaClient.m */,
 				D4FB251C19852A6E00362657 /* AQModel.h */,
 				D4FB251D19852A6E00362657 /* AQModel.m */,
@@ -487,6 +489,10 @@
 				INFOPLIST_FILE = aquasync/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Pods/build/Debug-iphoneos",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -500,6 +506,10 @@
 				INFOPLIST_FILE = aquasync/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Pods/build/Debug-iphoneos",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;

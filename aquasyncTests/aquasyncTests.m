@@ -5,8 +5,10 @@
 SpecBegin(AQModel)
 
 describe(@"AQModel", ^{
-    it(@"specta is runnnig!", ^{
-        expect(@"specta").to.equal(@"specta");
+    describe(@"beforeCreate", ^{
+        it(@"localTimestamp it set", ^{
+            expect(@"AQModel").to.equal(@"AQModel");
+        });
     });
     
     it(@"specta is specta", ^{

@@ -1,12 +1,9 @@
 #import <Foundation/Foundation.h>
 #import "Aquasync.h"
 #import <Realm/Realm.h>
+#import "AQAquasyncModelProtocol.h"
 
-@interface AQModel : RLMObject <AQModelManagerProtocol>
-
-@property (nonatomic, retain) NSString *gid, *deviceToken;
-@property (nonatomic, assign) long localTimestamp;
-@property (nonatomic, assign) BOOL isDirty, isDeleted;
+@interface AQModel : RLMObject <AQModelManagerProtocol, AQAquasyncModelProtocol>
 
 - (instancetype)init;
 - (void)destroy;
