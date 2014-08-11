@@ -30,7 +30,6 @@
     [realm commitWriteTransaction];
     
     FLMAlbum *album1 = [FLMAlbum new];
-    album1.title = @"hoge";
     [album1 save];
     
     FLMAlbum *album2 = [[FLMAlbum alloc] init];

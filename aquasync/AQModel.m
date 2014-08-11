@@ -32,28 +32,21 @@
 
 // Makes the record undirty. (It automatically commits the change.)
 - (void)undirty {
-    RLMRealm *realm = [RLMRealm defaultRealm];
-    [realm beginWriteTransaction];
-    self.isDirty = false;
-    [realm addObject:self];
-    [realm commitWriteTransaction];
+    [self performChangeWithBlock:^{
+        self.isDirty = NO;
+    }];
 };
 
 - (void)destroy {
-    RLMRealm *realm = [RLMRealm defaultRealm];
-    [realm beginWriteTransaction];
-    self.isDeleted = YES;
-    [self beforeSave];
-    [realm addObject:self];
-    [realm commitWriteTransaction];
+    [self performChangeWithBlock:^{
+        self.isDeleted = YES;
+        [self beforeSave];
+    }];
 };
 
 // Commits the change.
 - (void)save {
-    RLMRealm *realm = [RLMRealm defaultRealm];
-    [realm beginWriteTransaction];
-    [realm addObject:self];
-    [realm commitWriteTransaction];
+    [self performChangeWithBlock:^() {}];
 };
 
 
@@ -71,15 +64,20 @@
 // Updates record from a delta.
 // @param delta A delta. https://github.com/AQAquamarine/aquasync-protocol/blob/master/delta.md
 - (void)updateFromDelta:(NSDictionary *)delta {
-    NSLog(@"updateFromDelta invoked: %@", delta);
+    [self performChangeWithBlock:^{
+        for (NSString *key in delta.allKeys) {
+            id value = delta[key];
+            [self setValue:value forKey:key];
+        }
+    }];
+}
+
+// Perform changes with transaction.
+- (void)performChangeWithBlock:(void (^)(void))changes {
     RLMRealm *realm = [RLMRealm defaultRealm];
     [realm beginWriteTransaction];
-    for (NSString *key in delta.allKeys) {
-        id value = delta[key];
-        [self setValue:value forKey:key];
-    }
-    NSLog(@"%@", self);
+    changes();
     [realm commitWriteTransaction];
-};
+}
 
 @end

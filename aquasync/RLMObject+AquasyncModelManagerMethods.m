@@ -7,7 +7,8 @@
 //
 
 #import "Aquasync.h"
-#import "RLMObject+Dictionary.h"
+#import "RLMObject+LogicalDeletion.h"
+#import "RLMObject+Serialization.h"
 #import "RLMObject+AquasyncModelManagerMethods.h"
 
 @implementation RLMObject (AquasyncModelManagerMethods)
@@ -65,7 +66,7 @@
 // Find all dirty records.
 // @return Dirty records
 + (RLMArray *)dirtyRecords {
-    return [self objectsWhere:@"isDirty = true"];
+    return [[self all] objectsWhere:@"isDirty = true"];
 };
 
 // Find a record with gid.
