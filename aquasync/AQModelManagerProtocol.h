@@ -1,4 +1,3 @@
-#import "Aquasync.h"
 #import <Foundation/Foundation.h>
 
 @protocol AQModelManagerProtocol

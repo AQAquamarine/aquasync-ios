@@ -57,8 +57,6 @@ NSString *const kAQLatestUSTKey = @"AQLatestUST";
     NSDictionary *deltapack = [self buildDeltaPack];
     [[[AQDeltaClient sharedInstance] pushDeltaPack:deltapack] subscribeNext:^(id JSON) {
         [self successPushSync:deltapack];
-        
-        NSLog(@"all: %@", [AQModel allObjects]);
     } error:^(NSError *error) {
         [self handleErrorInPullSync:error];
     }];

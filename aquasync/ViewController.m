@@ -21,9 +21,10 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
     
-    NSLog(@"%@", [AQUtil getDeviceToken]);
-    
-    
+    //[self check];
+}
+
+- (void)check {
     RLMRealm *realm = [RLMRealm defaultRealm];
     [realm beginWriteTransaction];
     [realm deleteObjects: [FLMAlbum allObjects]];

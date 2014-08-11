@@ -1,4 +1,5 @@
-#import "Aquasync.h"
+#import "AQModelManagerProtocol.h"
+#import "AQDeltaClient.h"
 #import <Foundation/Foundation.h>
 
 extern NSString *const kAQLatestUSTKey;

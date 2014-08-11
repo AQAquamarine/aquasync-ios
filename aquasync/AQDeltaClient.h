@@ -1,8 +1,8 @@
 #import <Foundation/Foundation.h>
-#import "Aquasync.h"
 #import <AFNetworking.h>
 #import <RACAFNetworking.h>
 #import <ReactiveCocoa.h>
+#import "AQUtil.h"
 
 @interface AQDeltaClient : NSObject
 
