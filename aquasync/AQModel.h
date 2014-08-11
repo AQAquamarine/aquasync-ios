@@ -1,6 +1,7 @@
 #import <Foundation/Foundation.h>
 #import <Realm/Realm.h>
 #import "Aquasync.h"
+#import "RLMObject+AquasyncCallbacksExtension.h"
 
 @interface AQModel : RLMObject <AQModelManagerProtocol, AQAquasyncModelProtocol>
 
