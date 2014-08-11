@@ -2,6 +2,7 @@
 #import <Realm/Realm.h>
 #import "Aquasync.h"
 
+#import "RLMObject+Transaction.h"
 #import "RLMObject+Serialization.h"
 #import "RLMArray+Serialization.h"
 #import "RLMObject+LogicalDeletion.h"
