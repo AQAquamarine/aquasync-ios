@@ -35,30 +35,59 @@ describe(@"AQAquasyncModelManagerMethods", ^{
     });
     
     describe(@"+aq_receiveDeltas", ^{
-        NSArray *deltas = @[
-                            @{
-                                @"gid": @"aaaaaaaa-e29b-41d4-a716-446655dd0000",
-                                @"localTimestamp": @1000000000,
-                                @"deviceToken": [AQUtil getDeviceToken],
-                                @"isDeleted": @NO
-                                },
-                            @{
-                                @"gid": @"bbbbbbbb-e29b-41d4-a716-446655dd0000",
-                                @"localTimestamp": @1000000000,
-                                @"deviceToken": [AQUtil getDeviceToken],
-                                @"isDeleted": @NO
-                                },
-                            ];
-        
-        it(@"should receive deltas", ^{
-            [AQModel aq_receiveDeltas:deltas];
-            expect([AQModel allObjects].count).to.equal(2);
+        context(@"all delta is new", ^{
+            NSArray *deltas = @[
+                                @{
+                                    @"gid": @"aaaaaaaa-e29b-41d4-a716-446655dd0000",
+                                    @"localTimestamp": @1000000000,
+                                    @"deviceToken": [AQUtil getDeviceToken],
+                                    @"isDeleted": @NO
+                                    },
+                                @{
+                                    @"gid": @"bbbbbbbb-e29b-41d4-a716-446655dd0000",
+                                    @"localTimestamp": @1000000000,
+                                    @"deviceToken": [AQUtil getDeviceToken],
+                                    @"isDeleted": @NO
+                                    },
+                                ];
+            
+            it(@"should receive deltas", ^{
+                [AQModel aq_receiveDeltas:deltas];
+                expect([AQModel allObjects].count).to.equal(2);
+            });
+            
+            it(@"a record which is created when merged should not be dirty", ^{
+                [AQModel aq_receiveDeltas:deltas];
+                AQModel *model = [AQModel allObjects].firstObject;
+                expect(model.isDirty).to.equal(false);
+            });
         });
         
-        it(@"a record which is created when merged should not be dirty", ^{
-            [AQModel aq_receiveDeltas:deltas];
-            AQModel *model = [AQModel allObjects].firstObject;
-            expect(model.isDirty).to.equal(false);
+        context(@"1 delta is known and 1 is new", ^{
+            context(@"known delta is newer in localTimetamp than local one", ^{
+                NSArray *deltas = @[
+                                    @{
+                                        @"gid": @"aaaaaaaa-e29b-41d4-a716-446655dd0000",
+                                        @"localTimestamp": @2000000000,
+                                        @"deviceToken": [AQUtil getDeviceToken],
+                                        @"isDeleted": @NO
+                                        },
+                                    @{
+                                        @"gid": @"bbbbbbbb-e29b-41d4-a716-446655dd0000",
+                                        @"localTimestamp": @1000000000,
+                                        @"deviceToken": [AQUtil getDeviceToken],
+                                        @"isDeleted": @NO
+                                        },
+                                    ];
+                pending(@"should update from delta", ^{
+                    AQModel *model = [[AQModel alloc] init];
+                    model.gid = @"aaaaaaaa-e29b-41d4-a716-446655dd0000";
+                    [model save];
+                    [AQModel aq_receiveDeltas:deltas];
+                    expect([AQModel allObjects].count).to.equal(2);
+                    expect([AQModel find:@"aaaaaaaa-e29b-41d4-a716-446655dd0000"].localTimestamp).to.equal(2000000000);
+                });
+            });
         });
     });
 });

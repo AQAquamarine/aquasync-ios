@@ -5,7 +5,7 @@
 // Resolves conflict with considering which record is newer (localTimestamp).
 // @param delta A delta. https://github.com/AQAquamarine/aquasync-protocol/blob/master/delta.md
 - (void)aq_resolveConflict:(NSDictionary *)delta {
-    long long  deltaTimestamp = [delta[@"localTimestamp"] longLongValue];
+    long deltaTimestamp = [delta[@"localTimestamp"] longValue];
     if (deltaTimestamp > [[self valueForKey:@"localTimestamp"] longValue]) {
         [self updateFromDelta:delta];
     }

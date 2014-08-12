@@ -19,5 +19,6 @@
 + (void)aq_undirtyRecordsFromDeltas:(NSArray *)deltas;
 
 + (RLMArray *)dirtyRecords;
++ (instancetype)find:(NSString *)gid;
 
 @end
