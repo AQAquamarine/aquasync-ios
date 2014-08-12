@@ -31,6 +31,11 @@ describe(@"AQModel", ^{
                 AQModel *model = [[AQModel alloc] initWithCallBack];
                 expect(model.deviceToken).to.beTruthy;
             });
+            
+            it(@"should set gid when created", ^{
+                AQModel *model = [[AQModel alloc] initWithCallBack];
+                expect(model.gid).to.beTruthy;
+            });
         });
         
         context(@"before saved", ^{
@@ -54,6 +59,30 @@ describe(@"AQModel", ^{
             [model save];
             [model destroy];
             expect([AQModel all].count).to.equal(0);
+        });
+    });
+    
+    describe(@"serialization", ^{
+        context(@"-aq_toDictionary;", ^{
+            AQModel *model = [[AQModel alloc] initWithCallBack];
+            [model save];
+            NSDictionary *dic = [model aq_toDictionary];
+            
+            it(@"should not contain isDirty", ^{
+                expect(dic).notTo.contain(@"isDirty");
+            });
+            
+            it(@"should contain localTimestamp", ^{
+                expect(dic).to.contain(@"localTimestamp");
+            });
+            
+            it(@"should contain isDeleted", ^{
+                expect(dic).to.contain(@"isDeleted");
+            });
+            
+            it(@"should contain deviceToken", ^{
+                expect(dic).to.contain(@"deviceToken");
+            });
         });
     });
 });
