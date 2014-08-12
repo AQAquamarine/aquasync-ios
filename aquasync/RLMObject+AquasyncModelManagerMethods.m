@@ -33,7 +33,8 @@
 // **It will not invoke beforeSave / beforeUpdate.**
 // @param dictionary Unnamed root dictionary.
 + (instancetype)newFromDictionary:(NSDictionary *)dictionary {
-    RLMObject *model = [[self alloc] initWithPure];
+    RLMObject *model = [[self alloc] init];
+    [model beforeCreate];
     [model aq_updateFromDictionary:dictionary];
     return model;
 };
