@@ -1,6 +1,10 @@
 #import "AQSyncManager.h"
 
 NSString *const kAQLatestUSTKey = @"AQLatestUST";
+NSString *const kAQPushSyncSuccessNotificationName = @"Aquasync.PushSync.Success";
+NSString *const kAQPushSyncFailureNotificationName = @"Aquasync.PushSync.Failure";
+NSString *const kAQPullSyncSuccessNotificationName = @"Aquasync.PullSync.Success";
+NSString *const kAQPullSyncFailureNotificationName = @"Aquasync.PullSync.Failure";
 
 @implementation AQSyncManager
 
@@ -46,7 +50,7 @@ NSString *const kAQLatestUSTKey = @"AQLatestUST";
 - (void)pullSync {
     int ust = [self getLatestUST];
     [[[AQDeltaClient sharedInstance] pullDeltaPack:ust] subscribeNext:^(NSDictionary *deltapack) {
-        [self parseAndSaveDeltaPack:deltapack];
+        [self successPullSync:deltapack];
     } error:^(NSError *error) {
         [self handleErrorInPullSync:error];
     }];
@@ -62,11 +66,18 @@ NSString *const kAQLatestUSTKey = @"AQLatestUST";
     }];
 };
 
+// Saves pulled DeltaPack.
+// @param deltapack Pulled DeltaPack
+- (void)successPullSync:(id)deltapack {
+    [self parseAndSaveDeltaPack:deltapack];
+    [[NSNotificationCenter defaultCenter] postNotificationName:kAQPullSyncSuccessNotificationName object:deltapack];
+}
+
 // Saves push-succeed DeltaPack id and undirty records.
 // @param deltapack Pushed DeltaPack
 - (void)successPushSync:(id)deltapack {
-    NSLog(@"should save %@", deltapack[@"_id"]);
     [self undirtyRecordsFromDeltaPack:deltapack];
+    [[NSNotificationCenter defaultCenter] postNotificationName:kAQPushSyncSuccessNotificationName object:deltapack];
 };
 
 // Undirty records when pushSync is succeeded.
@@ -80,8 +91,7 @@ NSString *const kAQLatestUSTKey = @"AQLatestUST";
 };
 
 - (void)handleErrorInPushSync:(NSError *)error {
-    NSLog(@"%@", error);
-    // [TODO] error! have to retry?
+    [[NSNotificationCenter defaultCenter] postNotificationName:kAQPushSyncFailureNotificationName object:error];
 };
 
 // Unpack a DeltaPack and pass parsed deltas to [models aq_receiveDeltas:delta]
@@ -95,8 +105,7 @@ NSString *const kAQLatestUSTKey = @"AQLatestUST";
 };
 
 - (void)handleErrorInPullSync:(NSError *)error {
-    NSLog(@"%@", error);
-    // [TODO] retry, or queuing. Reachability observing.
+    [[NSNotificationCenter defaultCenter] postNotificationName:kAQPullSyncFailureNotificationName object:error];
 };
 
 

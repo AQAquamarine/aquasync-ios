@@ -3,6 +3,11 @@
 #import <Foundation/Foundation.h>
 
 extern NSString *const kAQLatestUSTKey;
+extern NSString *const kAQPushSyncSuccessNotificationName;
+extern NSString *const kAQPushSyncFailureNotificationName;
+
+extern NSString *const kAQPullSyncSuccessNotificationName;
+extern NSString *const kAQPullSyncFailureNotificationName;
 
 @interface AQSyncManager : NSObject
 
