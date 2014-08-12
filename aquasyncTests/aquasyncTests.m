@@ -13,6 +13,13 @@
 SpecBegin(AQModel)
 
 describe(@"AQModel", ^{
+    beforeEach(^{
+        RLMRealm *realm = [RLMRealm defaultRealm];
+        [realm beginWriteTransaction];
+        [realm deleteObjects: [AQModel allObjects]];
+        [realm commitWriteTransaction];
+    });
+    
     describe(@"callback methods", ^{
         context(@"when model is created", ^{
             it(@"should not be deleted when created", ^{
@@ -38,6 +45,15 @@ describe(@"AQModel", ^{
                 [model save];
                 expect(model.isDirty).to.equal(true);
             });
+        });
+    });
+    
+    describe(@"logical deletion", ^{
+        it(@"should not be found by +all; after deleted", ^{
+            AQModel *model = [[AQModel alloc] initWithCallBack];
+            [model save];
+            [model destroy];
+            expect([AQModel all].count).to.equal(0);
         });
     });
 });
