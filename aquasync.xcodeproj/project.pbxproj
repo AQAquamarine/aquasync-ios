@@ -46,7 +46,6 @@
 /* Begin PBXFileReference section */
 		36C91F6CCBB04340933AA90A /* Pods-aquasync.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-aquasync.xcconfig"; path = "Pods/Pods-aquasync.xcconfig"; sourceTree = "<group>"; };
 		526C9AB990594D6EA9ED853E /* libPods-aquasync.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-aquasync.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		B0DF8CE1B5C94B8EB0DFBA23 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
 		C6659ABAF218440699BC17FA /* libPods-aquasyncTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-aquasyncTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D41076D219973CF50061B6CD /* aquasync.podspec */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = aquasync.podspec; sourceTree = "<group>"; };
 		D434788E198768BA00E4C26B /* RLMArray+Serialization.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "RLMArray+Serialization.m"; sourceTree = "<group>"; };
@@ -71,6 +70,7 @@
 		D4C00E51199931600065E9F4 /* AQJSONAdapter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AQJSONAdapter.m; sourceTree = "<group>"; };
 		D4C00E53199937C20065E9F4 /* Dog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Dog.h; sourceTree = "<group>"; };
 		D4C00E54199937C20065E9F4 /* Dog.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Dog.m; sourceTree = "<group>"; };
+		D4C00E581999B72E0065E9F4 /* libPods-aquasync-Realm.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libPods-aquasync-Realm.a"; path = "Pods/build/Debug-iphoneos/libPods-aquasync-Realm.a"; sourceTree = "<group>"; };
 		D4FB24F61985255D00362657 /* aquasync.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = aquasync.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D4FB24FA1985255D00362657 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D4FB24FB1985255D00362657 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -176,7 +176,6 @@
 				D4FB24F81985255D00362657 /* aquasync */,
 				D4FB250F1985255E00362657 /* aquasyncTests */,
 				D4FB24F71985255D00362657 /* Products */,
-				B0DF8CE1B5C94B8EB0DFBA23 /* Pods.xcconfig */,
 				E7C341806051400E8D07DE69 /* Frameworks */,
 				36C91F6CCBB04340933AA90A /* Pods-aquasync.xcconfig */,
 				FEF59097A2C94C5C9244983F /* Pods-aquasyncTests.xcconfig */,
@@ -240,6 +239,7 @@
 		E7C341806051400E8D07DE69 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				D4C00E581999B72E0065E9F4 /* libPods-aquasync-Realm.a */,
 				526C9AB990594D6EA9ED853E /* libPods-aquasync.a */,
 				C6659ABAF218440699BC17FA /* libPods-aquasyncTests.a */,
 			);
@@ -546,6 +546,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"/Users/kaiinui/Downloads/realm-cocoa-0.82.0/ios",
+				);
 				INFOPLIST_FILE = aquasync/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -563,6 +567,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"/Users/kaiinui/Downloads/realm-cocoa-0.82.0/ios",
+				);
 				INFOPLIST_FILE = aquasync/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -582,13 +590,33 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(inherited)",
+					"${PODS_ROOT}/Realm/realm-cocoapods-0.82.0/ios/",
+					.,
 				);
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
 					"$(inherited)",
 				);
+				HEADER_SEARCH_PATHS = (
+					"\"${PODS_ROOT}/Headers\"",
+					"\"${PODS_ROOT}/Headers/AFNetworking\"",
+					"\"${PODS_ROOT}/Headers/AFNetworking-RACExtensions\"",
+					"\"${PODS_ROOT}/Headers/Expecta\"",
+					"\"${PODS_ROOT}/Headers/OCHamcrest\"",
+					"\"${PODS_ROOT}/Headers/OCMockito\"",
+					"\"${PODS_ROOT}/Headers/ReactiveCocoa\"",
+					"\"${PODS_ROOT}/Headers/ReactiveCocoa/ReactiveCocoa\"",
+					"\"${PODS_ROOT}/Realm/realm-cocoapods-0.82.0/ios/Realm.framework/Headers\"",
+					"\"${PODS_ROOT}/Headers/Realm\"",
+					"\"${PODS_ROOT}/Headers/Specta\"",
+					"\"${PODS_ROOT}/Headers/TPWeakProxy\"",
+				);
 				INFOPLIST_FILE = aquasyncTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Pods/build/Debug-iphoneos",
+				);
 				METAL_ENABLE_DEBUG_INFO = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUNDLE_LOADER)";
@@ -603,9 +631,29 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(inherited)",
+					"${PODS_ROOT}/Realm/realm-cocoapods-0.82.0/ios/",
+					.,
+				);
+				HEADER_SEARCH_PATHS = (
+					"\"${PODS_ROOT}/Headers\"",
+					"\"${PODS_ROOT}/Headers/AFNetworking\"",
+					"\"${PODS_ROOT}/Headers/AFNetworking-RACExtensions\"",
+					"\"${PODS_ROOT}/Headers/Expecta\"",
+					"\"${PODS_ROOT}/Headers/OCHamcrest\"",
+					"\"${PODS_ROOT}/Headers/OCMockito\"",
+					"\"${PODS_ROOT}/Headers/ReactiveCocoa\"",
+					"\"${PODS_ROOT}/Headers/ReactiveCocoa/ReactiveCocoa\"",
+					"\"${PODS_ROOT}/Realm/realm-cocoapods-0.82.0/ios/Realm.framework/Headers\"",
+					"\"${PODS_ROOT}/Headers/Realm\"",
+					"\"${PODS_ROOT}/Headers/Specta\"",
+					"\"${PODS_ROOT}/Headers/TPWeakProxy\"",
 				);
 				INFOPLIST_FILE = aquasyncTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Pods/build/Debug-iphoneos",
+				);
 				METAL_ENABLE_DEBUG_INFO = NO;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUNDLE_LOADER)";

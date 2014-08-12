@@ -35,8 +35,7 @@ PODS:
   - ReactiveCocoa/no-arc (2.3.1)
   - ReactiveCocoa/UI (2.3.1):
     - ReactiveCocoa/Core
-  - Realm (0.81.0)
-  - RPJSONMapper (0.5.2)
+  - Realm (0.82.0)
   - Specta (0.2.1)
   - TPWeakProxy (1.0.0)
 
@@ -47,7 +46,6 @@ DEPENDENCIES:
   - OCMockito
   - ReactiveCocoa
   - Realm
-  - RPJSONMapper
   - Specta
 
 SPEC CHECKSUMS:
@@ -57,8 +55,7 @@ SPEC CHECKSUMS:
   OCHamcrest: b464725bbb48d0f1cd9c6f4ec3cb35fe0c4f2b94
   OCMockito: eca2670b3ce4a457d316b046a36d6f2b980a4da7
   ReactiveCocoa: dca75777b9d18990c8714a3a6f2149f29b4d1462
-  Realm: 18d96d4c565c5fd7d12d17ef45ee78551e8ee365
-  RPJSONMapper: a586a3d6a9058553d16c96962632a53f4a0c82d2
+  Realm: 9c5e60f2405bd5c6dece499ed6088b50b31aad35
   Specta: 9141310f46b1f68b676650ff2854e1ed0b74163a
   TPWeakProxy: a23251ba7fbe268c93f809cc072ef834f5063798
 

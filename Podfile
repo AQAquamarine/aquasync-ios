@@ -5,7 +5,6 @@ target :aquasync do
   pod "ReactiveCocoa"
   pod "AFNetworking-RACExtensions"
   pod "Realm"
-  pod "RPJSONMapper"
 end
 
 target :aquasyncTests do

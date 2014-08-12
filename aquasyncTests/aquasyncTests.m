@@ -7,7 +7,42 @@
 
 #import "AQJSONAdapter.h"
 #import "Dog.h"
-#import <RPJSONMapper.h>
+
+#import "AQModel.h"
+
+SpecBegin(AQModel)
+
+describe(@"AQModel", ^{
+    describe(@"callback methods", ^{
+        context(@"when model is created", ^{
+            it(@"should not be deleted when created", ^{
+                AQModel *model = [[AQModel alloc] initWithCallBack];
+                expect(model.isDeleted).to.equal(false);
+            });
+            
+            it(@"should set deviceToken when created", ^{
+                AQModel *model = [[AQModel alloc] initWithCallBack];
+                expect(model.deviceToken).to.beTruthy;
+            });
+        });
+        
+        context(@"before saved", ^{
+            it(@"should set localTimestamp when save.", ^{
+                AQModel *model = [[AQModel alloc] initWithCallBack];
+                [model save];
+                expect(model.localTimestamp).to.beInTheRangeOf(1000000000, INT_MAX);
+            });
+            
+            it(@"should be dirty when save", ^{
+                AQModel *model = [[AQModel alloc] initWithCallBack];
+                [model save];
+                expect(model.isDirty).to.equal(true);
+            });
+        });
+    });
+});
+
+SpecEnd
 
 SpecBegin(AQJSONAdapter)
 
