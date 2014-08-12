@@ -113,7 +113,7 @@ describe(@"AQAquasyncModelManagerMethods", ^{
                                         @"isDeleted": @NO
                                         },
                                     ];
-                pending(@"should update from delta", ^{
+                it(@"should update from delta", ^{
                     AQModel *model = [[AQModel alloc] init];
                     model.gid = @"aaaaaaaa-e29b-41d4-a716-446655dd0000";
                     [model save];
@@ -122,6 +122,37 @@ describe(@"AQAquasyncModelManagerMethods", ^{
                     expect([AQModel find:@"aaaaaaaa-e29b-41d4-a716-446655dd0000"].localTimestamp).to.equal(2000000000);
                 });
             });
+        });
+    });
+    
+    describe(@"+aq_undirtyRecordsFromDeltas:deltas;", ^{
+        NSArray *deltas = @[
+                            @{
+                                @"gid": @"aaaaaaaa-e29b-41d4-a716-446655dd0000",
+                                @"localTimestamp": @2000000000,
+                                @"deviceToken": [AQUtil getDeviceToken],
+                                @"isDeleted": @NO
+                                },
+                            @{
+                                @"gid": @"bbbbbbbb-e29b-41d4-a716-446655dd0000",
+                                @"localTimestamp": @1000000000,
+                                @"deviceToken": [AQUtil getDeviceToken],
+                                @"isDeleted": @NO
+                                },
+                            ];
+        it(@"should undirty records", ^{
+            AQModel *model = [[AQModel alloc] init];
+            model.gid = @"aaaaaaaa-e29b-41d4-a716-446655dd0000";
+            [model save];
+            
+            AQModel *model2 = [[AQModel alloc] init];
+            model2.gid = @"bbbbbbbb-e29b-41d4-a716-446655dd0000";
+            [model2 save];
+            
+            [AQModel aq_undirtyRecordsFromDeltas:deltas];
+            AQModel *record = [AQModel find:@"bbbbbbbb-e29b-41d4-a716-446655dd0000"];
+            expect(record.isDirty).to.equal(false);
+            expect([AQModel dirtyRecords].count).to.equal(0);
         });
     });
 });
