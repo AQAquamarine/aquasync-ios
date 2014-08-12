@@ -84,6 +84,27 @@ describe(@"AQModel", ^{
                 expect(dic).to.contain(@"deviceToken");
             });
         });
+        
+        context(@"-aq_updateFromDictionary:dictionary;", ^{
+            NSDictionary *dic = @{
+                                  @"isDeleted": @NO,
+                                  @"localTimestamp": @1489978777,
+                                  @"deviceToken": @"550e8400-e29b-41d4-a716-446655dd0000"                                  };
+            AQModel *model = [[AQModel alloc] initWithCallBack];
+            [model aq_updateFromDictionary:dic];
+            
+            it(@"isDeleted should updated", ^{
+                expect(model.isDeleted).to.equal(false);
+            });
+            
+            it(@"localTimestamp should updated", ^{
+                expect(model.localTimestamp).to.equal(1489978777);
+            });
+            
+            it(@"deviceToken should updated", ^{
+                expect(model.deviceToken).to.equal(@"550e8400-e29b-41d4-a716-446655dd0000");
+            });
+        });
     });
 });
 
