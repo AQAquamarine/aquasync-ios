@@ -5,5 +5,6 @@
 
 - (void)updateWithBlock:(void (^)(void)) updateBlock;
 - (void)updateWithoutDirtyWithBlock:(void (^)(void)) updateBlock;
+- (void)save;
 
 @end

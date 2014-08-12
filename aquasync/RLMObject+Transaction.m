@@ -19,4 +19,11 @@
     [realm commitWriteTransaction];
 }
 
+// Commits the change.
+- (void)save {
+    [self updateWithBlock:^() {
+        [self beforeSave];
+    }];
+};
+
 @end
