@@ -6,11 +6,10 @@
 
 # pragma mark - Lifecycle
 
-- (instancetype)init {
+- (instancetype)initWithCallBack {
     self = [super init];
     if (self) {
         [self beforeCreate];
-        [self beforeSave];
     }
     return self;
 };

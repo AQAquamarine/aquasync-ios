@@ -5,7 +5,7 @@
 
 @interface RLMObject (AquasyncModelRequirement)
 
-- (void)resolveConflict:(NSDictionary *)delta;
+- (void)aq_resolveConflict:(NSDictionary *)delta;
 - (void)undirty;
 
 @end

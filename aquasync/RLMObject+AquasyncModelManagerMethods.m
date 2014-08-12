@@ -7,7 +7,7 @@
         NSString *gid = delta[@"gid"];
         id<AQAquasyncModelProtocol> record = [self find:gid];
         if (record) {
-            [record resolveConflict:delta];
+            [record aq_resolveConflict:delta];
         } else {
             [self createFromDictionary:delta];
         }
@@ -33,7 +33,7 @@
 // It will not invoke beforeCreateOrUpdte / beforeUpdate.
 // @param dictionary Unnamed root dictionary.
 + (instancetype)newFromDictionary:(NSDictionary *)dictionary {
-    AQModel *model = [[self alloc] init];
+    RLMObject *model = [[self alloc] init];
     [model aq_updateFromDictionary:dictionary];
     return model;
 };
@@ -42,8 +42,8 @@
 // It will not invoke beforeCreateOrUpdte / beforeUpdate.
 // @param dictionary Unnamed root dictionary.
 + (void)createFromDictionary:(NSDictionary *)dictionary {
-    AQModel *model = [self newFromDictionary:dictionary];
-    [model save];
+    RLMObject *model = [self newFromDictionary:dictionary];
+    [model updateWithoutDirtyWithBlock:^{}];
 };
 
 // Find all dirty records.
