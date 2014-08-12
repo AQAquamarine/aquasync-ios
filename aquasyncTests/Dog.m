@@ -2,11 +2,12 @@
 
 @implementation Dog
 
-@synthesize dogName;
+@synthesize dogName, age;
 
 + (NSDictionary *)keyMap {
     return @{
-             @"dogName": @"dog_name"
+             @"dogName": @"dog_name",
+             @"age": @"age"
              };
 }
 

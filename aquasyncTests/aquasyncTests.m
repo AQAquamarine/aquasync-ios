@@ -7,15 +7,46 @@
 
 #import "AQJSONAdapter.h"
 #import "Dog.h"
+#import <RPJSONMapper.h>
 
 SpecBegin(AQJSONAdapter)
 
 describe(@"AQJSONAdapter", ^{
-    describe(@"-serializeToJSONDictionary", ^{
-        it(@"serialize a dog to dictionary", ^{
-            Dog *dog = [Dog new];
-            dog.dogName = @"pochi";
-            expect([AQJSONAdapter serializeToJSONDictionary:dog][@"dog_name"]).to.equal(@"pochi");
+    describe(@"-serializeToJSONDictionary:obj;", ^{
+        context(@"serialize a dog to dictionary", ^{
+            it(@"should serialize a String", ^{
+                Dog *dog = [Dog new];
+                dog.dogName = @"pochi";
+                expect([AQJSONAdapter serializeToJSONDictionary:dog][@"dog_name"]).to.equal(@"pochi");
+            });
+            
+            it(@"should serialize an Int", ^{
+                Dog *dog = [Dog new];
+                dog.age = 10;
+                expect([AQJSONAdapter serializeToJSONDictionary:dog][@"age"]).to.equal(10);
+            });
+        });
+    });
+    
+    describe(@"-serializeFromJSONDictionary:json:withClass;", ^{
+        context(@"serialize a dictionary to a dog", ^{
+            it(@"should serialize a String", ^{
+                NSDictionary *dogJSON = @{
+                                          @"dog_name": @"pochi",
+                                          @"age": @"10"
+                                          };
+                Dog *dog = [AQJSONAdapter serializeFromJSONDictionary:dogJSON withClass:[Dog class]];
+                expect(dog.dogName).to.equal(@"pochi");
+            });
+            
+            it(@"should serialize a String", ^{
+                NSDictionary *dogJSON = @{
+                                          @"dog_name": @"pochi",
+                                          @"age": @"10"
+                                          };
+                Dog *dog = [AQJSONAdapter serializeFromJSONDictionary:dogJSON withClass:[Dog class]];
+                expect(dog.age).to.equal(10);
+            });
         });
     });
 });

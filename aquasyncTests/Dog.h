@@ -4,5 +4,7 @@
 @interface Dog : NSObject <AQJSONSerializeProtocol>
 
 @property (nonatomic) NSString *dogName;
+@property (nonatomic) NSString *ownerName;
+@property (nonatomic) int age;
 
 @end
