@@ -5,6 +5,7 @@
 @interface RLMObject (LogicalDeletion)
 
 + (RLMArray *)all;
++ (RLMArray *)where:(NSString *)query;
 - (void)destroy;
 
 @end

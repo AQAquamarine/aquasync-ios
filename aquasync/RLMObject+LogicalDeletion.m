@@ -6,6 +6,10 @@
     return [self objectsWhere:@"isDeleted == false"];
 }
 
++ (RLMArray *)where:(NSString *)query {
+    return [[self all] objectsWhere:query];
+}
+
 // Destroys the object.
 - (void)destroy {
     [self updateWithBlock:^{

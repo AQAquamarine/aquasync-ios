@@ -30,16 +30,16 @@
 # pragma mark - Private Methods
 
 // New a record from a dictionary. (Typically from a delta.)
-// It will not invoke beforeCreateOrUpdte / beforeUpdate.
+// **It will not invoke beforeSave / beforeUpdate.**
 // @param dictionary Unnamed root dictionary.
 + (instancetype)newFromDictionary:(NSDictionary *)dictionary {
-    RLMObject *model = [[self alloc] init];
+    RLMObject *model = [[self alloc] initWithPure];
     [model aq_updateFromDictionary:dictionary];
     return model;
 };
 
 // Creates a record from a dictionary and commits the change.
-// It will not invoke beforeCreateOrUpdte / beforeUpdate.
+// **It will not invoke beforeSave / beforeUpdate.**
 // @param dictionary Unnamed root dictionary.
 + (void)createFromDictionary:(NSDictionary *)dictionary {
     RLMObject *model = [self newFromDictionary:dictionary];
