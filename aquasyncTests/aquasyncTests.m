@@ -21,7 +21,6 @@ describe(@"AQAquasyncModelManagerMethods", ^{
     });
     
     describe(@"+aq_extractDeltas;", ^{
-        
         it(@"should extract 3 deltas", ^{
             AQModel *model1 = [[AQModel alloc] initWithCallBack];
             [model1 save];
@@ -31,8 +30,35 @@ describe(@"AQAquasyncModelManagerMethods", ^{
             
             AQModel *model3 = [[AQModel alloc] initWithCallBack];
             [model3 save];
-            expect(model1.isDirty).to.equal(true);
             expect([AQModel dirtyRecords].count).to.equal(3);
+        });
+    });
+    
+    describe(@"+aq_receiveDeltas", ^{
+        NSArray *deltas = @[
+                            @{
+                                @"gid": @"aaaaaaaa-e29b-41d4-a716-446655dd0000",
+                                @"localTimestamp": @1000000000,
+                                @"deviceToken": [AQUtil getDeviceToken],
+                                @"isDeleted": @NO
+                                },
+                            @{
+                                @"gid": @"bbbbbbbb-e29b-41d4-a716-446655dd0000",
+                                @"localTimestamp": @1000000000,
+                                @"deviceToken": [AQUtil getDeviceToken],
+                                @"isDeleted": @NO
+                                },
+                            ];
+        
+        it(@"should receive deltas", ^{
+            [AQModel aq_receiveDeltas:deltas];
+            expect([AQModel allObjects].count).to.equal(2);
+        });
+        
+        it(@"a record which is created when merged should not be dirty", ^{
+            [AQModel aq_receiveDeltas:deltas];
+            AQModel *model = [AQModel allObjects].firstObject;
+            expect(model.isDirty).to.equal(false);
         });
     });
 });
