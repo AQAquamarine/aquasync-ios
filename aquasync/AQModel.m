@@ -17,13 +17,6 @@
 
 # pragma mark - Realm Extensions
 
-// Makes the record undirty. (It automatically commits the change.)
-- (void)undirty {
-    [self updateWithBlock:^{
-        self.isDirty = NO;
-    }];
-};
-
 // Destroys the object.
 - (void)destroy {
     [self updateWithBlock:^{
