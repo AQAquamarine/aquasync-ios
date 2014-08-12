@@ -12,6 +12,31 @@
 
 SpecBegin(AQModel)
 
+describe(@"AQAquasyncModelRequirement", ^{
+    beforeEach(^{
+        RLMRealm *realm = [RLMRealm defaultRealm];
+        [realm beginWriteTransaction];
+        [realm deleteObjects: [AQModel allObjects]];
+        [realm commitWriteTransaction];
+    });
+    
+    describe(@"-aq_resolveConflict:delta;", ^{
+        NSDictionary *delta = @{
+                                @"gid": @"aaaaaaaa-e29b-41d4-a716-446655dd0000",
+                                @"localTimestamp": @2000000000,
+                                @"deviceToken": [AQUtil getDeviceToken],
+                                @"isDeleted": @NO
+                                };
+        it(@"should update from delta", ^{
+            AQModel *model = [[AQModel alloc] init];
+            model.gid = @"aaaaaaaa-e29b-41d4-a716-446655dd0000";
+            [model save];
+            [model aq_resolveConflict:delta];
+            expect(model.localTimestamp).to.equal(2000000000);
+        });
+    });
+});
+
 describe(@"AQAquasyncModelManagerMethods", ^{
     beforeEach(^{
         RLMRealm *realm = [RLMRealm defaultRealm];
