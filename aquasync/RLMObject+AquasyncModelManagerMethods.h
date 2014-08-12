@@ -1,6 +1,8 @@
 #import <Realm/Realm.h>
 #import "RLMObject+AquasyncModelRequirement.h"
 #import "RLMObject+Serialization.h"
+#import "RLMObject+LogicalDeletion.h"
+#import "Aquasync.h"
 
 @interface RLMObject (AquasyncModelManagerMethods)
 

@@ -1,4 +1,5 @@
 #import <Realm/Realm.h>
+#import "RLMObject+AquasyncModelCallbacks.h"
 
 @interface RLMObject (Transaction)
 

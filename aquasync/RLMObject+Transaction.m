@@ -7,6 +7,15 @@
     RLMRealm *realm = [RLMRealm defaultRealm];
     [realm beginWriteTransaction];
     changes();
+    [self beforeSave];
+    [realm commitWriteTransaction];
+}
+
+// Perform changes with transaction.
+- (void)updateWithoutDirtyWithBlock:(void (^)(void))changes {
+    RLMRealm *realm = [RLMRealm defaultRealm];
+    [realm beginWriteTransaction];
+    changes();
     [realm commitWriteTransaction];
 }
 
