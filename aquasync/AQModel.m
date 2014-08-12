@@ -17,14 +17,6 @@
 
 # pragma mark - Realm Extensions
 
-// Destroys the object.
-- (void)destroy {
-    [self updateWithBlock:^{
-        self.isDeleted = YES;
-        [self beforeSave];
-    }];
-};
-
 // Commits the change.
 - (void)save {
     [self updateWithBlock:^() {

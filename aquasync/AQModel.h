@@ -13,7 +13,6 @@
 @interface AQModel : RLMObject <AQModelManagerProtocol, AQAquasyncModelProtocol>
 
 - (instancetype)init;
-- (void)destroy;
 - (void)save;
 
 @end
