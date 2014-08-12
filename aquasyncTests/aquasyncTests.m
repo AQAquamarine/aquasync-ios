@@ -34,6 +34,15 @@ describe(@"AQAquasyncModelRequirement", ^{
             [model aq_resolveConflict:delta];
             expect(model.localTimestamp).to.equal(2000000000);
         });
+        
+        it(@"updated record should not be dirty", ^{
+            AQModel *model = [[AQModel alloc] init];
+            model.gid = @"aaaaaaaa-e29b-41d4-a716-446655dd0000";
+            [model save];
+            [model undirty];
+            [model aq_resolveConflict:delta];
+            expect(model.isDirty).to.equal(false);
+        });
     });
 });
 
