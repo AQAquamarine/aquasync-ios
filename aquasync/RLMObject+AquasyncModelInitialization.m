@@ -2,10 +2,6 @@
 
 @implementation RLMObject (AquasyncModelInitialization)
 
-- (instancetype)init {
-    return [self initWithCallBack];
-}
-
 - (instancetype)initWithCallBack {
     self = [super init];
     if (self) {

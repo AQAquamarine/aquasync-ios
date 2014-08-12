@@ -49,7 +49,7 @@
 // Find all dirty records.
 // @return Dirty records
 + (RLMArray *)dirtyRecords {
-    return [self where:@"isDirty = true"];
+    return [self objectsWhere:@"isDirty == true"];
 };
 
 // Find a record with gid.

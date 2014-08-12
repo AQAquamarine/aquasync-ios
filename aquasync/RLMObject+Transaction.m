@@ -8,6 +8,7 @@
     [realm beginWriteTransaction];
     changes();
     [self beforeSave];
+    [realm addObject:self];
     [realm commitWriteTransaction];
 }
 
@@ -16,14 +17,13 @@
     RLMRealm *realm = [RLMRealm defaultRealm];
     [realm beginWriteTransaction];
     changes();
+    [realm addObject:self];
     [realm commitWriteTransaction];
 }
 
 // Commits the change.
 - (void)save {
-    [self updateWithBlock:^() {
-        [self beforeSave];
-    }];
+    [self updateWithBlock:^() {}];
 };
 
 @end

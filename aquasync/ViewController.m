@@ -31,16 +31,20 @@
     [realm commitWriteTransaction];
     
     FLMAlbum *album1 = [FLMAlbum new];
-    [album1 save];
+    [album1 updateWithoutDirtyWithBlock:^{
+        album1.isDirty = true;
+    }];
     
     FLMAlbum *album2 = [[FLMAlbum alloc] init];
     [album2 save];
+    
+    NSLog(@"%@", [FLMAlbum allObjects]);
     
     [AQDeltaClient sharedInstance].baseURI = @"http://0.0.0.0:3000/api/v1/";
     [[AQDeltaClient sharedInstance] setBasicAuthorizationWithUsername:@"hogehoge" password:@"hogehoge"];
     AQSyncManager *manager = [AQSyncManager sharedInstance];
     [manager registModelManager:[FLMAlbum class] forName:@"Album"];
-    [manager sync];
+    //[manager sync];
 }
 
 - (void)didReceiveMemoryWarning {

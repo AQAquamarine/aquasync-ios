@@ -12,6 +12,31 @@
 
 SpecBegin(AQModel)
 
+describe(@"AQAquasyncModelManagerMethods", ^{
+    beforeEach(^{
+        RLMRealm *realm = [RLMRealm defaultRealm];
+        [realm beginWriteTransaction];
+        [realm deleteObjects: [AQModel allObjects]];
+        [realm commitWriteTransaction];
+    });
+    
+    describe(@"+aq_extractDeltas;", ^{
+        
+        it(@"should extract 3 deltas", ^{
+            AQModel *model1 = [[AQModel alloc] initWithCallBack];
+            [model1 save];
+            
+            AQModel *model2 = [[AQModel alloc] initWithCallBack];
+            [model2 save];
+            
+            AQModel *model3 = [[AQModel alloc] initWithCallBack];
+            [model3 save];
+            expect(model1.isDirty).to.equal(true);
+            expect([AQModel dirtyRecords].count).to.equal(3);
+        });
+    });
+});
+
 describe(@"AQModel", ^{
     beforeEach(^{
         RLMRealm *realm = [RLMRealm defaultRealm];
@@ -134,7 +159,7 @@ describe(@"AQJSONAdapter", ^{
             it(@"should serialize a String", ^{
                 NSDictionary *dogJSON = @{
                                           @"dog_name": @"pochi",
-                                          @"age": @"10"
+                                          @"age": @10
                                           };
                 Dog *dog = [AQJSONAdapter serializeFromJSONDictionary:dogJSON withClass:[Dog class]];
                 expect(dog.dogName).to.equal(@"pochi");
@@ -143,7 +168,7 @@ describe(@"AQJSONAdapter", ^{
             it(@"should serialize a String", ^{
                 NSDictionary *dogJSON = @{
                                           @"dog_name": @"pochi",
-                                          @"age": @"10"
+                                          @"age": @10
                                           };
                 Dog *dog = [AQJSONAdapter serializeFromJSONDictionary:dogJSON withClass:[Dog class]];
                 expect(dog.age).to.equal(10);

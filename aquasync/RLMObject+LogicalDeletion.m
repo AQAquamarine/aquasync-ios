@@ -3,7 +3,7 @@
 @implementation RLMObject (LogicalDeletion)
 
 + (RLMArray *)all {
-    return [self objectsWhere:@"isDeleted == false"];
+    return [self objectsWhere:@"isDeleted != true"];
 }
 
 + (RLMArray *)where:(NSString *)query {

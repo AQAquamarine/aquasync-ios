@@ -10,8 +10,11 @@
 #import "RLMObject+AquasyncModelCallbacks.h"
 #import "RLMObject+AquasyncModelManagerMethods.h"
 #import "RLMObject+AquasyncModelRequirement.h"
-#import "RLMObject+AquasyncModelInitialization.h"
 
 @interface AQModel : RLMObject <AQModelManagerProtocol, AQAquasyncModelProtocol>
+
+- (instancetype)init;
+- (instancetype)initWithCallBack;
+- (instancetype)initWithPure;
 
 @end

@@ -3,7 +3,6 @@
 
 @interface RLMObject (AquasyncModelInitialization)
 
-- (instancetype)init;
 - (instancetype)initWithCallBack;
 - (instancetype)initWithPure;
 

@@ -18,4 +18,6 @@
 // @param deltas An array of NSDictionary.
 + (void)aq_undirtyRecordsFromDeltas:(NSArray *)deltas;
 
++ (RLMArray *)dirtyRecords;
+
 @end
