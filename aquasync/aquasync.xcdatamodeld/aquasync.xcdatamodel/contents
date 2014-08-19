@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="5064" systemVersion="13D65" minimumToolsVersion="Xcode 4.3" macOSVersion="Automatic" iOSVersion="Automatic">
+    <entity name="AquasyncModel" representedClassName="AquasyncModel" isAbstract="YES" syncable="YES">
+        <attribute name="deleted" optional="YES" attributeType="Boolean" syncable="YES"/>
+        <attribute name="deviceToken" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="dirty" optional="YES" attributeType="Boolean" syncable="YES"/>
+        <attribute name="gid" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="localTimestamp" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
+    </entity>
+    <elements>
+        <element name="AquasyncModel" positionX="-36" positionY="9" width="128" height="120"/>
+    </elements>
+</model>
