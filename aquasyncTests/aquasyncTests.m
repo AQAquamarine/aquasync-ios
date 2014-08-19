@@ -2,14 +2,33 @@
 #define EXP_SHORTHAND
 #import <Expecta/Expecta.h>
 
-#import "AQSyncManager.h"
+#import "Album.h"
 #import "AQUtil.h"
 
-#import "AQJSONAdapter.h"
-#import "Dog.h"
+SpecBegin(Album)
 
-#import "AQModel.h"
+describe(@"Album", ^{
+    NSString *deviceToken = [AQUtil getDeviceToken];
+    
+    describe(@"-init;", ^{
+        Album *model = [Album create];
+        
+        it(@"should set valid gid", ^{
+            expect(model.gid).to.beTruthy;
+        });
+        it(@"should not be deleted", ^{
+            expect(model.deleted).to.equal(NO);
+        });
+        it(@"should set valid deviceToken", ^{
+            expect(model.deviceToken).to.equal(deviceToken);
+        });
+    });
+});
 
+SpecEnd
+
+
+/*
 SpecBegin(AQModel)
 
 describe(@"AQAquasyncModelRequirement", ^{
@@ -334,3 +353,5 @@ describe(@"AQUtil", ^{
 });
 
 SpecEnd
+
+*/

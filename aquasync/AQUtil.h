@@ -4,7 +4,7 @@ NSString *const kAQDeviceTokenKey;
 
 @interface AQUtil : NSObject
 
-+ (long)getCurrentTimestamp;
++ (NSNumber *)getCurrentTimestamp;
 + (NSString *)getUUID;
 + (NSString *)getDeviceToken;
 + (NSString *)joinString:(NSString *)aStr and:(NSString *)bStr;

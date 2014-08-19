@@ -4,8 +4,8 @@ NSString *const kAQDeviceTokenKey = @"AQDeviceToken";
 
 @implementation AQUtil
 
-+ (long)getCurrentTimestamp {
-    return [[NSDate date] timeIntervalSince1970];
++ (NSNumber *)getCurrentTimestamp {
+    return [NSNumber numberWithLong:[[NSDate date] timeIntervalSince1970]];
 }
 
 + (NSString *)getUUID {
