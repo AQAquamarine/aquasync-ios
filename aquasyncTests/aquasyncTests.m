@@ -17,8 +17,19 @@ describe(@"Album", ^{
     describe(@"Serialization", ^{
         Album *model = [Album create];
         NSDictionary *dictionary = @{
-                                     @"Title": @"Harry Potter"
+                                     @"title": @"Harry Potter"
                                      };
+        it(@"should return merged JSONKeyMap", ^{
+            expect([Album JSONKeyMap]).to.equal(@{
+                                                  @"aq_gid": @"gid",
+                                                  @"aq_deviceToken": @"deviceToken",
+                                                  @"aq_localTimestamp": @"localTimestamp",
+                                                  @"aq_isDeleted": @"isDeleted",
+                                                  @"aq_isDirty": @"isDirty",
+                                                  @"title": @"title"
+                                                  });
+        });
+        
         it(@"should set title from dictionary", ^{
             [model setValuesWithDictionary:dictionary];
             expect(model.title).to.equal(@"Harry Potter");

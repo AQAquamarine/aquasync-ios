@@ -14,9 +14,9 @@
 @dynamic title;
 
 + (NSDictionary *)JSONKeyMap {
-    return @{
-             @"title": @"Title"
-             };
+    return [super JSONKeyMapWithDictionary:@{
+                                             @"title": @"title"
+                                             }];
 }
 
 @end

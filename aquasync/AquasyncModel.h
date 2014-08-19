@@ -14,4 +14,6 @@
 - (void)beforeSave;
 - (void)aq_save;
 
++ (NSDictionary *)JSONKeyMapWithDictionary:(NSDictionary *)dictionary;
+
 @end

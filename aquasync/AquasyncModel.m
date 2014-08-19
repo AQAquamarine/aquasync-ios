@@ -22,6 +22,26 @@
     [self save];
 }
 
+# pragma mark - SerializableManagedObject
+
++ (NSDictionary *)JSONKeyMap {
+    return @{
+             @"aq_gid": @"gid",
+             @"aq_deviceToken": @"deviceToken",
+             @"aq_localTimestamp": @"localTimestamp",
+             @"aq_isDeleted": @"isDeleted",
+             @"aq_isDirty": @"isDirty"
+             };
+}
+
+# pragma mark - SerializableManagedObject Helper
+
++ (NSDictionary *)JSONKeyMapWithDictionary:(NSDictionary *)dictionary {
+    NSMutableDictionary *combinedDictionary = [[AquasyncModel JSONKeyMap] mutableCopy];
+    [combinedDictionary addEntriesFromDictionary:dictionary];
+    return combinedDictionary;
+}
+
 # pragma mark - Callback Methods
 
 // This method should be called when object is created.
