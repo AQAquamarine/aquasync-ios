@@ -71,6 +71,7 @@
 		D4C00E53199937C20065E9F4 /* Dog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Dog.h; sourceTree = "<group>"; };
 		D4C00E54199937C20065E9F4 /* Dog.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Dog.m; sourceTree = "<group>"; };
 		D4C00E581999B72E0065E9F4 /* libPods-aquasync-Realm.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libPods-aquasync-Realm.a"; path = "Pods/build/Debug-iphoneos/libPods-aquasync-Realm.a"; sourceTree = "<group>"; };
+		D4DFFBA719A36CE4009EFFC4 /* AquasyncModelExtensions.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AquasyncModelExtensions.h; sourceTree = "<group>"; };
 		D4FB24F61985255D00362657 /* aquasync.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = aquasync.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D4FB24FA1985255D00362657 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D4FB24FB1985255D00362657 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -141,6 +142,7 @@
 			isa = PBXGroup;
 			children = (
 				D4C00E41199912BD0065E9F4 /* RLMObject+AquasyncModelManagerMethods.h */,
+				D4DFFBA719A36CE4009EFFC4 /* AquasyncModelExtensions.h */,
 				D4C00E42199912BD0065E9F4 /* RLMObject+AquasyncModelManagerMethods.m */,
 				D4C00E3E19990B320065E9F4 /* RLMObject+AquasyncModelCallbacks.h */,
 				D4C00E3F19990B320065E9F4 /* RLMObject+AquasyncModelCallbacks.m */,

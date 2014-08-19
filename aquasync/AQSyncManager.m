@@ -24,6 +24,11 @@ NSString *const kAQPullSyncFailureNotificationName = @"Aquasync.PullSync.Failure
 
 // Performs synchronization.
 // Before call the method, you should set baseURI of AQDeltaClient.
+// It will post notification via NSNotificationCenter as..
+// 1. Aquasync.PushSync.Success
+// 2. Aquasync.PushSync.Failure
+// 3. Aquasync.PullSync.Success
+// 4. Aquasync.PullSync.Failure
 - (void)sync {
     [self pullSync];
     [self pushSync];

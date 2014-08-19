@@ -1,6 +1,8 @@
 #import "AQModel.h"
 
-@interface FLMAlbum : AQModel
+#import "AquasyncModelExtensions.h"
+
+@interface FLMAlbum : RLMObject <AQAquasyncModelProtocol>
 
 @property (nonatomic, retain) NSString *title;
 

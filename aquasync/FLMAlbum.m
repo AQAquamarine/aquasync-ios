@@ -2,7 +2,7 @@
 
 @implementation FLMAlbum
 
-@synthesize title;
+@synthesize title, gid, isDeleted, isDirty, localTimestamp, deviceToken;
 
 - (instancetype)init {
     self = [super init];
