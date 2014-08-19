@@ -3,11 +3,11 @@
 
 @implementation AquasyncModel
 
-@dynamic gid;
-@dynamic deviceToken;
-@dynamic localTimestamp;
-@dynamic deleted;
-@dynamic dirty;
+@dynamic aq_gid;
+@dynamic aq_deviceToken;
+@dynamic aq_localTimestamp;
+@dynamic aq_isDeleted;
+@dynamic aq_isDirty;
 
 - (id)initWithEntity:(NSEntityDescription *)entity insertIntoManagedObjectContext:(NSManagedObjectContext *)context {
     self = [super initWithEntity:entity insertIntoManagedObjectContext:context];
@@ -17,6 +17,11 @@
     return self;
 }
 
+- (void)aq_save {
+    [self beforeSave];
+    [self save];
+}
+
 # pragma mark - Callback Methods
 
 // This method should be called when object is created.
@@ -24,17 +29,17 @@
 // set deviceToken
 // set isDeleted = NO
 - (void)beforeCreate {
-    self.deleted = NO;
-    self.gid = [AQUtil getUUID];
-    self.deviceToken = [AQUtil getDeviceToken];
+    self.aq_isDeleted = NO;
+    self.aq_gid = [AQUtil getUUID];
+    self.aq_deviceToken = [AQUtil getDeviceToken];
 };
 
 // This method should be called when object is modified.
 // set isDirty = YES
 // set localTimestamp = currentTimestamp
 - (void)beforeSave {
-    self.dirty = YES;
-    self.localTimestamp = [AQUtil getCurrentTimestamp];
+    self.aq_isDirty = YES;
+    self.aq_localTimestamp = [AQUtil getCurrentTimestamp];
 };
 
 

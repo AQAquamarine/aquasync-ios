@@ -10,6 +10,8 @@
 #import "Aquasync.h"
 #import "FLMAlbum.h"
 
+#import "Album.h"
+
 @interface ViewController ()
             
 
@@ -22,6 +24,9 @@
     // Do any additional setup after loading the view, typically from a nib.
     
     //[self check];
+    
+    Album *album = [Album create];
+    [album save];
 }
 
 - (void)check {

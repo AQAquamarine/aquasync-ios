@@ -2,25 +2,45 @@
 #define EXP_SHORTHAND
 #import <Expecta/Expecta.h>
 
+#import <ObjectiveRecord.h>
+
 #import "Album.h"
 #import "AQUtil.h"
 
 SpecBegin(Album)
 
 describe(@"Album", ^{
+    [CoreDataManager sharedManager].modelName = @"aquasync";
+    
     NSString *deviceToken = [AQUtil getDeviceToken];
     
     describe(@"-init;", ^{
         Album *model = [Album create];
         
         it(@"should set valid gid", ^{
-            expect(model.gid).to.beTruthy;
+            expect(model.aq_gid).to.beTruthy;
         });
         it(@"should not be deleted", ^{
-            expect(model.deleted).to.equal(NO);
+            expect(model.aq_isDeleted).to.equal(NO);
         });
         it(@"should set valid deviceToken", ^{
-            expect(model.deviceToken).to.equal(deviceToken);
+            expect(model.aq_deviceToken).to.equal(deviceToken);
+        });
+    });
+    
+    describe(@"-save;", ^{
+        [[CoreDataManager sharedManager] useInMemoryStore];
+        Album *model = [Album create];
+        [model aq_save];
+        
+        it(@"persists the data", ^{
+            expect([Album all].count).to.beGreaterThanOrEqualTo(1);
+        });
+        it(@"should set localTimestamp", ^{
+            expect(model.aq_localTimestamp).to.beTruthy;
+        });
+        it(@"should be dirty", ^{
+            expect(model.aq_isDirty).to.equal(YES);
         });
     });
 });
