@@ -14,6 +14,17 @@ describe(@"Album", ^{
     
     NSString *deviceToken = [AQUtil getDeviceToken];
     
+    describe(@"Serialization", ^{
+        Album *model = [Album create];
+        NSDictionary *dictionary = @{
+                                     @"Title": @"Harry Potter"
+                                     };
+        it(@"should set title from dictionary", ^{
+            [model setValuesWithDictionary:dictionary];
+            expect(model.title).to.equal(@"Harry Potter");
+        });
+    });
+    
     describe(@"-init;", ^{
         Album *model = [Album create];
         

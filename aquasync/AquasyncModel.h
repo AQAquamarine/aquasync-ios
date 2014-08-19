@@ -1,8 +1,9 @@
 #import <Foundation/Foundation.h>
 #import <CoreData/CoreData.h>
 #import <ObjectiveRecord.h>
+#import "SerializableManagedObject.h"
 
-@interface AquasyncModel : NSManagedObject
+@interface AquasyncModel : SerializableManagedObject
 
 @property (nonatomic, retain) NSString * aq_gid;
 @property (nonatomic, retain) NSString * aq_deviceToken;
