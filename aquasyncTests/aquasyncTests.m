@@ -65,6 +65,14 @@ describe(@"Album", ^{
         });
     });
     
+    describe(@"-aq_destroy", ^{
+        it(@"should destroy the object", ^{
+            Album *model = [Album create];
+            [model aq_destroy];
+            expect(model.aq_isDeleted).to.equal(YES);
+        });
+    });
+    
     describe(@"-aq_find:gid;", ^{
         it(@"should find object with gid", ^{
             Album *model = [Album create];

@@ -13,6 +13,7 @@
 
 - (void)beforeSave;
 - (void)aq_save;
+- (void)aq_destroy;
 
 + (NSArray *)aq_all;
 + (NSArray *)aq_where:(NSString *)query;

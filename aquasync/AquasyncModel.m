@@ -38,6 +38,11 @@
     [self save];
 }
 
+- (void)aq_destroy{
+    self.aq_isDeleted = YES;
+    [self aq_save];
+}
+
 # pragma mark - SerializableManagedObject
 
 + (NSDictionary *)JSONKeyMap {
