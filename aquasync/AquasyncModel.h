@@ -11,11 +11,6 @@
 @property (nonatomic, assign) BOOL aq_isDirty;
 @property (nonatomic, assign) BOOL aq_isDeleted;
 
-# pragma mark - AquasyncModelManager Helpers
-
-- (void)aq_undirty;
-+ (NSArray *)aq_dirtyRecords;
-
 # pragma mark - ActiveRecord Interfaces
 
 - (void)aq_save;
@@ -31,6 +26,11 @@
 // Finds record with given gid.
 // @return @Nullable the found record or nil if not found.
 + (instancetype)aq_find:(NSString *)gid;
+
+# pragma mark - AquasyncModelManager Helpers
+
+- (void)aq_undirty;
++ (NSArray *)aq_dirtyRecords;
 
 # pragma mark - Callback Methods
 

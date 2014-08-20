@@ -7,6 +7,10 @@
 #import "Album.h"
 #import "AQUtil.h"
 
+@interface Album ()
++ (NSDictionary *)helper_inverseDictionary:(NSDictionary *)dictionary;
+@end
+
 SpecBegin(Album)
 
 describe(@"Album", ^{
@@ -113,6 +117,17 @@ describe(@"Album", ^{
         });
         it(@"should be dirty", ^{
             expect(model.aq_isDirty).to.equal(YES);
+        });
+    });
+    
+    describe(@"+helper_inverseDictionary", ^{
+        it(@"should inverse key and value", ^{
+            NSDictionary *dictionary = @{
+                                         @"key": @"value",
+                                         @"someKey": @"someValue"
+                                         };
+            expect([Album helper_inverseDictionary:dictionary][@"value"]).to.equal(@"key");
+            expect([Album helper_inverseDictionary:dictionary][@"someValue"]).to.equal(@"someKey");
         });
     });
 });

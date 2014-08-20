@@ -35,4 +35,14 @@
     return [transformer transformedValue:value];
 }
 
++ (NSDictionary *)helper_inverseDictionary:(NSDictionary *)dictionary {
+    NSMutableDictionary *inverse = [[NSMutableDictionary alloc] init];
+    for (NSString *key in dictionary.allKeys) {
+        NSString *value = dictionary[key];
+        [inverse setObject:key forKey:value];
+    }
+    return inverse;
+}
+
 @end
+
