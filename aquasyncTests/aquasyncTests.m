@@ -18,6 +18,17 @@ describe(@"Album", ^{
     
     NSString *deviceToken = [AQUtil getDeviceToken];
     
+    
+    describe(@"+JSONKeyMap", ^{
+        it(@"should contain aq_gid", ^{
+            expect([Album JSONKeyMap]).to.contain(@"aq_gid");
+        });
+        it(@"should contain title", ^{
+            expect([Album JSONKeyMap]).to.contain(@"title");
+        });
+    });
+    
+    
     describe(@"Serialization", ^{
         Album *model = [Album create];
         NSDictionary *dictionary = @{
@@ -38,11 +49,24 @@ describe(@"Album", ^{
             [model setValuesWithDictionary:dictionary];
             expect(model.title).to.equal(@"Harry Potter");
         });
+        
+        describe(@"-dictionaryRepresentation;", ^{
+            Album *album = [Album create];
+            album.title = @"Hawaii";
+            [album aq_save];
+            
+            it(@"should serialize into JSON", ^{
+                expect(album.aq_isDeleted).to.equal(NO);
+                expect([album valueForKey:@"aq_isDeleted"]).to.equal(NO);
+                expect([album valueForKey:@"aq_isDirty"]).to.equal(YES);
+                expect(album.dictionaryRepresentation[@"title"]).to.equal(@"Hawaii");
+                expect(album.dictionaryRepresentation[@"isDeleted"]).to.equal(NO);
+            });
+        });
     });
     
     describe(@"-aq_all", ^{
         Album *model = [Album create];
-        NSString *gid = model.aq_gid;
         [model aq_save];
         
         it(@"should find undeleted records", ^{

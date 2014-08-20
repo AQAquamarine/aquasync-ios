@@ -2,6 +2,20 @@
 
 @implementation SerializableManagedObject
 
+- (NSDictionary *)dictionaryRepresentation {
+    NSMutableDictionary *dictionary = [[NSMutableDictionary alloc] init];
+    // @"gid": @"aq_gid"
+    // @"localTimestamp": @"aq_localTimestamp"
+    NSDictionary *inversedJSONKeyMap = [[self class] helper_inverseDictionary:[[self class] JSONKeyMap]];
+    for (NSString *key in inversedJSONKeyMap.allKeys) {
+        NSString *dictionaryKey = inversedJSONKeyMap[key]; // @"aq_gid" for key = @"gid"
+        id value = [self valueForKey:dictionaryKey];
+        NSLog(@"%@", value);
+        [dictionary setObject:value forKey:key]; // In dictionary, expect value for @"aq_gid" for key = @"gid"
+    }
+    return dictionary;
+}
+
 - (void)setValuesWithDictionary:(NSDictionary *)dictionary {
     NSDictionary *keymap = [[self class] JSONKeyMap];
     for (NSString *objectKey in [keymap allKeys]) {
