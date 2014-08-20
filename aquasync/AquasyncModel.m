@@ -28,9 +28,52 @@
 
 # pragma mark - AQAquasyncModelProtocol Helpers (Private)
 
-- (void) aq_updateFromDelta:(NSDictionary *)delta {
+- (void)aq_updateFromDelta:(NSDictionary *)delta {
     [self setValuesWithDictionary:delta];
     [self saveWithOutCallback]; // DO NOT INVOKE CALLBACKS WHEN RESOLVING A DELTA!
+}
+
+# pragma mark - AQModelManagerProtocol
+
++ (void)aq_receiveDeltas:(NSArray *)deltas {
+    for (NSDictionary *delta in deltas) {
+        NSString *gid = delta[@"gid"];
+        id<AQAquasyncModelProtocol> record = [self find:gid];
+        if (record) {
+            [record aq_resolveConflict:delta];
+        } else {
+            [self aq_createWithDictionary:delta];
+        }
+    }
+};
+
++ (NSArray *)aq_extractDeltas {
+    return [self aq_dirtyRecordArrayWithDictionaryRepresentation];
+};
+
++ (void)aq_undirtyRecordsFromDeltas:(NSArray *)deltas {
+    for (NSDictionary *delta in deltas) {
+        NSString *gid = delta[@"gid"];
+        AquasyncModel *object = [self aq_find:gid];
+        [object aq_undirty];
+        // [TODO] negotiate localTimestamp
+    }
+};
+
+# pragma mark - AQModelManagerProtocol Helpers (Private)
+
++ (NSArray *)aq_dirtyRecordArrayWithDictionaryRepresentation {
+    NSMutableArray *records = [[NSMutableArray alloc] init];
+    NSArray *dirtyRecords = [self aq_dirtyRecords];
+    for (AquasyncModel *record in dirtyRecords) {
+        [records addObject:[record dictionaryRepresentation]];
+    }
+    return records;
+}
+
++ (void)aq_createWithDictionary:(NSDictionary *)dictionary {
+    AquasyncModel *model = [[self class] create];
+    [model aq_updateFromDelta:dictionary]; // DO NOT INVOKE CALLBACK WHEN MERGING.
 }
 
 # pragma mark - Aliases

@@ -3,8 +3,9 @@
 #import <ObjectiveRecord.h>
 #import "SerializableManagedObject.h"
 #import "AQAquasyncModelProtocol.h"
+#import "AQModelManagerProtocol.h"
 
-@interface AquasyncModel : SerializableManagedObject <AQAquasyncModelProtocol>
+@interface AquasyncModel : SerializableManagedObject <AQAquasyncModelProtocol, AQModelManagerProtocol>
 
 @property (nonatomic, retain) NSString * aq_gid;
 @property (nonatomic, retain) NSString * aq_deviceToken;
@@ -15,6 +16,12 @@
 # pragma mark - AQAquasyncModelProtocol
 
 - (void)aq_resolveConflict:(NSDictionary *)delta;
+
+# pragma mark - AQModelManagerProtocol
+
++ (NSArray *)aq_extractDeltas;
++ (void)aq_receiveDeltas:(NSArray *)deltas;
++ (void)aq_undirtyRecordsFromDeltas:(NSArray *)deltas;
 
 # pragma mark - ActiveRecord Interfaces
 
