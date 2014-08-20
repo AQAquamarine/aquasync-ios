@@ -80,6 +80,10 @@ describe(@"Album", ^{
             [model aq_save];
             expect([Album aq_find:gid].aq_gid).to.equal(gid);
         });
+        
+        it(@"should return nil if not found", ^{
+            expect([Album aq_find:@"8s7f78sdjas"]).to.beNil;
+        });
     });
     
     describe(@"-init;", ^{
