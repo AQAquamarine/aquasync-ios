@@ -17,6 +17,17 @@
     return self;
 }
 
+# pragma mark - ActiveRecord Interfaces
+
++ (NSArray *)aq_where:(NSString *)query {
+    NSString *notDeletedQuery = [NSString stringWithFormat:@"%@ AND aq_isDeleted != true", query];
+    return [self where:notDeletedQuery];
+}
+
++ (NSArray *)aq_all {
+    return [self where:@"aq_isDeleted != true"];
+}
+
 - (void)aq_save {
     [self beforeSave];
     [self save];

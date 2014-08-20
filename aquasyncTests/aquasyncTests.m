@@ -36,6 +36,27 @@ describe(@"Album", ^{
         });
     });
     
+    describe(@"-aq_all", ^{
+        Album *model = [Album create];
+        NSString *gid = model.aq_gid;
+        [model aq_save];
+        
+        it(@"should find undeleted records", ^{
+            expect([Album aq_all].count).to.beGreaterThan(1);
+        });
+    });
+    
+    describe(@"-aq_where;", ^{
+        Album *model = [Album create];
+        NSString *gid = model.aq_gid;
+        [model aq_save];
+        
+        it(@"should find undeleted records", ^{
+            NSString *query = [NSString stringWithFormat:@"aq_gid == '%@'", gid];
+            expect([Album aq_where:query].count).to.equal(1);
+        });
+    });
+    
     describe(@"-init;", ^{
         Album *model = [Album create];
         

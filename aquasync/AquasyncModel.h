@@ -14,6 +14,9 @@
 - (void)beforeSave;
 - (void)aq_save;
 
++ (NSArray *)aq_all;
++ (NSArray *)aq_where:(NSString *)query;
+
 + (NSDictionary *)JSONKeyMapWithDictionary:(NSDictionary *)dictionary;
 
 @end
