@@ -17,6 +17,23 @@
     return self;
 }
 
+# pragma mark - Aliases
+
+- (void)saveWithOutCallback {
+    [self save];
+}
+
+# pragma mark - AquasyncModelManager Helper Methods
+
+- (void)aq_undirty {
+    self.aq_isDirty = NO;
+    [self saveWithOutCallback]; // DO NOT INVOKE CALLBACKS!
+}
+
++ (NSArray *)aq_dirtyRecords {
+    return [self aq_where:@"aq_isDirty == true"];
+}
+
 # pragma mark - ActiveRecord Interfaces
 
 + (NSArray *)aq_where:(NSString *)query {
