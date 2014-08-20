@@ -17,6 +17,22 @@
     return self;
 }
 
+# pragma mark - AQAquasyncModelProtocol
+
+- (void)aq_resolveConflict:(NSDictionary *)delta {
+    long deltaTimestamp = [delta[@"localTimestamp"] longValue];
+    if (deltaTimestamp > [self.aq_localTimestamp longValue]) {
+        [self aq_updateFromDelta:delta];
+    }
+}
+
+# pragma mark - AQAquasyncModelProtocol Helpers (Private)
+
+- (void) aq_updateFromDelta:(NSDictionary *)delta {
+    [self setValuesWithDictionary:delta];
+    [self saveWithOutCallback]; // DO NOT INVOKE CALLBACKS WHEN RESOLVING A DELTA!
+}
+
 # pragma mark - Aliases
 
 - (void)saveWithOutCallback {

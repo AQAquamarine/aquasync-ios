@@ -2,7 +2,6 @@
 
 @implementation AQModel
 
-@synthesize gid, deviceToken, isDirty, localTimestamp, isDeleted;
 
 - (instancetype)init {
     return [self initWithCallBack];

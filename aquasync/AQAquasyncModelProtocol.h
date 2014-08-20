@@ -4,12 +4,8 @@
 
 @required
 
-@property (nonatomic, retain) NSString *gid;
-@property (nonatomic, retain) NSString *deviceToken;
-@property (nonatomic, assign) long localTimestamp;
-@property (nonatomic, assign) BOOL isDirty;
-@property (nonatomic, assign) BOOL isDeleted;
-
+// Resolves conflict with considering which record is newer (localTimestamp).
+// @param delta A delta. https://github.com/AQAquamarine/aquasync-protocol/blob/master/delta.md
 - (void)aq_resolveConflict:(NSDictionary *)delta;
 
 @end

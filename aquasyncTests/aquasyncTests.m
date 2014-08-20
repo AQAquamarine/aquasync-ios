@@ -28,6 +28,49 @@ describe(@"Album", ^{
         });
     });
     
+    describe(@"AquasyncModelProtocol", ^{
+        context(@"when the delta has greater timestamp", ^{
+            NSDictionary *delta = @{
+                                    @"gid": @"aaaaaaaa-e29b-41d4-a716-446655dd0000",
+                                    @"localTimestamp": @2000000000,
+                                    @"deviceToken": [AQUtil getDeviceToken],
+                                    @"isDeleted": @NO
+                                    };
+            it(@"should update from delta", ^{
+                Album *model = [Album create];
+                model.aq_gid = @"aaaaaaaa-e29b-41d4-a716-446655dd0000";
+                [model save];
+                [model aq_resolveConflict:delta];
+                expect(model.aq_localTimestamp).to.equal(2000000000);
+            });
+            
+            it(@"updated record should not be dirty", ^{
+                Album *model = [Album create];
+                model.aq_gid = @"aaaaaaaa-e29b-41d4-a716-446655dd0000";
+                [model aq_save];
+                [model aq_undirty];
+                [model aq_resolveConflict:delta];
+                expect(model.aq_isDirty).to.equal(NO);
+            });
+        });
+        
+        context(@"when the delta has lesser timestamp", ^{
+            NSDictionary *delta = @{
+                                    @"gid": @"aaaaaaaa-e29b-41d4-a716-446655dd0000",
+                                    @"localTimestamp": @1000000000,
+                                    @"deviceToken": [AQUtil getDeviceToken],
+                                    @"isDeleted": @NO
+                                    };
+            it(@"should not update from delta", ^{
+                Album *model = [Album create];
+                model.aq_gid = @"aaaaaaaa-e29b-41d4-a716-446655dd0000";
+                [model aq_save];
+                
+                [model aq_resolveConflict:delta];
+                expect(model.aq_localTimestamp).to.beGreaterThan(1100000000);
+            });
+        });
+    });
     
     describe(@"Serialization", ^{
         Album *model = [Album create];

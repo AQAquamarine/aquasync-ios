@@ -2,14 +2,19 @@
 #import <CoreData/CoreData.h>
 #import <ObjectiveRecord.h>
 #import "SerializableManagedObject.h"
+#import "AQAquasyncModelProtocol.h"
 
-@interface AquasyncModel : SerializableManagedObject
+@interface AquasyncModel : SerializableManagedObject <AQAquasyncModelProtocol>
 
 @property (nonatomic, retain) NSString * aq_gid;
 @property (nonatomic, retain) NSString * aq_deviceToken;
 @property (nonatomic, retain) NSNumber * aq_localTimestamp;
 @property (nonatomic, assign) BOOL aq_isDirty;
 @property (nonatomic, assign) BOOL aq_isDeleted;
+
+# pragma mark - AQAquasyncModelProtocol
+
+- (void)aq_resolveConflict:(NSDictionary *)delta;
 
 # pragma mark - ActiveRecord Interfaces
 

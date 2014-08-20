@@ -4,14 +4,14 @@
 
 - (NSDictionary *)dictionaryRepresentation {
     NSMutableDictionary *dictionary = [[NSMutableDictionary alloc] init];
-    // @"gid": @"aq_gid"
-    // @"localTimestamp": @"aq_localTimestamp"
+    // inversedDic =>
+    //   @"gid": @"aq_gid"
+    //   @"localTimestamp": @"aq_localTimestamp"
     NSDictionary *inversedJSONKeyMap = [[self class] helper_inverseDictionary:[[self class] JSONKeyMap]];
-    for (NSString *key in inversedJSONKeyMap.allKeys) {
-        NSString *dictionaryKey = inversedJSONKeyMap[key]; // @"aq_gid" for key = @"gid"
+    for (NSString *inversedKey in inversedJSONKeyMap.allKeys) {
+        NSString *dictionaryKey = inversedJSONKeyMap[inversedKey]; // @"aq_gid" for key = @"gid"
         id value = [self valueForKey:dictionaryKey];
-        NSLog(@"%@", value);
-        [dictionary setObject:value forKey:key]; // In dictionary, expect value for @"aq_gid" for key = @"gid"
+        [dictionary setObject:value forKey:inversedKey]; // In dictionary, expect value for @"aq_gid" for key = @"gid"
     }
     return dictionary;
 }
