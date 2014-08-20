@@ -16,6 +16,7 @@
 
 + (NSArray *)aq_all;
 + (NSArray *)aq_where:(NSString *)query;
++ (instancetype)aq_find:(NSString *)gid;
 
 + (NSDictionary *)JSONKeyMapWithDictionary:(NSDictionary *)dictionary;
 

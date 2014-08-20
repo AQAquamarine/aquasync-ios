@@ -46,7 +46,7 @@ describe(@"Album", ^{
         });
     });
     
-    describe(@"-aq_where;", ^{
+    describe(@"-aq_where:query;", ^{
         it(@"should find undeleted records", ^{
             Album *model = [Album create];
             NSString *gid = model.aq_gid;
@@ -62,6 +62,15 @@ describe(@"Album", ^{
             [deleted aq_save];
             NSString *query = [NSString stringWithFormat:@"aq_gid == '%@'", deletedGid];
             expect([Album aq_where:query].count).to.equal(0);
+        });
+    });
+    
+    describe(@"-aq_find:gid;", ^{
+        it(@"should find object with gid", ^{
+            Album *model = [Album create];
+            NSString *gid = model.aq_gid;
+            [model aq_save];
+            expect([Album aq_find:gid].aq_gid).to.equal(gid);
         });
     });
     

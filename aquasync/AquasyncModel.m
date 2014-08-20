@@ -28,6 +28,11 @@
     return [self where:@"aq_isDeleted != true"];
 }
 
++ (instancetype)aq_find:(NSString *)gid {
+    NSString *query = [NSString stringWithFormat:@"aq_gid == '%@'", gid];
+    return [self aq_where:query].firstObject;
+}
+
 - (void)aq_save {
     [self beforeSave];
     [self save];
