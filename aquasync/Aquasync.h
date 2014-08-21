@@ -1,6 +1,6 @@
 #import "AQModelManagerProtocol.h"
 #import "AQAquasyncModelProtocol.h"
 #import "AQUtil.h"
-#import "AQModel.h"
 #import "AQSyncManager.h"
 #import "AQDeltaClient.h"
+#import "AquasyncModel.h"
