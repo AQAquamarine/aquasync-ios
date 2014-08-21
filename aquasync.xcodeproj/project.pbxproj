@@ -12,6 +12,9 @@
 		D434788F198768BA00E4C26B /* RLMArray+Serialization.m in Sources */ = {isa = PBXBuildFile; fileRef = D434788E198768BA00E4C26B /* RLMArray+Serialization.m */; };
 		D43478911987696600E4C26B /* RLMObject+Serialization.m in Sources */ = {isa = PBXBuildFile; fileRef = D43478901987696600E4C26B /* RLMObject+Serialization.m */; };
 		D471F117198FCA87009522DD /* FLMAlbum.m in Sources */ = {isa = PBXBuildFile; fileRef = D471F116198FCA87009522DD /* FLMAlbum.m */; };
+		D4BAA5A219A37CC3001A299D /* AquasyncModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D4BAA5A119A37CC3001A299D /* AquasyncModel.m */; };
+		D4BAA5A819A38254001A299D /* Album.m in Sources */ = {isa = PBXBuildFile; fileRef = D4BAA5A719A38254001A299D /* Album.m */; };
+		D4BAA5AB19A398CF001A299D /* SerializableManagedObject.m in Sources */ = {isa = PBXBuildFile; fileRef = D4BAA5AA19A398CF001A299D /* SerializableManagedObject.m */; };
 		D4C00E3B1999006C0065E9F4 /* libPods-aquasync.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 526C9AB990594D6EA9ED853E /* libPods-aquasync.a */; };
 		D4C00E4019990B320065E9F4 /* RLMObject+AquasyncModelCallbacks.m in Sources */ = {isa = PBXBuildFile; fileRef = D4C00E3F19990B320065E9F4 /* RLMObject+AquasyncModelCallbacks.m */; };
 		D4C00E43199912BD0065E9F4 /* RLMObject+AquasyncModelManagerMethods.m in Sources */ = {isa = PBXBuildFile; fileRef = D4C00E42199912BD0065E9F4 /* RLMObject+AquasyncModelManagerMethods.m */; };
@@ -20,6 +23,7 @@
 		D4C00E4E19992B6F0065E9F4 /* RLMObject+AquasyncModelRequirement.m in Sources */ = {isa = PBXBuildFile; fileRef = D4C00E4D19992B6F0065E9F4 /* RLMObject+AquasyncModelRequirement.m */; };
 		D4C00E52199931600065E9F4 /* AQJSONAdapter.m in Sources */ = {isa = PBXBuildFile; fileRef = D4C00E51199931600065E9F4 /* AQJSONAdapter.m */; };
 		D4C00E55199937C20065E9F4 /* Dog.m in Sources */ = {isa = PBXBuildFile; fileRef = D4C00E54199937C20065E9F4 /* Dog.m */; };
+		D4DFFBFB19A37ACB009EFFC4 /* aquasync.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = D4DFFBF919A37ACA009EFFC4 /* aquasync.xcdatamodeld */; };
 		D4FB24FC1985255D00362657 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = D4FB24FB1985255D00362657 /* main.m */; };
 		D4FB24FF1985255D00362657 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = D4FB24FE1985255D00362657 /* AppDelegate.m */; };
 		D4FB25021985255D00362657 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D4FB25011985255D00362657 /* ViewController.m */; };
@@ -54,6 +58,12 @@
 		D434789319876A3F00E4C26B /* RLMObject+Serialization.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "RLMObject+Serialization.h"; sourceTree = "<group>"; };
 		D471F115198FCA87009522DD /* FLMAlbum.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLMAlbum.h; sourceTree = "<group>"; };
 		D471F116198FCA87009522DD /* FLMAlbum.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLMAlbum.m; sourceTree = "<group>"; };
+		D4BAA5A019A37CC3001A299D /* AquasyncModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AquasyncModel.h; sourceTree = "<group>"; };
+		D4BAA5A119A37CC3001A299D /* AquasyncModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AquasyncModel.m; sourceTree = "<group>"; };
+		D4BAA5A619A38254001A299D /* Album.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Album.h; sourceTree = "<group>"; };
+		D4BAA5A719A38254001A299D /* Album.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Album.m; sourceTree = "<group>"; };
+		D4BAA5A919A398CF001A299D /* SerializableManagedObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SerializableManagedObject.h; sourceTree = "<group>"; };
+		D4BAA5AA19A398CF001A299D /* SerializableManagedObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SerializableManagedObject.m; sourceTree = "<group>"; };
 		D4C00E3C199906000065E9F4 /* AQAquasyncModelProtocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AQAquasyncModelProtocol.h; sourceTree = "<group>"; };
 		D4C00E3E19990B320065E9F4 /* RLMObject+AquasyncModelCallbacks.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "RLMObject+AquasyncModelCallbacks.h"; sourceTree = "<group>"; };
 		D4C00E3F19990B320065E9F4 /* RLMObject+AquasyncModelCallbacks.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "RLMObject+AquasyncModelCallbacks.m"; sourceTree = "<group>"; };
@@ -72,6 +82,7 @@
 		D4C00E54199937C20065E9F4 /* Dog.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Dog.m; sourceTree = "<group>"; };
 		D4C00E581999B72E0065E9F4 /* libPods-aquasync-Realm.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libPods-aquasync-Realm.a"; path = "Pods/build/Debug-iphoneos/libPods-aquasync-Realm.a"; sourceTree = "<group>"; };
 		D4DFFBA719A36CE4009EFFC4 /* AquasyncModelExtensions.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AquasyncModelExtensions.h; sourceTree = "<group>"; };
+		D4DFFBFA19A37ACA009EFFC4 /* aquasync.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = aquasync.xcdatamodel; sourceTree = "<group>"; };
 		D4FB24F61985255D00362657 /* aquasync.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = aquasync.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D4FB24FA1985255D00362657 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D4FB24FB1985255D00362657 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -134,6 +145,8 @@
 				D4FB251D19852A6E00362657 /* AQModel.m */,
 				D4C00E50199931600065E9F4 /* AQJSONAdapter.h */,
 				D4C00E51199931600065E9F4 /* AQJSONAdapter.m */,
+				D4BAA5A919A398CF001A299D /* SerializableManagedObject.h */,
+				D4BAA5AA19A398CF001A299D /* SerializableManagedObject.m */,
 			);
 			name = Classes;
 			sourceTree = "<group>";
@@ -170,6 +183,17 @@
 			name = Protocols;
 			sourceTree = "<group>";
 		};
+		D4DFFBF819A37AA8009EFFC4 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				D4BAA5A019A37CC3001A299D /* AquasyncModel.h */,
+				D4BAA5A119A37CC3001A299D /* AquasyncModel.m */,
+				D4BAA5A619A38254001A299D /* Album.h */,
+				D4BAA5A719A38254001A299D /* Album.m */,
+			);
+			name = Models;
+			sourceTree = "<group>";
+		};
 		D4FB24ED1985255D00362657 = {
 			isa = PBXGroup;
 			children = (
@@ -196,6 +220,7 @@
 		D4FB24F81985255D00362657 /* aquasync */ = {
 			isa = PBXGroup;
 			children = (
+				D4DFFBF819A37AA8009EFFC4 /* Models */,
 				D41076D4199742C00061B6CD /* Classes */,
 				D4FB24FD1985255D00362657 /* AppDelegate.h */,
 				D4FB24FE1985255D00362657 /* AppDelegate.m */,
@@ -206,6 +231,7 @@
 				D4FB25031985255D00362657 /* Main.storyboard */,
 				D4FB25061985255D00362657 /* Images.xcassets */,
 				D4FB24F91985255D00362657 /* Supporting Files */,
+				D4DFFBF919A37ACA009EFFC4 /* aquasync.xcdatamodeld */,
 			);
 			path = aquasync;
 			sourceTree = "<group>";
@@ -423,7 +449,10 @@
 				D4FB25021985255D00362657 /* ViewController.m in Sources */,
 				D4FB24FF1985255D00362657 /* AppDelegate.m in Sources */,
 				D4C00E43199912BD0065E9F4 /* RLMObject+AquasyncModelManagerMethods.m in Sources */,
+				D4BAA5A819A38254001A299D /* Album.m in Sources */,
 				D4C00E52199931600065E9F4 /* AQJSONAdapter.m in Sources */,
+				D4BAA5AB19A398CF001A299D /* SerializableManagedObject.m in Sources */,
+				D4DFFBFB19A37ACB009EFFC4 /* aquasync.xcdatamodeld in Sources */,
 				D4C00E4019990B320065E9F4 /* RLMObject+AquasyncModelCallbacks.m in Sources */,
 				D4FB24FC1985255D00362657 /* main.m in Sources */,
 				D4FB25251985417300362657 /* AQSyncManager.m in Sources */,
@@ -431,6 +460,7 @@
 				D471F117198FCA87009522DD /* FLMAlbum.m in Sources */,
 				D4FB2530198578F800362657 /* AQDeltaClient.m in Sources */,
 				D4FB251E19852A6E00362657 /* AQModel.m in Sources */,
+				D4BAA5A219A37CC3001A299D /* AquasyncModel.m in Sources */,
 				D4C00E48199919990065E9F4 /* RLMObject+LogicalDeletion.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -693,6 +723,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		D4DFFBF919A37ACA009EFFC4 /* aquasync.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				D4DFFBFA19A37ACA009EFFC4 /* aquasync.xcdatamodel */,
+			);
+			currentVersion = D4DFFBFA19A37ACA009EFFC4 /* aquasync.xcdatamodel */;
+			path = aquasync.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = D4FB24EE1985255D00362657 /* Project object */;
 }

@@ -2,14 +2,316 @@
 #define EXP_SHORTHAND
 #import <Expecta/Expecta.h>
 
-#import "AQSyncManager.h"
+#import <ObjectiveRecord.h>
+
+#import "Album.h"
 #import "AQUtil.h"
 
-#import "AQJSONAdapter.h"
-#import "Dog.h"
+@interface Album ()
++ (NSDictionary *)helper_inverseDictionary:(NSDictionary *)dictionary;
+@end
 
-#import "AQModel.h"
+SpecBegin(Album)
 
+describe(@"Album", ^{
+    [CoreDataManager sharedManager].modelName = @"aquasync";
+    
+    NSString *deviceToken = [AQUtil getDeviceToken];
+    
+    
+    describe(@"+JSONKeyMap", ^{
+        it(@"should contain aq_gid", ^{
+            expect([Album JSONKeyMap]).to.contain(@"aq_gid");
+        });
+        it(@"should contain title", ^{
+            expect([Album JSONKeyMap]).to.contain(@"title");
+        });
+    });
+    
+    describe(@"AquasyncModelProtocol", ^{
+        context(@"when the delta has greater timestamp", ^{
+            NSDictionary *delta = @{
+                                    @"gid": @"aaaaaaaa-e29b-41d4-a716-446655dd0000",
+                                    @"localTimestamp": @2000000000,
+                                    @"deviceToken": [AQUtil getDeviceToken],
+                                    @"isDeleted": @NO
+                                    };
+            it(@"should update from delta", ^{
+                Album *model = [Album create];
+                model.aq_gid = @"aaaaaaaa-e29b-41d4-a716-446655dd0000";
+                [model save];
+                [model aq_resolveConflict:delta];
+                expect(model.aq_localTimestamp).to.equal(2000000000);
+            });
+            
+            it(@"updated record should not be dirty", ^{
+                Album *model = [Album create];
+                model.aq_gid = @"aaaaaaaa-e29b-41d4-a716-446655dd0000";
+                [model aq_save];
+                [model aq_undirty];
+                [model aq_resolveConflict:delta];
+                expect(model.aq_isDirty).to.equal(NO);
+            });
+        });
+        
+        context(@"when the delta has lesser timestamp", ^{
+            NSDictionary *delta = @{
+                                    @"gid": @"aaaaaaaa-e29b-41d4-a716-446655dd0000",
+                                    @"localTimestamp": @1000000000,
+                                    @"deviceToken": [AQUtil getDeviceToken],
+                                    @"isDeleted": @NO
+                                    };
+            it(@"should not update from delta", ^{
+                Album *model = [Album create];
+                model.aq_gid = @"aaaaaaaa-e29b-41d4-a716-446655dd0000";
+                [model aq_save];
+                
+                [model aq_resolveConflict:delta];
+                expect(model.aq_localTimestamp).to.beGreaterThan(1100000000);
+            });
+        });
+    });
+    
+    describe(@"Serialization", ^{
+        Album *model = [Album create];
+        NSDictionary *dictionary = @{
+                                     @"title": @"Harry Potter"
+                                     };
+        it(@"should return merged JSONKeyMap", ^{
+            expect([Album JSONKeyMap]).to.equal(@{
+                                                  @"aq_gid": @"gid",
+                                                  @"aq_deviceToken": @"deviceToken",
+                                                  @"aq_localTimestamp": @"localTimestamp",
+                                                  @"aq_isDeleted": @"isDeleted",
+                                                  @"aq_isDirty": @"isDirty",
+                                                  @"title": @"title"
+                                                  });
+        });
+        
+        it(@"should set title from dictionary", ^{
+            [model setValuesWithDictionary:dictionary];
+            expect(model.title).to.equal(@"Harry Potter");
+        });
+        
+        describe(@"-dictionaryRepresentation;", ^{
+            Album *album = [Album create];
+            album.title = @"Hawaii";
+            [album aq_save];
+            
+            it(@"should serialize into JSON", ^{
+                expect(album.aq_isDeleted).to.equal(NO);
+                expect([album valueForKey:@"aq_isDeleted"]).to.equal(NO);
+                expect([album valueForKey:@"aq_isDirty"]).to.equal(YES);
+                expect(album.dictionaryRepresentation[@"title"]).to.equal(@"Hawaii");
+                expect(album.dictionaryRepresentation[@"isDeleted"]).to.equal(NO);
+            });
+        });
+    });
+    
+    describe(@"-aq_all", ^{
+        Album *model = [Album create];
+        [model aq_save];
+        
+        it(@"should find undeleted records", ^{
+            expect([Album aq_all].count).to.beGreaterThan(1);
+        });
+    });
+    
+    describe(@"-aq_where:query;", ^{
+        it(@"should find undeleted records", ^{
+            Album *model = [Album create];
+            NSString *gid = model.aq_gid;
+            [model aq_save];
+            NSString *query = [NSString stringWithFormat:@"aq_gid == '%@'", gid];
+            expect([Album aq_where:query].count).to.equal(1);
+        });
+        
+        it(@"should not find deleted records", ^{
+            Album *deleted = [Album create];
+            deleted.aq_isDeleted = YES;
+            NSString *deletedGid = deleted.aq_gid;
+            [deleted aq_save];
+            NSString *query = [NSString stringWithFormat:@"aq_gid == '%@'", deletedGid];
+            expect([Album aq_where:query].count).to.equal(0);
+        });
+    });
+    
+    describe(@"-aq_destroy", ^{
+        it(@"should destroy the object", ^{
+            Album *model = [Album create];
+            [model aq_destroy];
+            expect(model.aq_isDeleted).to.equal(YES);
+        });
+    });
+    
+    describe(@"-aq_find:gid;", ^{
+        it(@"should find object with gid", ^{
+            Album *model = [Album create];
+            NSString *gid = model.aq_gid;
+            [model aq_save];
+            expect([Album aq_find:gid].aq_gid).to.equal(gid);
+        });
+        
+        it(@"should return nil if not found", ^{
+            expect([Album aq_find:@"8s7f78sdjas"]).to.beNil;
+        });
+    });
+    
+    describe(@"-init;", ^{
+        Album *model = [Album create];
+        
+        it(@"should set valid gid", ^{
+            expect(model.aq_gid).to.beTruthy;
+        });
+        it(@"should not be deleted", ^{
+            expect(model.aq_isDeleted).to.equal(NO);
+        });
+        it(@"should set valid deviceToken", ^{
+            expect(model.aq_deviceToken).to.equal(deviceToken);
+        });
+    });
+    
+    describe(@"-save;", ^{
+        [[CoreDataManager sharedManager] useInMemoryStore];
+        Album *model = [Album create];
+        [model aq_save];
+        
+        it(@"persists the data", ^{
+            expect([Album all].count).to.beGreaterThanOrEqualTo(1);
+        });
+        it(@"should set localTimestamp", ^{
+            expect(model.aq_localTimestamp).to.beTruthy;
+        });
+        it(@"should be dirty", ^{
+            expect(model.aq_isDirty).to.equal(YES);
+        });
+    });
+    
+    describe(@"+helper_inverseDictionary", ^{
+        it(@"should inverse key and value", ^{
+            NSDictionary *dictionary = @{
+                                         @"key": @"value",
+                                         @"someKey": @"someValue"
+                                         };
+            expect([Album helper_inverseDictionary:dictionary][@"value"]).to.equal(@"key");
+            expect([Album helper_inverseDictionary:dictionary][@"someValue"]).to.equal(@"someKey");
+        });
+    });
+    
+    describe(@"AQAquasyncModelManagerMethods", ^{
+        beforeEach(^{
+            for(Album *album in [Album all]) {
+                [album delete];
+            }
+        });
+        
+        describe(@"+aq_extractDeltas;", ^{
+            it(@"should extract 3 deltas", ^{
+                Album *album1 = [Album create];
+                [album1 aq_save];
+                Album *album2 = [Album create];
+                [album2 aq_save];
+                Album *album3 = [Album create];
+                [album3 aq_save];
+                
+                expect([Album aq_dirtyRecords].count).to.equal(3);
+            });
+        });
+        
+        describe(@"+aq_receiveDeltas", ^{
+            context(@"all delta is new", ^{
+                NSArray *deltas = @[
+                                    @{
+                                        @"gid": @"aaaaaaaa-e29b-41d4-a716-446655dd0000",
+                                        @"localTimestamp": @1000000000,
+                                        @"deviceToken": [AQUtil getDeviceToken],
+                                        @"isDeleted": @NO
+                                        },
+                                    @{
+                                        @"gid": @"bbbbbbbb-e29b-41d4-a716-446655dd0000",
+                                        @"localTimestamp": @1000000000,
+                                        @"deviceToken": [AQUtil getDeviceToken],
+                                        @"isDeleted": @NO
+                                        },
+                                    ];
+                
+                it(@"should receive deltas", ^{
+                    [Album aq_receiveDeltas:deltas];
+                    expect([Album aq_all].count).to.equal(2);
+                });
+                
+                it(@"a record which is created when merged should not be dirty", ^{
+                    [Album aq_receiveDeltas:deltas];
+                    Album *model = [Album aq_all].firstObject;
+                    expect(model.aq_isDirty).to.equal(NO);
+                });
+            });
+            context(@"1 delta is known and 1 is new", ^{
+                context(@"known delta is newer in localTimetamp than local one", ^{
+                    NSArray *deltas = @[
+                                        @{
+                                            @"gid": @"aaaaaaaa-e29b-41d4-a716-446655dd0000",
+                                            @"localTimestamp": @2000000000,
+                                            @"deviceToken": [AQUtil getDeviceToken],
+                                            @"isDeleted": @NO
+                                            },
+                                        @{
+                                            @"gid": @"bbbbbbbb-e29b-41d4-a716-446655dd0000",
+                                            @"localTimestamp": @1000000000,
+                                            @"deviceToken": [AQUtil getDeviceToken],
+                                            @"isDeleted": @NO
+                                            },
+                                        ];
+                    it(@"should update from delta", ^{
+                        Album *model = [Album create];
+                        model.aq_gid = @"aaaaaaaa-e29b-41d4-a716-446655dd0000";
+                        [model aq_save];
+                        [Album aq_receiveDeltas:deltas];
+                        expect([Album aq_all].count).to.equal(2);
+                        expect([Album aq_find:@"aaaaaaaa-e29b-41d4-a716-446655dd0000"].aq_localTimestamp).to.equal(2000000000);
+                    });
+                });
+            });
+        });
+        
+        describe(@"+aq_undirtyRecordsFromDeltas:deltas;", ^{
+            NSArray *deltas = @[
+                                @{
+                                    @"gid": @"aaaaaaaa-e29b-41d4-a716-446655dd0000",
+                                    @"localTimestamp": @2000000000,
+                                    @"deviceToken": [AQUtil getDeviceToken],
+                                    @"isDeleted": @NO
+                                    },
+                                @{
+                                    @"gid": @"bbbbbbbb-e29b-41d4-a716-446655dd0000",
+                                    @"localTimestamp": @1000000000,
+                                    @"deviceToken": [AQUtil getDeviceToken],
+                                    @"isDeleted": @NO
+                                    },
+                                ];
+            it(@"should undirty records", ^{
+                Album *model = [Album create];
+                model.aq_gid = @"aaaaaaaa-e29b-41d4-a716-446655dd0000";
+                [model aq_save];
+                
+                Album *model2 = [Album create];
+                model2.aq_gid = @"bbbbbbbb-e29b-41d4-a716-446655dd0000";
+                [model2 aq_save];
+                
+                [Album aq_undirtyRecordsFromDeltas:deltas];
+                Album *record = [Album aq_find:@"bbbbbbbb-e29b-41d4-a716-446655dd0000"];
+                expect(record.aq_isDirty).to.equal(NO);
+                expect([Album aq_dirtyRecords].count).to.equal(0);
+            });
+        });
+    });
+
+});
+
+SpecEnd
+
+
+/*
 SpecBegin(AQModel)
 
 describe(@"AQAquasyncModelRequirement", ^{
@@ -334,3 +636,5 @@ describe(@"AQUtil", ^{
 });
 
 SpecEnd
+
+*/
