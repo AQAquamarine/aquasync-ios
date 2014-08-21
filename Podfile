@@ -4,7 +4,6 @@ target :aquasync do
   pod "AFNetworking"
   pod "ReactiveCocoa"
   pod "AFNetworking-RACExtensions"
-  pod "Realm"
   pod "ObjectiveRecord"
 end
 
