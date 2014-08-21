@@ -38,7 +38,7 @@
 + (void)aq_receiveDeltas:(NSArray *)deltas {
     for (NSDictionary *delta in deltas) {
         NSString *gid = delta[@"gid"];
-        id<AQAquasyncModelProtocol> record = [self find:gid];
+        id<AQAquasyncModelProtocol> record = [self aq_find:gid];
         if (record) {
             [record aq_resolveConflict:delta];
         } else {
@@ -72,8 +72,7 @@
 }
 
 + (void)aq_createWithDictionary:(NSDictionary *)dictionary {
-    AquasyncModel *model = [[self class] create];
-    [model aq_updateFromDelta:dictionary]; // DO NOT INVOKE CALLBACK WHEN MERGING.
+    [[[self class] create] aq_updateFromDelta:dictionary]; // DO NOT INVOKE CALLBACK WHEN MERGING.
 }
 
 # pragma mark - Aliases

@@ -197,6 +197,115 @@ describe(@"Album", ^{
             expect([Album helper_inverseDictionary:dictionary][@"someValue"]).to.equal(@"someKey");
         });
     });
+    
+    describe(@"AQAquasyncModelManagerMethods", ^{
+        beforeEach(^{
+            for(Album *album in [Album all]) {
+                [album delete];
+            }
+        });
+        
+        describe(@"+aq_extractDeltas;", ^{
+            it(@"should extract 3 deltas", ^{
+                Album *album1 = [Album create];
+                [album1 aq_save];
+                Album *album2 = [Album create];
+                [album2 aq_save];
+                Album *album3 = [Album create];
+                [album3 aq_save];
+                
+                expect([Album aq_dirtyRecords].count).to.equal(3);
+            });
+        });
+        
+        describe(@"+aq_receiveDeltas", ^{
+            context(@"all delta is new", ^{
+                NSArray *deltas = @[
+                                    @{
+                                        @"gid": @"aaaaaaaa-e29b-41d4-a716-446655dd0000",
+                                        @"localTimestamp": @1000000000,
+                                        @"deviceToken": [AQUtil getDeviceToken],
+                                        @"isDeleted": @NO
+                                        },
+                                    @{
+                                        @"gid": @"bbbbbbbb-e29b-41d4-a716-446655dd0000",
+                                        @"localTimestamp": @1000000000,
+                                        @"deviceToken": [AQUtil getDeviceToken],
+                                        @"isDeleted": @NO
+                                        },
+                                    ];
+                
+                it(@"should receive deltas", ^{
+                    [Album aq_receiveDeltas:deltas];
+                    expect([Album aq_all].count).to.equal(2);
+                });
+                
+                it(@"a record which is created when merged should not be dirty", ^{
+                    [Album aq_receiveDeltas:deltas];
+                    Album *model = [Album aq_all].firstObject;
+                    expect(model.aq_isDirty).to.equal(NO);
+                });
+            });
+            context(@"1 delta is known and 1 is new", ^{
+                context(@"known delta is newer in localTimetamp than local one", ^{
+                    NSArray *deltas = @[
+                                        @{
+                                            @"gid": @"aaaaaaaa-e29b-41d4-a716-446655dd0000",
+                                            @"localTimestamp": @2000000000,
+                                            @"deviceToken": [AQUtil getDeviceToken],
+                                            @"isDeleted": @NO
+                                            },
+                                        @{
+                                            @"gid": @"bbbbbbbb-e29b-41d4-a716-446655dd0000",
+                                            @"localTimestamp": @1000000000,
+                                            @"deviceToken": [AQUtil getDeviceToken],
+                                            @"isDeleted": @NO
+                                            },
+                                        ];
+                    it(@"should update from delta", ^{
+                        Album *model = [Album create];
+                        model.aq_gid = @"aaaaaaaa-e29b-41d4-a716-446655dd0000";
+                        [model aq_save];
+                        [Album aq_receiveDeltas:deltas];
+                        expect([Album aq_all].count).to.equal(2);
+                        expect([Album aq_find:@"aaaaaaaa-e29b-41d4-a716-446655dd0000"].aq_localTimestamp).to.equal(2000000000);
+                    });
+                });
+            });
+        });
+        
+        describe(@"+aq_undirtyRecordsFromDeltas:deltas;", ^{
+            NSArray *deltas = @[
+                                @{
+                                    @"gid": @"aaaaaaaa-e29b-41d4-a716-446655dd0000",
+                                    @"localTimestamp": @2000000000,
+                                    @"deviceToken": [AQUtil getDeviceToken],
+                                    @"isDeleted": @NO
+                                    },
+                                @{
+                                    @"gid": @"bbbbbbbb-e29b-41d4-a716-446655dd0000",
+                                    @"localTimestamp": @1000000000,
+                                    @"deviceToken": [AQUtil getDeviceToken],
+                                    @"isDeleted": @NO
+                                    },
+                                ];
+            it(@"should undirty records", ^{
+                Album *model = [Album create];
+                model.aq_gid = @"aaaaaaaa-e29b-41d4-a716-446655dd0000";
+                [model aq_save];
+                
+                Album *model2 = [Album create];
+                model2.aq_gid = @"bbbbbbbb-e29b-41d4-a716-446655dd0000";
+                [model2 aq_save];
+                
+                [Album aq_undirtyRecordsFromDeltas:deltas];
+                Album *record = [Album aq_find:@"bbbbbbbb-e29b-41d4-a716-446655dd0000"];
+                expect(record.aq_isDirty).to.equal(NO);
+                expect([Album aq_dirtyRecords].count).to.equal(0);
+            });
+        });
+    });
+
 });
 
 SpecEnd
