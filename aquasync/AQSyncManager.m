@@ -75,6 +75,7 @@ NSString *const kAQPullSyncFailureNotificationName = @"Aquasync.PullSync.Failure
 // @param deltapack Pulled DeltaPack
 - (void)successPullSync:(id)deltapack {
     [self parseAndSaveDeltaPack:deltapack];
+    [self updateLatestUSTWithDeltaPack:deltapack];
     [[NSNotificationCenter defaultCenter] postNotificationName:kAQPullSyncSuccessNotificationName object:deltapack];
 }
 
@@ -89,7 +90,7 @@ NSString *const kAQPullSyncFailureNotificationName = @"Aquasync.PullSync.Failure
 // @param deltapack A DeltaPack which is synced successfully.
 - (void)undirtyRecordsFromDeltaPack:(NSDictionary *)deltapack {
     for (NSString *model in deltapack.allKeys) {
-        if ([model isEqual: @"_id"]) {continue;}
+        if ([model isEqualToString:@"_id"]) { continue; }
         NSArray *deltas = deltapack[model];
         [[self getModelClassFromName:model] aq_undirtyRecordsFromDeltas:deltas];
     }
@@ -103,11 +104,24 @@ NSString *const kAQPullSyncFailureNotificationName = @"Aquasync.PullSync.Failure
 // @param deltapack DeltaPack Dictionary (https://github.com/AQAquamarine/aquasync-protocol/blob/master/deltapack.md)
 - (void)parseAndSaveDeltaPack:(NSDictionary *)deltapack {
     for (NSString *model in deltapack.allKeys) {
-        if ([model isEqual: @"_id"]) {continue;}
+        if ([model isEqualToString:@"_id"]) { continue; }
         NSArray *deltas = deltapack[model];
         [[self getModelClassFromName:model] aq_receiveDeltas: deltas];
     }
 };
+
+- (void)updateLatestUSTWithDeltaPack:(NSDictionary *)deltapack {
+    long currentLatestUST = [self getLatestUST];
+    for (NSString *model in deltapack.allKeys) {
+        if ([model isEqualToString:@"_id"]) { continue; }
+        NSArray *deltas = deltapack[model];
+        for (NSDictionary *delta in deltas) {
+            long latestUST = [delta[@"ust"] longValue];
+            if (latestUST > currentLatestUST) { currentLatestUST = latestUST; }
+        }
+    }
+    [self setLatestUST:currentLatestUST];
+}
 
 - (void)handleErrorInPullSync:(NSError *)error {
     [[NSNotificationCenter defaultCenter] postNotificationName:kAQPullSyncFailureNotificationName object:error];
