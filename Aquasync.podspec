@@ -1,5 +1,5 @@
 Pod::Spec.new do |s|
-  s.name         = "aquasync"
+  s.name         = "Aquasync"
   s.version      = "0.1.0"
   s.summary      = "Aquasync iOS client implementation"
   s.description  = "An effortless synchronization library!"
@@ -14,5 +14,5 @@ Pod::Spec.new do |s|
   s.dependency "AFNetworking", "~> 2.3"
   s.dependency "ReactiveCocoa", "~> 2.3"
   s.dependency "AFNetworking-RACExtensions", "~> 0.1"
-  s.dependency "ObjectiveRecord", "~> "1.5"
+  s.dependency "ObjectiveRecord", "~> 1.5"
 end
