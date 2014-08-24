@@ -10,6 +10,14 @@ NSString *const kAQPullSyncFailureNotificationName = @"Aquasync.PullSync.Failure
 
 @synthesize models;
 
+- (instancetype)init {
+    self = [super init];
+    if (self) {
+        self.models = [[NSMutableDictionary alloc] init];
+    }
+    return self;
+};
+
 + (AQSyncManager *)sharedInstance {
     static AQSyncManager *_instance = nil;
     static dispatch_once_t onceToken;
@@ -43,14 +51,6 @@ NSString *const kAQPullSyncFailureNotificationName = @"Aquasync.PullSync.Failure
 
 # pragma mark - Private Methods
 
-- (instancetype)init {
-    self = [super init];
-    if (self) {
-        self.models = [[NSMutableDictionary alloc] init];
-    }
-    return self;
-};
-
 // Performs #pullSync described in https://github.com/AQAquamarine/aquasync-protocol#pullsync
 - (void)pullSync {
     int ust = [self getLatestUST];
@@ -71,6 +71,8 @@ NSString *const kAQPullSyncFailureNotificationName = @"Aquasync.PullSync.Failure
     }];
 };
 
+# pragma mark - PullSync Helpers
+
 // Saves pulled DeltaPack.
 // @param deltapack Pulled DeltaPack
 - (void)successPullSync:(id)deltapack {
@@ -78,27 +80,6 @@ NSString *const kAQPullSyncFailureNotificationName = @"Aquasync.PullSync.Failure
     [self updateLatestUSTWithDeltaPack:deltapack];
     [[NSNotificationCenter defaultCenter] postNotificationName:kAQPullSyncSuccessNotificationName object:deltapack];
 }
-
-// Saves push-succeed DeltaPack id and undirty records.
-// @param deltapack Pushed DeltaPack
-- (void)successPushSync:(id)deltapack {
-    [self undirtyRecordsFromDeltaPack:deltapack];
-    [[NSNotificationCenter defaultCenter] postNotificationName:kAQPushSyncSuccessNotificationName object:deltapack];
-};
-
-// Undirty records when pushSync is succeeded.
-// @param deltapack A DeltaPack which is synced successfully.
-- (void)undirtyRecordsFromDeltaPack:(NSDictionary *)deltapack {
-    for (NSString *model in deltapack.allKeys) {
-        if ([model isEqualToString:@"_id"]) { continue; }
-        NSArray *deltas = deltapack[model];
-        [[self getModelClassFromName:model] aq_undirtyRecordsFromDeltas:deltas];
-    }
-};
-
-- (void)handleErrorInPushSync:(NSError *)error {
-    [[NSNotificationCenter defaultCenter] postNotificationName:kAQPushSyncFailureNotificationName object:error];
-};
 
 // Unpack a DeltaPack and pass parsed deltas to [models aq_receiveDeltas:delta]
 // @param deltapack DeltaPack Dictionary (https://github.com/AQAquamarine/aquasync-protocol/blob/master/deltapack.md)
@@ -127,6 +108,30 @@ NSString *const kAQPullSyncFailureNotificationName = @"Aquasync.PullSync.Failure
     [[NSNotificationCenter defaultCenter] postNotificationName:kAQPullSyncFailureNotificationName object:error];
 };
 
+# pragma mark - PushSync Helpers
+
+// Saves push-succeed DeltaPack id and undirty records.
+// @param deltapack Pushed DeltaPack
+- (void)successPushSync:(id)deltapack {
+    [self undirtyRecordsFromDeltaPack:deltapack];
+    [[NSNotificationCenter defaultCenter] postNotificationName:kAQPushSyncSuccessNotificationName object:deltapack];
+};
+
+// Undirty records when pushSync is succeeded.
+// @param deltapack A DeltaPack which is synced successfully.
+- (void)undirtyRecordsFromDeltaPack:(NSDictionary *)deltapack {
+    for (NSString *model in deltapack.allKeys) {
+        if ([model isEqualToString:@"_id"]) { continue; }
+        NSArray *deltas = deltapack[model];
+        [[self getModelClassFromName:model] aq_undirtyRecordsFromDeltas:deltas];
+    }
+};
+
+- (void)handleErrorInPushSync:(NSError *)error {
+    [[NSNotificationCenter defaultCenter] postNotificationName:kAQPushSyncFailureNotificationName object:error];
+};
+
+# pragma mark - Helpers
 
 // Gets model class from registered models.
 // @return ModelManager class
