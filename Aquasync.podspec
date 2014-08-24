@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name         = "Aquasync"
-  s.version      = "0.1.0"
+  s.version      = "0.1.2"
   s.summary      = "Aquasync iOS client implementation"
   s.description  = "An effortless synchronization library!"
   s.homepage     = "https://github.com/AQAquamarine/aquasync-ios"
