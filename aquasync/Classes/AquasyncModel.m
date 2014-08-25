@@ -126,7 +126,7 @@
              @"aq_deviceToken": @"deviceToken",
              @"aq_localTimestamp": @"localTimestamp",
              @"aq_isDeleted": @"isDeleted",
-             @"aq_isDirty": @"isDirty"
+             //@"aq_isDirty": @"isDirty" // BECAUSE isDirty is only in local. Refer spec.
              };
 }
 
