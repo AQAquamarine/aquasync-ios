@@ -1,7 +1,5 @@
 #import <Foundation/Foundation.h>
 #import <AFNetworking.h>
-#import <RACAFNetworking.h>
-#import <ReactiveCocoa.h>
 #import "AQUtil.h"
 
 @interface AQDeltaClient : NSObject
