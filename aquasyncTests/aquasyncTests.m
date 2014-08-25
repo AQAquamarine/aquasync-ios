@@ -136,6 +136,35 @@ describe(@"Album", ^{
         });
     });
     
+    describe(@"-aq_dirtyRecords", ^{
+        it(@"should find two dirty records", ^{            
+            for(Album *album in [Album all]) {
+                [album delete];
+            }
+            Album *album1 = [Album create];
+            [album1 aq_save];
+            Album *album2 = [Album create];
+            [album2 aq_save];
+            
+            expect([Album aq_dirtyRecords].count).to.equal(2);
+        });
+        
+        it(@"should not find undirty records", ^{
+            for(Album *album in [Album all]) {
+                [album delete];
+            }
+            Album *album1 = [Album create];
+            [album1 aq_save];
+            [album1 aq_undirty];
+            
+            Album *album2 = [Album create];
+            [album2 aq_save];
+            [album2 aq_undirty];
+            
+            expect([Album aq_dirtyRecords].count).to.equal(0);
+        });
+    });
+    
     describe(@"-aq_destroy", ^{
         it(@"should destroy the object", ^{
             Album *model = [Album create];
@@ -157,9 +186,8 @@ describe(@"Album", ^{
         });
     });
     
-    describe(@"-init;", ^{
+    describe(@"+create;", ^{
         Album *model = [Album create];
-        
         it(@"should set valid gid", ^{
             expect(model.aq_gid).to.beTruthy;
         });
@@ -171,10 +199,11 @@ describe(@"Album", ^{
         });
     });
     
-    describe(@"-save;", ^{
-        [[CoreDataManager sharedManager] useInMemoryStore];
+    describe(@"-aq_save;", ^{
         Album *model = [Album create];
+        model.title = @"Hawaii";
         [model aq_save];
+        NSString *gid = model.aq_gid;
         
         it(@"persists the data", ^{
             expect([Album all].count).to.beGreaterThanOrEqualTo(1);
@@ -184,6 +213,10 @@ describe(@"Album", ^{
         });
         it(@"should be dirty", ^{
             expect(model.aq_isDirty).to.equal(YES);
+        });
+        
+        it(@"should be found when +find", ^{
+            expect([Album aq_find:gid]).to.beTruthy;
         });
     });
     

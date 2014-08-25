@@ -39,8 +39,8 @@
 		36C91F6CCBB04340933AA90A /* Pods-aquasync.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-aquasync.xcconfig"; path = "Pods/Pods-aquasync.xcconfig"; sourceTree = "<group>"; };
 		526C9AB990594D6EA9ED853E /* libPods-aquasync.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-aquasync.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		C6659ABAF218440699BC17FA /* libPods-aquasyncTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-aquasyncTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		D411F2B419AA1CCA00EA2ECF /* Album.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Album.h; sourceTree = "<group>"; };
-		D411F2B519AA1CCA00EA2ECF /* Album.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Album.m; sourceTree = "<group>"; };
+		D411F2B419AA1CCA00EA2ECF /* Album.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Album.h; path = ../aquasync/Classes/Album.h; sourceTree = "<group>"; };
+		D411F2B519AA1CCA00EA2ECF /* Album.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Album.m; path = ../aquasync/Classes/Album.m; sourceTree = "<group>"; };
 		D411F2B619AA1CCA00EA2ECF /* AQAquasyncModelProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AQAquasyncModelProtocol.h; sourceTree = "<group>"; };
 		D411F2B719AA1CCA00EA2ECF /* AQDeltaClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AQDeltaClient.h; sourceTree = "<group>"; };
 		D411F2B819AA1CCA00EA2ECF /* AQDeltaClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AQDeltaClient.m; sourceTree = "<group>"; };
@@ -123,8 +123,6 @@
 			children = (
 				D411F2BD19AA1CCA00EA2ECF /* AquasyncModel.h */,
 				D411F2BE19AA1CCA00EA2ECF /* AquasyncModel.m */,
-				D411F2B419AA1CCA00EA2ECF /* Album.h */,
-				D411F2B519AA1CCA00EA2ECF /* Album.m */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -171,7 +169,6 @@
 				D4FB25031985255D00362657 /* Main.storyboard */,
 				D4FB25061985255D00362657 /* Images.xcassets */,
 				D4FB24F91985255D00362657 /* Supporting Files */,
-				D4DFFBF919A37ACA009EFFC4 /* aquasync.xcdatamodeld */,
 			);
 			path = aquasync;
 			sourceTree = "<group>";
@@ -188,6 +185,9 @@
 		D4FB250F1985255E00362657 /* aquasyncTests */ = {
 			isa = PBXGroup;
 			children = (
+				D411F2B419AA1CCA00EA2ECF /* Album.h */,
+				D411F2B519AA1CCA00EA2ECF /* Album.m */,
+				D4DFFBF919A37ACA009EFFC4 /* aquasync.xcdatamodeld */,
 				D4FB25121985255E00362657 /* aquasyncTests.m */,
 				D4FB25101985255E00362657 /* Supporting Files */,
 			);
@@ -657,7 +657,8 @@
 				D4DFFBFA19A37ACA009EFFC4 /* aquasync.xcdatamodel */,
 			);
 			currentVersion = D4DFFBFA19A37ACA009EFFC4 /* aquasync.xcdatamodel */;
-			path = aquasync.xcdatamodeld;
+			name = aquasync.xcdatamodeld;
+			path = ../aquasync/aquasync.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;
 		};
