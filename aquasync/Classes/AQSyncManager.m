@@ -67,7 +67,7 @@ NSString *const kAQPullSyncFailureNotificationName = @"Aquasync.PullSync.Failure
     [[[AQDeltaClient sharedInstance] pushDeltaPack:deltapack] subscribeNext:^(id JSON) {
         [self successPushSync:deltapack];
     } error:^(NSError *error) {
-        [self handleErrorInPullSync:error];
+        [self handleErrorInPushSync:error];
     }];
 };
 
