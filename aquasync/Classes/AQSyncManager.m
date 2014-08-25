@@ -78,7 +78,7 @@ NSString *const kAQPullSyncFailureNotificationName = @"Aquasync.PullSync.Failure
 - (void)successPullSync:(id)deltapack {
     [self parseAndSaveDeltaPack:deltapack];
     [self updateLatestUSTWithDeltaPack:deltapack];
-    [[NSNotificationCenter defaultCenter] postNotificationName:kAQPullSyncSuccessNotificationName object:deltapack];
+    [[NSNotificationCenter defaultCenter] postNotificationName:kAQPullSyncSuccessNotificationName object:self];
 }
 
 // Unpack a DeltaPack and pass parsed deltas to [models aq_receiveDeltas:delta]
@@ -105,7 +105,7 @@ NSString *const kAQPullSyncFailureNotificationName = @"Aquasync.PullSync.Failure
 }
 
 - (void)handleErrorInPullSync:(NSError *)error {
-    [[NSNotificationCenter defaultCenter] postNotificationName:kAQPullSyncFailureNotificationName object:error];
+    [[NSNotificationCenter defaultCenter] postNotificationName:kAQPullSyncFailureNotificationName object:self];
 };
 
 # pragma mark - PushSync Helpers
@@ -114,7 +114,7 @@ NSString *const kAQPullSyncFailureNotificationName = @"Aquasync.PullSync.Failure
 // @param deltapack Pushed DeltaPack
 - (void)successPushSync:(id)deltapack {
     [self undirtyRecordsFromDeltaPack:deltapack];
-    [[NSNotificationCenter defaultCenter] postNotificationName:kAQPushSyncSuccessNotificationName object:deltapack];
+    [[NSNotificationCenter defaultCenter] postNotificationName:kAQPushSyncSuccessNotificationName object:self];
 };
 
 // Undirty records when pushSync is succeeded.
@@ -128,7 +128,7 @@ NSString *const kAQPullSyncFailureNotificationName = @"Aquasync.PullSync.Failure
 };
 
 - (void)handleErrorInPushSync:(NSError *)error {
-    [[NSNotificationCenter defaultCenter] postNotificationName:kAQPushSyncFailureNotificationName object:error];
+    [[NSNotificationCenter defaultCenter] postNotificationName:kAQPushSyncFailureNotificationName object:self];
 };
 
 # pragma mark - Helpers
