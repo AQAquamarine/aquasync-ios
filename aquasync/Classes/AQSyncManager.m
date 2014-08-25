@@ -54,19 +54,19 @@ NSString *const kAQPullSyncFailureNotificationName = @"Aquasync.PullSync.Failure
 // Performs #pullSync described in https://github.com/AQAquamarine/aquasync-protocol#pullsync
 - (void)pullSync {
     int ust = [self getLatestUST];
-    [[[AQDeltaClient sharedInstance] pullDeltaPack:ust] subscribeNext:^(NSDictionary *deltapack) {
-        [self successPullSync:deltapack];
-    } error:^(NSError *error) {
+    [[AQDeltaClient sharedInstance] pullDeltaPack:ust success:^(id JSON) {
+        [self successPullSync:JSON];
+    } failure:^(NSError *error) {
         [self handleErrorInPullSync:error];
     }];
-};
+}
 
 // Performs #pushSync described in https://github.com/AQAquamarine/aquasync-protocol#pushsync
 - (void)pushSync {
     NSDictionary *deltapack = [self buildDeltaPack];
-    [[[AQDeltaClient sharedInstance] pushDeltaPack:deltapack] subscribeNext:^(id JSON) {
+    [[AQDeltaClient sharedInstance] pushDeltaPack:deltapack success:^(id JSON) {
         [self successPushSync:deltapack];
-    } error:^(NSError *error) {
+    } failure:^(NSError *error) {
         [self handleErrorInPushSync:error];
     }];
 };
@@ -93,15 +93,10 @@ NSString *const kAQPullSyncFailureNotificationName = @"Aquasync.PullSync.Failure
 
 - (void)updateLatestUSTWithDeltaPack:(NSDictionary *)deltapack {
     long currentLatestUST = [self getLatestUST];
-    for (NSString *model in deltapack.allKeys) {
-        if ([model isEqualToString:@"_id"]) { continue; }
-        NSArray *deltas = deltapack[model];
-        for (NSDictionary *delta in deltas) {
-            long latestUST = [delta[@"ust"] longValue];
-            if (latestUST > currentLatestUST) { currentLatestUST = latestUST; }
-        }
+    long latestUST = [deltapack[@"latestUST"] longValue];
+    if (latestUST > currentLatestUST) {
+        [self setLatestUST:latestUST];
     }
-    [self setLatestUST:currentLatestUST];
 }
 
 - (void)handleErrorInPullSync:(NSError *)error {

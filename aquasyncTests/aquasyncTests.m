@@ -83,7 +83,6 @@ describe(@"Album", ^{
                                                   @"aq_deviceToken": @"deviceToken",
                                                   @"aq_localTimestamp": @"localTimestamp",
                                                   @"aq_isDeleted": @"isDeleted",
-                                                  @"aq_isDirty": @"isDirty",
                                                   @"title": @"title"
                                                   });
         });
@@ -187,35 +186,45 @@ describe(@"Album", ^{
     });
     
     describe(@"+create;", ^{
-        Album *model = [Album create];
         it(@"should set valid gid", ^{
+            Album *model = [Album create];
             expect(model.aq_gid).to.beTruthy;
         });
         it(@"should not be deleted", ^{
+            Album *model = [Album create];
             expect(model.aq_isDeleted).to.equal(NO);
         });
         it(@"should set valid deviceToken", ^{
+            Album *model = [Album create];
             expect(model.aq_deviceToken).to.equal(deviceToken);
         });
     });
     
     describe(@"-aq_save;", ^{
-        Album *model = [Album create];
-        model.title = @"Hawaii";
-        [model aq_save];
-        NSString *gid = model.aq_gid;
-        
         it(@"persists the data", ^{
+            Album *model = [Album create];
+            model.title = @"Hawaii";
+            [model aq_save];
             expect([Album all].count).to.beGreaterThanOrEqualTo(1);
         });
         it(@"should set localTimestamp", ^{
+            Album *model = [Album create];
+            model.title = @"Hawaii";
+            [model aq_save];
             expect(model.aq_localTimestamp).to.beTruthy;
         });
         it(@"should be dirty", ^{
+            Album *model = [Album create];
+            model.title = @"Hawaii";
+            [model aq_save];
             expect(model.aq_isDirty).to.equal(YES);
         });
         
         it(@"should be found when +find", ^{
+            Album *model = [Album create];
+            model.title = @"Hawaii";
+            [model aq_save];
+            NSString *gid = model.aq_gid;
             expect([Album aq_find:gid]).to.beTruthy;
         });
     });

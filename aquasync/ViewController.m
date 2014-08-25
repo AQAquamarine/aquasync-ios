@@ -23,8 +23,8 @@
     
     //[self check];
     
-    Album *album = [Album create];
-    [album save];
+    //Album *album = [Album create];
+    //[album save];
 }
 
 - (void)check {

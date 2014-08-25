@@ -21,21 +21,28 @@
 // You should set baseURI before call the method.
 // The protocol is described in https://github.com/AQAquamarine/aquasync-protocol#post-deltas
 // @param deltapack A DeltaPack
-// @return AFNetworking RACSignal
-- (RACSignal *)pushDeltaPack:(NSDictionary *)deltapack {
+- (void)pushDeltaPack:(NSDictionary *)deltapack success:(void (^)(id JSON))successBlock failure:(void (^)(NSError *error))failureBlock {
     NSString *path = [AQUtil joinString:self.baseURI and:@"deltas"];
-    return [self.manager rac_POST:path parameters:deltapack];
+    [self.manager POST:path parameters:deltapack success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        successBlock(responseObject);
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        failureBlock(error);
+    }];
 };
 
 // Pulls DeltaPack from the backend.
 // You should set baseURI before call the method.
 // The protocol is described in https://github.com/AQAquamarine/aquasync-protocol#get-deltasfromust
 // @param latestUST latestUST described in https://github.com/AQAquamarine/aquasync-protocol#get-deltasfromust
-// @return AFNetworking RACSignal
-- (RACSignal *)pullDeltaPack:(NSInteger)latestUST {
+- (void)pullDeltaPack:(NSInteger)latestUST success:(void (^)(id JSON))successBlock failure:(void (^)(NSError *error))failureBlock {
     NSString *beforeFrom = [AQUtil joinString:self.baseURI and:@"deltas/ust:"];
     NSString *path = [AQUtil joinString:beforeFrom and:[AQUtil parseInt:latestUST]];
-    return [self.manager rac_GET:path parameters:nil];
+    [self.manager GET:path parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        successBlock(responseObject);
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        if (operation.response.statusCode == 204) { return; }
+        failureBlock(error);
+    }];
 };
 
 // Set BASIC Authentication Header

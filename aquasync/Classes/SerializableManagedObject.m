@@ -11,7 +11,7 @@
     for (NSString *inversedKey in inversedJSONKeyMap.allKeys) {
         NSString *dictionaryKey = inversedJSONKeyMap[inversedKey]; // @"aq_gid" for key = @"gid"
         id value = [self valueForKey:dictionaryKey];
-        if (value == nil) { continue; }
+        if ([value isKindOfClass:[NSNull class]]) { continue; }
         [dictionary setObject:value forKey:inversedKey]; // In dictionary, expect value for @"aq_gid" for key = @"gid"
     }
     return dictionary;
@@ -39,7 +39,7 @@
 - (void)setValueForObjectKey:(NSString *)objectKey withDictionary:(NSDictionary *)dictionary {
     id dictionaryKey = [[self class] JSONKeyMap][objectKey];
     id value = dictionary[dictionaryKey];
-    if (value == nil) { return; }
+    if ([value isKindOfClass:[NSNull class]]) { return; }
     id transformedValue = [self transformValue:value withObjectKey:objectKey];
     [self setValue:transformedValue forKey:objectKey];
 }

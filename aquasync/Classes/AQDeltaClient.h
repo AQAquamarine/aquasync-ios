@@ -10,8 +10,8 @@
 @property (nonatomic, retain) AFHTTPRequestOperationManager *manager;
 
 + (instancetype)sharedInstance;
-- (RACSignal *)pushDeltaPack:(NSDictionary *)deltapack;
-- (RACSignal *)pullDeltaPack:(int)latestUST;
+- (void)pushDeltaPack:(NSDictionary *)deltapack success:(void (^)(id JSON))successBlock failure:(void (^)(NSError *error))failureBlock;
+- (void)pullDeltaPack:(NSInteger)latestUST success:(void (^)(id JSON))successBlock failure:(void (^)(NSError *error))failureBlock;
 - (void)setBasicAuthorizationWithUsername:(NSString *)username password:(NSString *)password;
 
 @end
