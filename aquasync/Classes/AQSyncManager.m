@@ -64,6 +64,7 @@ NSString *const kAQPullSyncFailureNotificationName = @"Aquasync.PullSync.Failure
 // Performs #pushSync described in https://github.com/AQAquamarine/aquasync-protocol#pushsync
 - (void)pushSync {
     NSDictionary *deltapack = [self buildDeltaPack];
+    if (deltapack.allKeys.count == 1) { return; } // If deltapack is only "_id" don't push.
     [[AQDeltaClient sharedInstance] pushDeltaPack:deltapack success:^(id JSON) {
         [self successPushSync:deltapack];
     } failure:^(NSError *error) {
@@ -142,7 +143,9 @@ NSString *const kAQPullSyncFailureNotificationName = @"Aquasync.PullSync.Failure
     deltas[@"_id"] = uuid;
     for(NSString* key in models) {
         id<AQModelManagerProtocol> model = [models objectForKey:key];
-        [deltas setObject:[model aq_extractDeltas] forKey:key];
+        NSArray *dirtyRecords = [model aq_extractDeltas];
+        if (dirtyRecords.count == 0) { continue; }
+        [deltas setObject:dirtyRecords forKey:key];
     }
     return deltas;
 };
