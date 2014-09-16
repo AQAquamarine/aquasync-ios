@@ -17,6 +17,12 @@
     return self;
 }
 
+# pragma mark - Create
+
++ (instancetype)aq_create {
+    return [[self create] beforeCreate];
+}
+
 # pragma mark - AQAquasyncModelProtocol
 
 - (void)aq_resolveConflict:(NSDictionary *)delta {
@@ -144,10 +150,11 @@
 // set gid = generateUUID
 // set deviceToken
 // set isDeleted = NO
-- (void)beforeCreate {
+- (instancetype)beforeCreate {
     self.aq_isDeleted = NO;
     self.aq_gid = [AQUtil getUUID];
     self.aq_deviceToken = [AQUtil getDeviceToken];
+    return self;
 };
 
 // This method should be called when object is modified.

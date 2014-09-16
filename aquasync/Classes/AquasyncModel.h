@@ -13,6 +13,10 @@
 @property (nonatomic, assign) BOOL aq_isDirty;
 @property (nonatomic, assign) BOOL aq_isDeleted;
 
+# pragma mark - Create
+
++ (instancetype)aq_create;
+
 # pragma mark - AQAquasyncModelProtocol
 
 - (void)aq_resolveConflict:(NSDictionary *)delta;
