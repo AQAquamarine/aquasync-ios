@@ -37,7 +37,7 @@ describe(@"Album", ^{
                                     @"isDeleted": @NO
                                     };
             it(@"should update from delta", ^{
-                Album *model = [Album create];
+                Album *model = [Album aq_create];
                 model.aq_gid = @"aaaaaaaa-e29b-41d4-a716-446655dd0000";
                 [model save];
                 [model aq_resolveConflict:delta];
@@ -45,7 +45,7 @@ describe(@"Album", ^{
             });
             
             it(@"updated record should not be dirty", ^{
-                Album *model = [Album create];
+                Album *model = [Album aq_create];
                 model.aq_gid = @"aaaaaaaa-e29b-41d4-a716-446655dd0000";
                 [model aq_save];
                 [model aq_undirty];
@@ -62,7 +62,7 @@ describe(@"Album", ^{
                                     @"isDeleted": @NO
                                     };
             it(@"should not update from delta", ^{
-                Album *model = [Album create];
+                Album *model = [Album aq_create];
                 model.aq_gid = @"aaaaaaaa-e29b-41d4-a716-446655dd0000";
                 [model aq_save];
                 
@@ -73,7 +73,7 @@ describe(@"Album", ^{
     });
     
     describe(@"Serialization", ^{
-        Album *model = [Album create];
+        Album *model = [Album aq_create];
         NSDictionary *dictionary = @{
                                      @"title": @"Harry Potter"
                                      };
@@ -93,7 +93,7 @@ describe(@"Album", ^{
         });
         
         describe(@"-dictionaryRepresentation;", ^{
-            Album *album = [Album create];
+            Album *album = [Album aq_create];
             album.title = @"Hawaii";
             [album aq_save];
             
@@ -108,7 +108,7 @@ describe(@"Album", ^{
     });
     
     describe(@"-aq_all", ^{
-        Album *model = [Album create];
+        Album *model = [Album aq_create];
         [model aq_save];
         
         it(@"should find undeleted records", ^{
@@ -118,7 +118,7 @@ describe(@"Album", ^{
     
     describe(@"-aq_where:query;", ^{
         it(@"should find undeleted records", ^{
-            Album *model = [Album create];
+            Album *model = [Album aq_create];
             NSString *gid = model.aq_gid;
             [model aq_save];
             NSString *query = [NSString stringWithFormat:@"aq_gid == '%@'", gid];
@@ -126,7 +126,7 @@ describe(@"Album", ^{
         });
         
         it(@"should not find deleted records", ^{
-            Album *deleted = [Album create];
+            Album *deleted = [Album aq_create];
             deleted.aq_isDeleted = YES;
             NSString *deletedGid = deleted.aq_gid;
             [deleted aq_save];
@@ -140,9 +140,9 @@ describe(@"Album", ^{
             for(Album *album in [Album all]) {
                 [album delete];
             }
-            Album *album1 = [Album create];
+            Album *album1 = [Album aq_create];
             [album1 aq_save];
-            Album *album2 = [Album create];
+            Album *album2 = [Album aq_create];
             [album2 aq_save];
             
             expect([Album aq_dirtyRecords].count).to.equal(2);
@@ -152,11 +152,11 @@ describe(@"Album", ^{
             for(Album *album in [Album all]) {
                 [album delete];
             }
-            Album *album1 = [Album create];
+            Album *album1 = [Album aq_create];
             [album1 aq_save];
             [album1 aq_undirty];
             
-            Album *album2 = [Album create];
+            Album *album2 = [Album aq_create];
             [album2 aq_save];
             [album2 aq_undirty];
             
@@ -166,7 +166,7 @@ describe(@"Album", ^{
     
     describe(@"-aq_destroy", ^{
         it(@"should destroy the object", ^{
-            Album *model = [Album create];
+            Album *model = [Album aq_create];
             [model aq_destroy];
             expect(model.aq_isDeleted).to.equal(YES);
         });
@@ -174,7 +174,7 @@ describe(@"Album", ^{
     
     describe(@"-aq_find:gid;", ^{
         it(@"should find object with gid", ^{
-            Album *model = [Album create];
+            Album *model = [Album aq_create];
             NSString *gid = model.aq_gid;
             [model aq_save];
             expect([Album aq_find:gid].aq_gid).to.equal(gid);
@@ -187,41 +187,41 @@ describe(@"Album", ^{
     
     describe(@"+create;", ^{
         it(@"should set valid gid", ^{
-            Album *model = [Album create];
+            Album *model = [Album aq_create];
             expect(model.aq_gid).to.beTruthy;
         });
         it(@"should not be deleted", ^{
-            Album *model = [Album create];
+            Album *model = [Album aq_create];
             expect(model.aq_isDeleted).to.equal(NO);
         });
         it(@"should set valid deviceToken", ^{
-            Album *model = [Album create];
+            Album *model = [Album aq_create];
             expect(model.aq_deviceToken).to.equal(deviceToken);
         });
     });
     
     describe(@"-aq_save;", ^{
         it(@"persists the data", ^{
-            Album *model = [Album create];
+            Album *model = [Album aq_create];
             model.title = @"Hawaii";
             [model aq_save];
             expect([Album all].count).to.beGreaterThanOrEqualTo(1);
         });
         it(@"should set localTimestamp", ^{
-            Album *model = [Album create];
+            Album *model = [Album aq_create];
             model.title = @"Hawaii";
             [model aq_save];
             expect(model.aq_localTimestamp).to.beTruthy;
         });
         it(@"should be dirty", ^{
-            Album *model = [Album create];
+            Album *model = [Album aq_create];
             model.title = @"Hawaii";
             [model aq_save];
             expect(model.aq_isDirty).to.equal(YES);
         });
         
         it(@"should be found when +find", ^{
-            Album *model = [Album create];
+            Album *model = [Album aq_create];
             model.title = @"Hawaii";
             [model aq_save];
             NSString *gid = model.aq_gid;
@@ -249,11 +249,11 @@ describe(@"Album", ^{
         
         describe(@"+aq_extractDeltas;", ^{
             it(@"should extract 3 deltas", ^{
-                Album *album1 = [Album create];
+                Album *album1 = [Album aq_create];
                 [album1 aq_save];
-                Album *album2 = [Album create];
+                Album *album2 = [Album aq_create];
                 [album2 aq_save];
-                Album *album3 = [Album create];
+                Album *album3 = [Album aq_create];
                 [album3 aq_save];
                 
                 expect([Album aq_dirtyRecords].count).to.equal(3);
@@ -305,7 +305,7 @@ describe(@"Album", ^{
                                             },
                                         ];
                     it(@"should update from delta", ^{
-                        Album *model = [Album create];
+                        Album *model = [Album aq_create];
                         model.aq_gid = @"aaaaaaaa-e29b-41d4-a716-446655dd0000";
                         [model aq_save];
                         [Album aq_receiveDeltas:deltas];
@@ -332,11 +332,11 @@ describe(@"Album", ^{
                                     },
                                 ];
             it(@"should undirty records", ^{
-                Album *model = [Album create];
+                Album *model = [Album aq_create];
                 model.aq_gid = @"aaaaaaaa-e29b-41d4-a716-446655dd0000";
                 [model aq_save];
                 
-                Album *model2 = [Album create];
+                Album *model2 = [Album aq_create];
                 model2.aq_gid = @"bbbbbbbb-e29b-41d4-a716-446655dd0000";
                 [model2 aq_save];
                 

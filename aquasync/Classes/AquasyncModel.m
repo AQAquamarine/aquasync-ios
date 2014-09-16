@@ -9,14 +9,6 @@
 @dynamic aq_isDeleted;
 @dynamic aq_isDirty;
 
-- (id)initWithEntity:(NSEntityDescription *)entity insertIntoManagedObjectContext:(NSManagedObjectContext *)context {
-    self = [super initWithEntity:entity insertIntoManagedObjectContext:context];
-    if (self != nil) {
-        [self beforeCreate];
-    }
-    return self;
-}
-
 # pragma mark - Create
 
 + (instancetype)aq_create {
