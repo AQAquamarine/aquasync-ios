@@ -8,6 +8,25 @@
 
 #import <Foundation/Foundation.h>
 
-@interface AQAquaSyncService : NSObject
+#import "AQAquaSyncPushSyncOperationDelegate.h"
+
+/**
+ *  A service class that implements Aquasync specification described in https://github.com/AQAquamarine/aquasync-protocol.
+ *
+ *  To start the service, call `- start`.
+ *
+ *  @warning You should retain this service instance in your singleton Service Locator class.
+ *
+ *  @see https://github.com/AQAquamarine/aquasync-protocol
+ */
+@interface AQAquaSyncService : NSObject <AQAquaSyncPushSyncOperationDelegate>
+
+# pragma mark - Starting the Service
+/** @name Starting the Service */
+
+/**
+ *  Starts its service.
+ */
+- (void)start;
 
 @end
