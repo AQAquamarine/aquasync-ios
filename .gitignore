@@ -1,4 +1,5 @@
-.DS_Store
+# Xcode
+#
 build/
 *.pbxuser
 !default.pbxuser
@@ -15,7 +16,6 @@ DerivedData
 *.hmap
 *.ipa
 *.xcuserstate
-*.pbxproj
 
 # CocoaPods
 #
@@ -23,4 +23,4 @@ DerivedData
 # you should judge for yourself, the pros and cons are mentioned at:
 # http://guides.cocoapods.org/using/using-cocoapods.html#should-i-ignore-the-pods-directory-in-source-control
 #
-Pods/
+# Pods/
