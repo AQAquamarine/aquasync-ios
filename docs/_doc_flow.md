@@ -33,3 +33,19 @@ digraph G {
 	AQSyncableObjectAggregator -> AQSyncableObject [label = "9. Push した SyncableObject を Push 済みにマークする"]
 }
 ```
+
+```graphviz
+digraph G {
+	SyncableObject [shape = record, label= "{\
+		SyncableObject|
+		作成時に付与
+		|
+		aq_gid: string
+		aq_deviceToken: string\l\
+		|
+		aq_localTimestamp: integer\l\
+		aq_
+		hoga: integer\l\
+	}"]
+}
+```
