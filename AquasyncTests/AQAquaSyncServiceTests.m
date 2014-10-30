@@ -8,6 +8,12 @@
 
 #import <UIKit/UIKit.h>
 #import <XCTest/XCTest.h>
+#define EXP_SHORTHAND
+#import <Expecta.h>
+#import <OCMock.h>
+
+#import "AQAquaSyncService.h"
+#import "AQAquaSyncPushSyncOperationDelegate.h"
 
 @interface AQAquaSyncServiceTests : XCTestCase
 
@@ -25,16 +31,10 @@
     [super tearDown];
 }
 
-- (void)testExample {
-    // This is an example of a functional test case.
-    XCTAssert(YES, @"Pass");
-}
-
-- (void)testPerformanceExample {
-    // This is an example of a performance test case.
-    [self measureBlock:^{
-        // Put the code you want to measure the time of here.
-    }];
+- (void)testItImplementsAQAquaSyncPushSyncOperationDelegate {
+    AQAquaSyncService *service = [[AQAquaSyncService alloc] init];
+    
+    expect(service).to.conformTo(@protocol(AQAquaSyncPushSyncOperationDelegate));
 }
 
 @end

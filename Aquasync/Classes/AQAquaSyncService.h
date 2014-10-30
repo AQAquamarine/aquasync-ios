@@ -10,6 +10,10 @@
 
 #import "AQAquaSyncPushSyncOperationDelegate.h"
 
+//{@dependencies
+@class AFHTTPRequestOperationManager;
+//}
+
 /**
  *  A service class that implements Aquasync specification described in https://github.com/AQAquamarine/aquasync-protocol.
  *
@@ -20,6 +24,18 @@
  *  @see https://github.com/AQAquamarine/aquasync-protocol
  */
 @interface AQAquaSyncService : NSObject <AQAquaSyncPushSyncOperationDelegate>
+
+# pragma mark - Initialization
+/** @name Initialization */
+
+/**
+ *  Instantiate and initialize the service.
+ *
+ *  @param manager Dependency
+ *
+ *  @return Initialized service
+ */
+- (instancetype)initWithAFHTTPRequestOperationManager:(AFHTTPRequestOperationManager *)manager;
 
 # pragma mark - Starting the Service
 /** @name Starting the Service */

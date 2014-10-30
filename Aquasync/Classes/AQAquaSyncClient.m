@@ -8,6 +8,20 @@
 
 #import "AQAquaSyncClient.h"
 
+@interface AQAquaSyncClient ()
+
+@property (nonatomic, strong) AFHTTPRequestOperationManager *manager;
+
+@end
+
 @implementation AQAquaSyncClient
+
+- (instancetype)initWithAFHTTPRequestOperationManager:(AFHTTPRequestOperationManager *)manager {
+    self = [super init];
+    if (self) {
+        self.manager = manager;
+    }
+    return self;
+}
 
 @end

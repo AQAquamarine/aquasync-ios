@@ -8,6 +8,8 @@
 
 #import "AQAquaSyncPushSyncOperation.h"
 
+#import "AQDeltaPack.h"
+
 @interface AQAquaSyncPushSyncOperation ()
 
 @property (nonatomic, assign) BOOL isFinished;
@@ -35,6 +37,13 @@
 }
 
 # pragma mark - NSOperation
+
+- (void)main {
+#warning MOCK IMPLEMENTATION
+    AQDeltaPack *deltaPack = [[AQDeltaPack alloc] init];
+    [self.delegate operation:self didSuccessWithDeltaPack:deltaPack];
+    self.isFinished = YES;
+}
 
 - (BOOL)isConcurrent {
     return YES;
