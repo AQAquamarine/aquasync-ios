@@ -1,6 +1,4 @@
 .DS_Store
-aquasync.xcodeproj
-aquasync.xcodeproj/*
 build/
 *.pbxuser
 !default.pbxuser
