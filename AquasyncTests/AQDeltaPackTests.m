@@ -139,6 +139,28 @@
     expect(dictionary[@"Book"]).to.haveCountOf(2);
 }
 
+- (void)testItInstantiateFromDictionary {
+    NSDictionary *dictionary = @{
+                                 @"Author": @[
+                                         @{
+                                             @"name": @"taro"
+                                             },
+                                         @{
+                                             @"name": @"jack"
+                                             }
+                                         ],
+                                 @"Book": @[
+                                         @{
+                                             @"title": @"harrypotter",
+                                             @"author": @"taro"
+                                             }
+                                         ]
+                                 };
+    AQDeltaPack *deltaPack = [AQDeltaPack deltaPackWithDictionary:dictionary];
+    
+    expect([deltaPack dictionaryRepresentation]).to.equal(dictionary);
+}
+
 - (void)testItAQDeltaIsAnNSDictionary {
     expect([[AQDelta alloc] init]).to.beKindOf([NSDictionary class]);
 }

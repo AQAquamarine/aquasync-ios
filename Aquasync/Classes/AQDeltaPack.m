@@ -51,6 +51,12 @@
     return self.actualDictionary;
 }
 
++ (instancetype)deltaPackWithDictionary:(NSDictionary *)dictionary {
+    AQDeltaPack *deltaPack = [[self alloc] init];
+    deltaPack.actualDictionary = [dictionary mutableCopy];
+    return deltaPack;
+}
+
 # pragma mark - Helpers
 
 - (NSMutableArray *)deltaArrayForKey:(NSString *)key {

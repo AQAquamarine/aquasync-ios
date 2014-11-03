@@ -69,8 +69,8 @@ typedef NSDictionary AQDelta;
  */
 - (NSArray /* <AQDelta> */ *)arrayForKey:(NSString *)key;
 
-# pragma mark - Getting another Representation
-/** @name Getting another Representation */
+# pragma mark - Transform from/to NSDictionary
+/** @name Transform from/to NSDictionary */
 
 /**
  *  Getting a dictionary representation.
@@ -78,5 +78,14 @@ typedef NSDictionary AQDelta;
  *  @return A dictionary representation
  */
 - (NSDictionary *)dictionaryRepresentation;
+
+/**
+ *  Instantiate a DeltaPack with a dictionary.
+ *
+ *  @param dictionary A dictionary using for instantiate a DeltaPack
+ *
+ *  @return A initialized DeltaPack
+ */
++ (instancetype)deltaPackWithDictionary:(NSDictionary *)dictionary;
 
 @end
