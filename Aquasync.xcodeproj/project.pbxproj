@@ -40,6 +40,7 @@
 		55ABD7281F91A30FDBC19F09 /* libPods-Aquasync.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Aquasync.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		CD73F07E8CB97927818B64DF /* Pods-Aquasync.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Aquasync.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Aquasync/Pods-Aquasync.debug.xcconfig"; sourceTree = "<group>"; };
 		D4B7F6481A077D9700520BB4 /* AQDeltaPackTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AQDeltaPackTests.m; sourceTree = "<group>"; };
+		D4B7F64A1A078E5700520BB4 /* AQSyncableObjectAggregator.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AQSyncableObjectAggregator.h; sourceTree = "<group>"; };
 		D4EB6FF71A027714003D4371 /* Aquasync.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Aquasync.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D4EB6FFB1A027714003D4371 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D4EB6FFC1A027714003D4371 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -174,6 +175,7 @@
 				D4EB70291A02819F003D4371 /* AQAquaSyncClient.m */,
 				D4EB702D1A028502003D4371 /* AQDeltaPack.h */,
 				D4EB702E1A028502003D4371 /* AQDeltaPack.m */,
+				D4B7F64A1A078E5700520BB4 /* AQSyncableObjectAggregator.h */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
