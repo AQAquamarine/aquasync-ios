@@ -116,6 +116,29 @@
     }).notTo.raiseAny();
 }
 
+- (void)testItReturnsAppropriateDictionaryRepresentation {
+    AQDeltaPack *deltaPack = [[AQDeltaPack alloc] init];
+    
+    [deltaPack addDelta:@{@"name": @"taro"} forKey:@"Author"];
+    [deltaPack addDelta:@{@"name": @"jack"} forKey:@"Author"];
+    [deltaPack addDeltasFromArray:@[
+                                    @{
+                                        @"title": @"harrypotter",
+                                        @"author": @"taro"
+                                        },
+                                    @{
+                                        @"title": @"aliceinwonderland",
+                                        @"author": @"jack"
+                                        }
+                                    ] forKey:@"Book"];
+    
+    NSDictionary *dictionary = [deltaPack dictionaryRepresentation];
+    expect(dictionary).to.contain(@"Author");
+    expect(dictionary).to.contain(@"Book");
+    expect(dictionary[@"Author"]).to.haveCountOf(2);
+    expect(dictionary[@"Book"]).to.haveCountOf(2);
+}
+
 - (void)testItAQDeltaIsAnNSDictionary {
     expect([[AQDelta alloc] init]).to.beKindOf([NSDictionary class]);
 }

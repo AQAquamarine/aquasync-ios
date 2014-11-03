@@ -69,4 +69,14 @@ typedef NSDictionary AQDelta;
  */
 - (NSArray /* <AQDelta> */ *)arrayForKey:(NSString *)key;
 
+# pragma mark - Getting another Representation
+/** @name Getting another Representation */
+
+/**
+ *  Getting a dictionary representation.
+ *
+ *  @return A dictionary representation
+ */
+- (NSDictionary *)dictionaryRepresentation;
+
 @end

@@ -45,6 +45,12 @@
     return [self deltaArrayForKey:key];
 }
 
+# pragma mark - Getting another Representation
+
+- (NSDictionary *)dictionaryRepresentation {
+    return self.actualDictionary;
+}
+
 # pragma mark - Helpers
 
 - (NSMutableArray *)deltaArrayForKey:(NSString *)key {
