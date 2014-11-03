@@ -14,6 +14,8 @@
 @class AQAquaSyncClient;
 //}
 
+@protocol AQSyncableObjectAggregator;
+
 /**
  *  An operation that performs pushSync described in https://github.com/AQAquamarine/aquasync-protocol#pushsync
  *  It returns its result by delegate. Implement `AQAquaSyncPushSyncOperationDelegate` to receive the result.
@@ -23,12 +25,16 @@
  */
 @interface AQAquaSyncPushSyncOperation : NSOperation
 
-- (instancetype)initWithDelegate:(id<AQAquaSyncPushSyncOperationDelegate>)delegate withAquaSyncClient:(AQAquaSyncClient *)client;
+- (instancetype)initWithSyncableObjectAggregator:(id<AQSyncableObjectAggregator>)syncableObjectAggregator delegate:(id<AQAquaSyncPushSyncOperationDelegate>)delegate aquaSyncClient:(AQAquaSyncClient *)client;
 
 /**
  *  This operation delegates its result to the delegate.
  */
 @property (nonatomic, weak) id<AQAquaSyncPushSyncOperationDelegate> delegate;
 
+/**
+ *  This operation delegates building & undirtying records to SyncableObjectAggregator. 
+ */
+@property (nonatomic, strong) id<AQSyncableObjectAggregator> syncableObjectAggregator;
 
 @end

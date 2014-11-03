@@ -16,6 +16,7 @@
 
 @property (nonatomic, strong) NSOperationQueue *operationQueue;
 @property (nonatomic, strong) AQAquaSyncClient *client;
+@property (nonatomic, strong) id<AQSyncableObjectAggregator> syncableObjectAggregator;
 
 @end
 
@@ -35,11 +36,22 @@
     return self;
 }
 
+- (instancetype)initWithSyncableObjectAggregator:(id<AQSyncableObjectAggregator>)syncableObjectAggregator {
+    self = [super init];
+    if (self) {
+        AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+        self.operationQueue = [[NSOperationQueue alloc] init];
+        self.client = [[AQAquaSyncClient alloc] initWithAFHTTPRequestOperationManager:manager];
+        self.syncableObjectAggregator = syncableObjectAggregator;
+    }
+    return self;
+}
+
 # pragma mark - Starting the Service
 
 - (void)start {
 #warning MOCK
-    AQAquaSyncPushSyncOperation *operation = [[AQAquaSyncPushSyncOperation alloc] initWithDelegate:self withAquaSyncClient:self.client];
+    AQAquaSyncPushSyncOperation *operation = [[AQAquaSyncPushSyncOperation alloc] initWithSyncableObjectAggregator:self.syncableObjectAggregator delegate:self aquaSyncClient:self.client];
     [self.operationQueue addOperation:operation];
 }
 

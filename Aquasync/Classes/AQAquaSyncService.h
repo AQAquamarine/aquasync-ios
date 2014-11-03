@@ -14,6 +14,8 @@
 @class AFHTTPRequestOperationManager;
 //}
 
+@protocol AQSyncableObjectAggregator;
+
 /**
  *  A service class that implements Aquasync specification described in https://github.com/AQAquamarine/aquasync-protocol.
  *
@@ -36,6 +38,15 @@
  *  @return Initialized service
  */
 - (instancetype)initWithAFHTTPRequestOperationManager:(AFHTTPRequestOperationManager *)manager;
+
+/**
+ *  Instantiate and initialize the service.
+ *
+ *  @param syncableObjectAggregator An object that implements AQSyncableObjectAggregator protocol.
+ *
+ *  @return Initialized service
+ */
+- (instancetype)initWithSyncableObjectAggregator:(id<AQSyncableObjectAggregator>)syncableObjectAggregator;
 
 # pragma mark - Starting the Service
 /** @name Starting the Service */

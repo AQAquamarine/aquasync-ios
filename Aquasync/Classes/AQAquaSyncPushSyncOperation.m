@@ -9,6 +9,9 @@
 #import "AQAquaSyncPushSyncOperation.h"
 
 #import "AQDeltaPack.h"
+#import "AQAquaSyncClient.h"
+
+#import "AQSyncableObjectAggregator.h"
 
 @interface AQAquaSyncPushSyncOperation ()
 
@@ -26,12 +29,14 @@
 
 @implementation AQAquaSyncPushSyncOperation
 
-- (instancetype)initWithDelegate:(id<AQAquaSyncPushSyncOperationDelegate>)delegate
-              withAquaSyncClient:(AQAquaSyncClient *)client {
+- (instancetype)initWithSyncableObjectAggregator:(id<AQSyncableObjectAggregator>)syncableObjectAggregator
+                                        delegate:(id<AQAquaSyncPushSyncOperationDelegate>)delegate
+                                  aquaSyncClient:(AQAquaSyncClient *)client {
     self = [super init];
     if (self) {
         self.delegate = delegate;
         self.client = client;
+        self.syncableObjectAggregator = syncableObjectAggregator;
     }
     return self;
 }
@@ -39,10 +44,16 @@
 # pragma mark - NSOperation
 
 - (void)main {
-#warning MOCK IMPLEMENTATION
-    AQDeltaPack *deltaPack = [[AQDeltaPack alloc] init];
-    [self.delegate operation:self didSuccessWithDeltaPack:deltaPack];
-    self.isFinished = YES;
+    AQDeltaPack *deltaPack = [self.syncableObjectAggregator deltaPackForSynchronization];
+    __weak typeof(self) weakSelf = self;
+    [self.client pushDeltaPack:deltaPack success:^(id response) {
+        [weakSelf.delegate operation:weakSelf didSuccessWithDeltaPack:deltaPack];
+        [weakSelf.syncableObjectAggregator markAsPushedUsingDeltaPack:deltaPack];
+        weakSelf.isFinished = YES;
+    } failure:^(NSError *error) {
+        [weakSelf.delegate operation:weakSelf didFailureWithError:error];
+        weakSelf.isFinished = YES;
+    }];
 }
 
 - (BOOL)isConcurrent {

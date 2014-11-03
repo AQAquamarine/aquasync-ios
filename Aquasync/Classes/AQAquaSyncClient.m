@@ -8,6 +8,9 @@
 
 #import "AQAquaSyncClient.h"
 
+#import <AFNetworking.h>
+#import "AQDeltaPack.h"
+
 @interface AQAquaSyncClient ()
 
 @property (nonatomic, strong) AFHTTPRequestOperationManager *manager;
@@ -22,6 +25,19 @@
         self.manager = manager;
     }
     return self;
+}
+
+# pragma mark - Perform Requests
+
+- (void)pushDeltaPack:(AQDeltaPack *)deltaPack
+              success:(AQAquaSyncClientPushSuccessBlock)success
+              failure:(AQAquaSyncClientPushFailureBlock)failure {
+    [self.manager POST:@"/deltas" parameters:[deltaPack dictionaryRepresentation]
+               success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        success(deltaPack);
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        failure(error);
+    }];
 }
 
 @end
