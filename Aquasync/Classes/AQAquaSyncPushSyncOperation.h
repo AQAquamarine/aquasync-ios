@@ -25,7 +25,9 @@
  */
 @interface AQAquaSyncPushSyncOperation : NSOperation
 
-- (instancetype)initWithSyncableObjectAggregator:(id<AQSyncableObjectAggregator>)syncableObjectAggregator delegate:(id<AQAquaSyncPushSyncOperationDelegate>)delegate aquaSyncClient:(AQAquaSyncClient *)client;
+- (instancetype)initWithSyncableObjectAggregator:(id<AQSyncableObjectAggregator>)syncableObjectAggregator
+                                        delegate:(id<AQAquaSyncPushSyncOperationDelegate>)delegate
+                                  aquaSyncClient:(AQAquaSyncClient *)client;
 
 /**
  *  This operation delegates its result to the delegate.

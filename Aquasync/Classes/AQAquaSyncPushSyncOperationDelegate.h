@@ -22,9 +22,9 @@
  *  A delegate method thath will be called
  *
  *  @param operation This opration
- *  @param deltaPack A DeltaPack obtained by serializing the response.
+ *  @param deltaPack A DeltaPack which **used for pushing.**
  */
-- (void)operation:(AQAquaSyncPushSyncOperation *)operation didSuccessWithDeltaPack:(AQDeltaPack *)deltaPack;
+- (void)pushSyncOperation:(AQAquaSyncPushSyncOperation *)operation didSuccessWithDeltaPack:(AQDeltaPack *)deltaPack;
 
 /**
  *  A delegate method that will be called when the opration failed.
@@ -32,6 +32,6 @@
  *  @param operation This operation
  *  @param error     An error describe the request error (AFNetworking format)
  */
-- (void)operation:(AQAquaSyncPushSyncOperation *)operation didFailureWithError:(NSError *)error;
+- (void)pushSyncOperation:(AQAquaSyncPushSyncOperation *)operation didFailureWithError:(NSError *)error;
 
 @end

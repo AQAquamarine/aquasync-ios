@@ -1,19 +1,17 @@
 //
-//  AQAquaSyncPushSyncOperation.m
-//  
+//  AQAquaSyncPullSyncOperation.m
+//  Aquasync
 //
-//  Created by kaiinui on 2014/10/30.
-//
+//  Created by kaiinui on 2014/11/03.
+//  Copyright (c) 2014年 Aquamarine. All rights reserved.
 //
 
-#import "AQAquaSyncPushSyncOperation.h"
+#import "AQAquaSyncPullSyncOperation.h"
 
-#import "AQDeltaPack.h"
 #import "AQAquaSyncClient.h"
-
 #import "AQSyncableObjectAggregator.h"
 
-@interface AQAquaSyncPushSyncOperation ()
+@interface AQAquaSyncPullSyncOperation ()
 
 @property (nonatomic, assign) BOOL isFinished;
 
@@ -27,16 +25,18 @@
 
 @end
 
-@implementation AQAquaSyncPushSyncOperation
+@implementation AQAquaSyncPullSyncOperation
+
+# pragma mark - Initialization
 
 - (instancetype)initWithSyncableObjectAggregator:(id<AQSyncableObjectAggregator>)syncableObjectAggregator
-                                        delegate:(id<AQAquaSyncPushSyncOperationDelegate>)delegate
+                                        delegate:(id<AQAquaSyncPullSyncOperationDelegate>)delegate
                                   aquaSyncClient:(AQAquaSyncClient *)client {
     self = [super init];
     if (self) {
+        self.syncableObjectAggregator = syncableObjectAggregator;
         self.delegate = delegate;
         self.client = client;
-        self.syncableObjectAggregator = syncableObjectAggregator;
     }
     return self;
 }
@@ -44,15 +44,16 @@
 # pragma mark - NSOperation
 
 - (void)main {
-    AQDeltaPack *deltaPack = [self.syncableObjectAggregator deltaPackForSynchronization];
+#warning MOCK
+// It should handle UST, deviceToken.
     __weak typeof(self) weakSelf = self;
-    [self.client pushDeltaPack:deltaPack success:^(id response) {
-        [weakSelf.delegate pushSyncOperation:weakSelf didSuccessWithDeltaPack:deltaPack];
-        [weakSelf.syncableObjectAggregator markAsPushedUsingDeltaPack:deltaPack];
+    [self.client pullDeltaPackForUST:0 withDeviceToken:@"" success:^(AQDeltaPack *deltaPack) {
+        [weakSelf.delegate pullSyncOperation:weakSelf didSuccessWithDeltaPack:deltaPack];
+        [weakSelf.syncableObjectAggregator updateRecordsUsingDeltaPack:deltaPack];
         
         weakSelf.isFinished = YES;
     } failure:^(NSError *error) {
-        [weakSelf.delegate pushSyncOperation:weakSelf didFailureWithError:error];
+        [weakSelf.delegate pullSyncOperation:weakSelf didFailureWithError:error];
         
         weakSelf.isFinished = YES;
     }];

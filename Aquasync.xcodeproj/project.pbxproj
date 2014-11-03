@@ -9,9 +9,14 @@
 /* Begin PBXBuildFile section */
 		42C89BA55CBAE16C6A0AD34E /* libPods-Aquasync.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 55ABD7281F91A30FDBC19F09 /* libPods-Aquasync.a */; };
 		48E8FA8849F57B6CC9EF77FA /* libPods-AquasyncTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0AB3223D6106918273C2C768 /* libPods-AquasyncTests.a */; };
+		D414E7841A07B7800076DD24 /* AQAquaSyncPullSyncOperationTests.m in Sources */ = {isa = PBXBuildFile; fileRef = D414E7831A07B7800076DD24 /* AQAquaSyncPullSyncOperationTests.m */; };
+		D414E7861A07B83A0076DD24 /* pullSync_deltas_200.json in Resources */ = {isa = PBXBuildFile; fileRef = D414E7851A07B83A0076DD24 /* pullSync_deltas_200.json */; };
+		D414E7891A07BE340076DD24 /* pullSync_deltas_500.json in Resources */ = {isa = PBXBuildFile; fileRef = D414E7871A07BE340076DD24 /* pullSync_deltas_500.json */; };
+		D414E78A1A07BE340076DD24 /* pushSync_deltas_500.json in Resources */ = {isa = PBXBuildFile; fileRef = D414E7881A07BE340076DD24 /* pushSync_deltas_500.json */; };
 		D4B7F6491A077D9700520BB4 /* AQDeltaPackTests.m in Sources */ = {isa = PBXBuildFile; fileRef = D4B7F6481A077D9700520BB4 /* AQDeltaPackTests.m */; };
 		D4B7F64C1A07AB5300520BB4 /* AQAquaSyncPushSyncOperationTests.m in Sources */ = {isa = PBXBuildFile; fileRef = D4B7F64B1A07AB5300520BB4 /* AQAquaSyncPushSyncOperationTests.m */; };
 		D4B7F64E1A07B07100520BB4 /* pushSync_deltas_201.json in Resources */ = {isa = PBXBuildFile; fileRef = D4B7F64D1A07B07100520BB4 /* pushSync_deltas_201.json */; };
+		D4B7F6511A07B27E00520BB4 /* AQAquaSyncPullSyncOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = D4B7F6501A07B27E00520BB4 /* AQAquaSyncPullSyncOperation.m */; };
 		D4EB6FFD1A027714003D4371 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = D4EB6FFC1A027714003D4371 /* main.m */; };
 		D4EB70001A027714003D4371 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = D4EB6FFF1A027714003D4371 /* AppDelegate.m */; };
 		D4EB70031A027714003D4371 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D4EB70021A027714003D4371 /* ViewController.m */; };
@@ -41,10 +46,17 @@
 		0AB3223D6106918273C2C768 /* libPods-AquasyncTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-AquasyncTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		55ABD7281F91A30FDBC19F09 /* libPods-Aquasync.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Aquasync.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		CD73F07E8CB97927818B64DF /* Pods-Aquasync.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Aquasync.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Aquasync/Pods-Aquasync.debug.xcconfig"; sourceTree = "<group>"; };
+		D414E7831A07B7800076DD24 /* AQAquaSyncPullSyncOperationTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AQAquaSyncPullSyncOperationTests.m; sourceTree = "<group>"; };
+		D414E7851A07B83A0076DD24 /* pullSync_deltas_200.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = pullSync_deltas_200.json; sourceTree = "<group>"; };
+		D414E7871A07BE340076DD24 /* pullSync_deltas_500.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = pullSync_deltas_500.json; sourceTree = "<group>"; };
+		D414E7881A07BE340076DD24 /* pushSync_deltas_500.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = pushSync_deltas_500.json; sourceTree = "<group>"; };
 		D4B7F6481A077D9700520BB4 /* AQDeltaPackTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AQDeltaPackTests.m; sourceTree = "<group>"; };
 		D4B7F64A1A078E5700520BB4 /* AQSyncableObjectAggregator.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AQSyncableObjectAggregator.h; sourceTree = "<group>"; };
 		D4B7F64B1A07AB5300520BB4 /* AQAquaSyncPushSyncOperationTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AQAquaSyncPushSyncOperationTests.m; sourceTree = "<group>"; };
 		D4B7F64D1A07B07100520BB4 /* pushSync_deltas_201.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = pushSync_deltas_201.json; sourceTree = "<group>"; };
+		D4B7F64F1A07B27E00520BB4 /* AQAquaSyncPullSyncOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AQAquaSyncPullSyncOperation.h; sourceTree = "<group>"; };
+		D4B7F6501A07B27E00520BB4 /* AQAquaSyncPullSyncOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AQAquaSyncPullSyncOperation.m; sourceTree = "<group>"; };
+		D4B7F6521A07B3F400520BB4 /* AQAquaSyncPullSyncOperationDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AQAquaSyncPullSyncOperationDelegate.h; sourceTree = "<group>"; };
 		D4EB6FF71A027714003D4371 /* Aquasync.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Aquasync.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D4EB6FFB1A027714003D4371 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D4EB6FFC1A027714003D4371 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -151,11 +163,15 @@
 		D4EB70131A027714003D4371 /* AquasyncTests */ = {
 			isa = PBXGroup;
 			children = (
+				D414E7871A07BE340076DD24 /* pullSync_deltas_500.json */,
+				D414E7881A07BE340076DD24 /* pushSync_deltas_500.json */,
+				D414E7851A07B83A0076DD24 /* pullSync_deltas_200.json */,
 				D4B7F64D1A07B07100520BB4 /* pushSync_deltas_201.json */,
 				D4EB70161A027714003D4371 /* AquasyncTests.m */,
 				D4B7F6481A077D9700520BB4 /* AQDeltaPackTests.m */,
 				D4EB702B1A028289003D4371 /* AQAquaSyncServiceTests.m */,
 				D4B7F64B1A07AB5300520BB4 /* AQAquaSyncPushSyncOperationTests.m */,
+				D414E7831A07B7800076DD24 /* AQAquaSyncPullSyncOperationTests.m */,
 				D4EB70141A027714003D4371 /* Supporting Files */,
 			);
 			path = AquasyncTests;
@@ -173,6 +189,9 @@
 			isa = PBXGroup;
 			children = (
 				D4EB70271A027CC0003D4371 /* AQAquaSyncPushSyncOperationDelegate.h */,
+				D4B7F6521A07B3F400520BB4 /* AQAquaSyncPullSyncOperationDelegate.h */,
+				D4B7F64F1A07B27E00520BB4 /* AQAquaSyncPullSyncOperation.h */,
+				D4B7F6501A07B27E00520BB4 /* AQAquaSyncPullSyncOperation.m */,
 				D4EB70241A027861003D4371 /* AQAquaSyncPushSyncOperation.h */,
 				D4EB70251A027861003D4371 /* AQAquaSyncPushSyncOperation.m */,
 				D4EB70211A027840003D4371 /* AQAquaSyncService.h */,
@@ -289,7 +308,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D414E7891A07BE340076DD24 /* pullSync_deltas_500.json in Resources */,
+				D414E78A1A07BE340076DD24 /* pushSync_deltas_500.json in Resources */,
 				D4B7F64E1A07B07100520BB4 /* pushSync_deltas_201.json in Resources */,
+				D414E7861A07B83A0076DD24 /* pullSync_deltas_200.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -365,6 +387,7 @@
 			files = (
 				D4EB70031A027714003D4371 /* ViewController.m in Sources */,
 				D4EB70001A027714003D4371 /* AppDelegate.m in Sources */,
+				D4B7F6511A07B27E00520BB4 /* AQAquaSyncPullSyncOperation.m in Sources */,
 				D4EB70231A027840003D4371 /* AQAquaSyncService.m in Sources */,
 				D4EB702A1A02819F003D4371 /* AQAquaSyncClient.m in Sources */,
 				D4EB6FFD1A027714003D4371 /* main.m in Sources */,
@@ -379,6 +402,7 @@
 			files = (
 				D4EB702C1A028289003D4371 /* AQAquaSyncServiceTests.m in Sources */,
 				D4B7F64C1A07AB5300520BB4 /* AQAquaSyncPushSyncOperationTests.m in Sources */,
+				D414E7841A07B7800076DD24 /* AQAquaSyncPullSyncOperationTests.m in Sources */,
 				D4EB70171A027714003D4371 /* AquasyncTests.m in Sources */,
 				D4B7F6491A077D9700520BB4 /* AQDeltaPackTests.m in Sources */,
 			);

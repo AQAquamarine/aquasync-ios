@@ -40,4 +40,21 @@
     }];
 }
 
+- (void)pullDeltaPackForUST:(NSUInteger)UST
+            withDeviceToken:(NSString *)deviceToken
+                    success:(AQAquaSyncClientPullSuccessBlock)success
+                    failure:(AQAquaSyncClientPullFailureBlock)failure {
+    NSDictionary *params = @{
+                             @"ust": @(UST),
+                             @"device_token": deviceToken
+                             };
+    [self.manager GET:@"/deltas"
+           parameters:params
+              success:^(AFHTTPRequestOperation *operation, id responseObject) {
+                  success([AQDeltaPack deltaPackWithDictionary:responseObject]);
+              } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+                  failure(error);
+              }];
+}
+
 @end

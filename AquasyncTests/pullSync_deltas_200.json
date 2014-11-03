@@ -1,0 +1,24 @@
+{
+	"Author": [
+		{
+			"aq_gid": "a",
+			"name": "taro"
+		},
+		{
+			"aq_gid": "b",
+			"name": "jack"
+		}
+	],
+	"Book": [
+		{
+			"aq_gid": "c",
+			"title": "harrypotter",
+			"author": "taro"
+		},
+		{
+			"aq_gid": "d",
+			"title": "aliceinwonderland",
+			"author": "jack"
+		}
+	]
+}

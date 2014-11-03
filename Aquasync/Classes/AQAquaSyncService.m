@@ -57,11 +57,11 @@
 
 # pragma mark - AQAquaSyncPushSyncOperationDelegate
 
-- (void)operation:(AQAquaSyncPushSyncOperation *)operation didSuccessWithDeltaPack:(AQDeltaPack *)deltaPack {
+- (void)pushSyncOperation:(AQAquaSyncPushSyncOperation *)operation didSuccessWithDeltaPack:(AQDeltaPack *)deltaPack {
 #warning TODO: Notification
 }
 
-- (void)operation:(AQAquaSyncPushSyncOperation *)operation didFailureWithError:(NSError *)error {
+- (void)pushSyncOperation:(AQAquaSyncPushSyncOperation *)operation didFailureWithError:(NSError *)error {
 #warning TODO: Notification
 }
 
