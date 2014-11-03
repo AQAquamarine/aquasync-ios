@@ -29,16 +29,19 @@
 # pragma mark - Inserting Deltas
 
 - (void)addDelta:(AQDelta *)dictionary forKey:(NSString *)key {
+    if (dictionary == nil || key == nil) { return; }
     [[self deltaArrayForKey:key] addObject:dictionary];
 }
 
 - (void)addDeltasFromArray:(NSArray *)array forKey:(NSString *)key {
+    if (array == nil || key == nil) { return; }
     [[self deltaArrayForKey:key] addObjectsFromArray:array];
 }
 
 # pragma mark - Getting Deltas
 
 - (NSArray *)arrayForKey:(NSString *)key {
+    if (key == nil) { return nil; }
     return [self deltaArrayForKey:key];
 }
 

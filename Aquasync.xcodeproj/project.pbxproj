@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		42C89BA55CBAE16C6A0AD34E /* libPods-Aquasync.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 55ABD7281F91A30FDBC19F09 /* libPods-Aquasync.a */; };
 		48E8FA8849F57B6CC9EF77FA /* libPods-AquasyncTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0AB3223D6106918273C2C768 /* libPods-AquasyncTests.a */; };
+		D4B7F6491A077D9700520BB4 /* AQDeltaPackTests.m in Sources */ = {isa = PBXBuildFile; fileRef = D4B7F6481A077D9700520BB4 /* AQDeltaPackTests.m */; };
 		D4EB6FFD1A027714003D4371 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = D4EB6FFC1A027714003D4371 /* main.m */; };
 		D4EB70001A027714003D4371 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = D4EB6FFF1A027714003D4371 /* AppDelegate.m */; };
 		D4EB70031A027714003D4371 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D4EB70021A027714003D4371 /* ViewController.m */; };
@@ -38,6 +39,7 @@
 		0AB3223D6106918273C2C768 /* libPods-AquasyncTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-AquasyncTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		55ABD7281F91A30FDBC19F09 /* libPods-Aquasync.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Aquasync.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		CD73F07E8CB97927818B64DF /* Pods-Aquasync.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Aquasync.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Aquasync/Pods-Aquasync.debug.xcconfig"; sourceTree = "<group>"; };
+		D4B7F6481A077D9700520BB4 /* AQDeltaPackTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AQDeltaPackTests.m; sourceTree = "<group>"; };
 		D4EB6FF71A027714003D4371 /* Aquasync.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Aquasync.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D4EB6FFB1A027714003D4371 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D4EB6FFC1A027714003D4371 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -145,6 +147,7 @@
 			isa = PBXGroup;
 			children = (
 				D4EB70161A027714003D4371 /* AquasyncTests.m */,
+				D4B7F6481A077D9700520BB4 /* AQDeltaPackTests.m */,
 				D4EB702B1A028289003D4371 /* AQAquaSyncServiceTests.m */,
 				D4EB70141A027714003D4371 /* Supporting Files */,
 			);
@@ -367,6 +370,7 @@
 			files = (
 				D4EB702C1A028289003D4371 /* AQAquaSyncServiceTests.m in Sources */,
 				D4EB70171A027714003D4371 /* AquasyncTests.m in Sources */,
+				D4B7F6491A077D9700520BB4 /* AQDeltaPackTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
