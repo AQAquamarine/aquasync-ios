@@ -8,6 +8,29 @@
 
 #import <Foundation/Foundation.h>
 
+/**
+ *  AQDelta represents a patch for an object.
+ *
+ *  For example,
+ *
+ *      AQDelta *delta = @{
+ *          @"name": @"Harry Potter",
+ *          @"author": @"James Bill",
+ *          @"publishedDate": <#NSDate>
+ *      };
+ *
+ *  Represents a patch for following object.
+ *
+ *      @interface Book
+ *      @property NSString *name;
+ *      @property NSString *author;
+ *      @property NSDate *publishedDate;
+ *      @end
+ *
+ *  AQDelta's type is typically `<NSString *, NSObject *>`, where `NSString` represents a KeyPath for property, `NSObject` represents a value for property.
+ *
+ *  AQDelta is typically contained in `AQDeltaPack`.
+ */
 typedef NSDictionary AQDelta;
 
 /**
