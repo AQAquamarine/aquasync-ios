@@ -38,6 +38,16 @@
     [[self deltaArrayForKey:key] addObjectsFromArray:array];
 }
 
+# pragma mark - Getting Metadata
+
+- (NSString *)UUID {
+    return self.actualDictionary[@"_id"];
+}
+
+- (NSInteger)UST {
+    return [self.actualDictionary[@"_ust"] integerValue];
+}
+
 # pragma mark - Getting Deltas
 
 - (NSArray *)arrayForKey:(NSString *)key {

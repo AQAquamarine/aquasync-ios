@@ -57,6 +57,23 @@ typedef NSDictionary AQDelta;
  */
 - (void)addDeltasFromArray:(NSArray /* <AQDelta *> */ *)array forKey:(NSString *)key;
 
+# pragma mark - Getting Metadata
+/** @name Getting Metadata */
+
+/**
+ *  Return the UUID of the DeltaPack.
+ *
+ *  @return The UUID of the DeltaPack.
+ */
+- (NSString *)UUID;
+
+/**
+ *  Return the UST of the DeltaPack.
+ *
+ *  @return The UST of the DeltaPack.
+ */
+- (NSInteger)UST;
+
 # pragma mark - Getting Deltas
 /** @name Getting Deltas */
 
