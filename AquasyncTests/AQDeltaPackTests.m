@@ -161,6 +161,52 @@
     expect([deltaPack dictionaryRepresentation]).to.equal(dictionary);
 }
 
+- (void)testItReturnsAppropriateUUID {
+    NSDictionary *dictionary = @{
+                                 @"_id": @"someuuid",
+                                 @"Author": @[
+                                         @{
+                                             @"name": @"taro"
+                                             },
+                                         @{
+                                             @"name": @"jack"
+                                             }
+                                         ],
+                                 @"Book": @[
+                                         @{
+                                             @"title": @"harrypotter",
+                                             @"author": @"taro"
+                                             }
+                                         ]
+                                 };
+    AQDeltaPack *deltaPack = [AQDeltaPack deltaPackWithDictionary:dictionary];
+    
+    expect([deltaPack UUID]).to.equal(@"someuuid");
+}
+
+- (void)testItReturnsAppropriateUST {
+    NSDictionary *dictionary = @{
+                                 @"_ust": @(20000000),
+                                 @"Author": @[
+                                         @{
+                                             @"name": @"taro"
+                                             },
+                                         @{
+                                             @"name": @"jack"
+                                             }
+                                         ],
+                                 @"Book": @[
+                                         @{
+                                             @"title": @"harrypotter",
+                                             @"author": @"taro"
+                                             }
+                                         ]
+                                 };
+    AQDeltaPack *deltaPack = [AQDeltaPack deltaPackWithDictionary:dictionary];
+    
+    expect([deltaPack UST]).to.equal(20000000);
+}
+
 - (void)testItAQDeltaIsAnNSDictionary {
     expect([[AQDelta alloc] init]).to.beKindOf([NSDictionary class]);
 }

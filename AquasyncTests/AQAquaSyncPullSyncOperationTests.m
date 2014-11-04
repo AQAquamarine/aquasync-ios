@@ -39,7 +39,9 @@
     [OHHTTPStubs stubRequestsPassingTest:^BOOL(NSURLRequest *request) {
         return YES;
     } withStubResponse:^OHHTTPStubsResponse *(NSURLRequest *request) {
-        return [OHHTTPStubsResponse responseWithFileAtPath:@"pullSync_deltas_200.json" statusCode:200 headers:nil];
+        return [OHHTTPStubsResponse responseWithFileAtPath:OHPathForFileInBundle(@"pullSync_deltas_200.json", nil) statusCode:200 headers:@{
+                                                                                                                @"Content-Type": @"text/json"
+                                                                                                                }];
     }];
     //
     
@@ -48,8 +50,12 @@
     AQAquaSyncClient *client = [[AQAquaSyncClient alloc] initWithAFHTTPRequestOperationManager:[AFHTTPRequestOperationManager manager]];
     AQAquaSyncPullSyncOperation *operation = [[AQAquaSyncPullSyncOperation alloc] initWithSyncableObjectAggregator:aggregatorMock delegate:delegateMock aquaSyncClient:client];
     
+    [[aggregatorMock expect] setUST:20000000];
     [[aggregatorMock expect] updateRecordsUsingDeltaPack:[OCMArg any]];
     [[delegateMock expect] pullSyncOperation:operation didSuccessWithDeltaPack:[OCMArg any]];
+    
+    OCMStub([aggregatorMock UST]).andReturn(10000000);
+    OCMStub([aggregatorMock deviceToken]).andReturn(@"someuuid");
     
     [[[NSOperationQueue alloc] init] addOperation:operation];
     
@@ -72,6 +78,9 @@
     id delegateMock = [OCMockObject niceMockForProtocol:@protocol(AQAquaSyncPullSyncOperationDelegate)];
     AQAquaSyncClient *client = [[AQAquaSyncClient alloc] initWithAFHTTPRequestOperationManager:[AFHTTPRequestOperationManager manager]];
     AQAquaSyncPullSyncOperation *operation = [[AQAquaSyncPullSyncOperation alloc] initWithSyncableObjectAggregator:aggregatorMock delegate:delegateMock aquaSyncClient:client];
+    
+    OCMStub([aggregatorMock UST]).andReturn(10000000);
+    OCMStub([aggregatorMock deviceToken]).andReturn(@"someuuid");
     
     [[delegateMock expect] pullSyncOperation:operation didFailureWithError:[OCMArg any]];
     

@@ -76,4 +76,10 @@
     return self.actualDictionary[key];
 }
 
+# pragma mark - NSObject
+
+- (NSString *)description {
+    return [self.actualDictionary description];
+}
+
 @end
