@@ -44,12 +44,14 @@
 # pragma mark - NSOperation
 
 - (void)main {
-#warning MOCK
-// It should handle UST, deviceToken.
     __weak typeof(self) weakSelf = self;
-    [self.client pullDeltaPackForUST:0 withDeviceToken:@"" success:^(AQDeltaPack *deltaPack) {
-        [weakSelf.delegate pullSyncOperation:weakSelf didSuccessWithDeltaPack:deltaPack];
+    NSInteger UST = [self.syncableObjectAggregator UST];
+    NSString *deviceToken = [self.syncableObjectAggregator deviceToken];
+    [self.client pullDeltaPackForUST:UST withDeviceToken:deviceToken success:^(AQDeltaPack *deltaPack) {
         [weakSelf.syncableObjectAggregator updateRecordsUsingDeltaPack:deltaPack];
+#warning TODO:
+        // [weakSelf.syncableObjectAggregator setUST:deltaPack.UST];
+        [weakSelf.delegate pullSyncOperation:weakSelf didSuccessWithDeltaPack:deltaPack];
         
         weakSelf.isFinished = YES;
     } failure:^(NSError *error) {

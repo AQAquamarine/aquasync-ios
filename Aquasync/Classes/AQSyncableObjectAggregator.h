@@ -66,4 +66,15 @@
  */
 - (void)markAsPushedUsingDeltaPack:(AQDeltaPack *)deltaPack;
 
+# pragma mark - UST
+/** @name UST */
+
+- (void)setUST;
+- (NSInteger)UST;
+
+# pragma mark - Device Token
+/** @name Device Token */
+
+- (NSString *)deviceToken;
+
 @end
