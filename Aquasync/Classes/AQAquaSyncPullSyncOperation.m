@@ -10,6 +10,7 @@
 
 #import "AQAquaSyncClient.h"
 #import "AQSyncableObjectAggregator.h"
+#import "AQDeltaPack.h"
 
 @interface AQAquaSyncPullSyncOperation ()
 
@@ -49,8 +50,7 @@
     NSString *deviceToken = [self.syncableObjectAggregator deviceToken];
     [self.client pullDeltaPackForUST:UST withDeviceToken:deviceToken success:^(AQDeltaPack *deltaPack) {
         [weakSelf.syncableObjectAggregator updateRecordsUsingDeltaPack:deltaPack];
-#warning TODO:
-        // [weakSelf.syncableObjectAggregator setUST:deltaPack.UST];
+        [weakSelf.syncableObjectAggregator setUST:deltaPack.UST];
         [weakSelf.delegate pullSyncOperation:weakSelf didSuccessWithDeltaPack:deltaPack];
         
         weakSelf.isFinished = YES;

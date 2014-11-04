@@ -69,7 +69,7 @@
 # pragma mark - UST
 /** @name UST */
 
-- (void)setUST;
+- (void)setUST:(NSInteger)UST;
 - (NSInteger)UST;
 
 # pragma mark - Device Token
