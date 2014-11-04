@@ -13,6 +13,7 @@
 		D414E7861A07B83A0076DD24 /* pullSync_deltas_200.json in Resources */ = {isa = PBXBuildFile; fileRef = D414E7851A07B83A0076DD24 /* pullSync_deltas_200.json */; };
 		D414E7891A07BE340076DD24 /* pullSync_deltas_500.json in Resources */ = {isa = PBXBuildFile; fileRef = D414E7871A07BE340076DD24 /* pullSync_deltas_500.json */; };
 		D414E78A1A07BE340076DD24 /* pushSync_deltas_500.json in Resources */ = {isa = PBXBuildFile; fileRef = D414E7881A07BE340076DD24 /* pushSync_deltas_500.json */; };
+		D4389BC51A09750000DBADA6 /* AQRequestAuthenticationSpecification.m in Sources */ = {isa = PBXBuildFile; fileRef = D4389BC41A09750000DBADA6 /* AQRequestAuthenticationSpecification.m */; };
 		D4B7F6491A077D9700520BB4 /* AQDeltaPackTests.m in Sources */ = {isa = PBXBuildFile; fileRef = D4B7F6481A077D9700520BB4 /* AQDeltaPackTests.m */; };
 		D4B7F64C1A07AB5300520BB4 /* AQAquaSyncPushSyncOperationTests.m in Sources */ = {isa = PBXBuildFile; fileRef = D4B7F64B1A07AB5300520BB4 /* AQAquaSyncPushSyncOperationTests.m */; };
 		D4B7F64E1A07B07100520BB4 /* pushSync_deltas_201.json in Resources */ = {isa = PBXBuildFile; fileRef = D4B7F64D1A07B07100520BB4 /* pushSync_deltas_201.json */; };
@@ -50,6 +51,8 @@
 		D414E7851A07B83A0076DD24 /* pullSync_deltas_200.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = pullSync_deltas_200.json; sourceTree = "<group>"; };
 		D414E7871A07BE340076DD24 /* pullSync_deltas_500.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = pullSync_deltas_500.json; sourceTree = "<group>"; };
 		D414E7881A07BE340076DD24 /* pushSync_deltas_500.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = pushSync_deltas_500.json; sourceTree = "<group>"; };
+		D4389BC31A09750000DBADA6 /* AQRequestAuthenticationSpecification.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AQRequestAuthenticationSpecification.h; sourceTree = "<group>"; };
+		D4389BC41A09750000DBADA6 /* AQRequestAuthenticationSpecification.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AQRequestAuthenticationSpecification.m; sourceTree = "<group>"; };
 		D4B7F6481A077D9700520BB4 /* AQDeltaPackTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AQDeltaPackTests.m; sourceTree = "<group>"; };
 		D4B7F64A1A078E5700520BB4 /* AQSyncableObjectAggregator.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AQSyncableObjectAggregator.h; sourceTree = "<group>"; };
 		D4B7F64B1A07AB5300520BB4 /* AQAquaSyncPushSyncOperationTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AQAquaSyncPushSyncOperationTests.m; sourceTree = "<group>"; };
@@ -189,6 +192,8 @@
 			isa = PBXGroup;
 			children = (
 				D4EB70271A027CC0003D4371 /* AQAquaSyncPushSyncOperationDelegate.h */,
+				D4389BC31A09750000DBADA6 /* AQRequestAuthenticationSpecification.h */,
+				D4389BC41A09750000DBADA6 /* AQRequestAuthenticationSpecification.m */,
 				D4B7F6521A07B3F400520BB4 /* AQAquaSyncPullSyncOperationDelegate.h */,
 				D4B7F64F1A07B27E00520BB4 /* AQAquaSyncPullSyncOperation.h */,
 				D4B7F6501A07B27E00520BB4 /* AQAquaSyncPullSyncOperation.m */,
@@ -387,6 +392,7 @@
 			files = (
 				D4EB70031A027714003D4371 /* ViewController.m in Sources */,
 				D4EB70001A027714003D4371 /* AppDelegate.m in Sources */,
+				D4389BC51A09750000DBADA6 /* AQRequestAuthenticationSpecification.m in Sources */,
 				D4B7F6511A07B27E00520BB4 /* AQAquaSyncPullSyncOperation.m in Sources */,
 				D4EB70231A027840003D4371 /* AQAquaSyncService.m in Sources */,
 				D4EB702A1A02819F003D4371 /* AQAquaSyncClient.m in Sources */,
