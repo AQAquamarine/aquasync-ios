@@ -27,6 +27,28 @@
  *
  *  Refer https://github.com/AQAquamarine/aquasync-protocol#pullsync for detailed description.
  *
+ *  ### 日本語
+ *
+ *  このメソッドでは PullSync を行って得られた DeltaPack をデータベースに格納してください。
+ *  DeltaPack をデータベースにマージする方法は、 https://github.com/AQAquamarine/aquasync-protocol#pullsync にて解説されています。
+ *
+ *  #### 各モデルの全ての Delta にて、次を行います。
+ *  
+ *  - Delta の `aq_gid` と同じ `aq_gid` を持つレコードが無いか調べます
+ *  
+ *  ##### 存在しない場合
+ *
+ *  - Delta のデータを用いて、レコードを作成します。このとき、Delta のキーはプロパティの keyPath に相当し、値はプロパティの値に相当します。 (`AQDelta` は `NSDictionary` なので、通常 `+ objectFromDictionary:` 等のメソッドでこれが行われます。)
+ *     **注意: 通常行われるべき aq_dirty や aq_localTimestamp の更新を、この操作では行わないようにしてください。 **
+ *
+ *  ##### 存在する場合、
+ *  
+ *  以下を行います。
+ *
+ *  - Delta の `aq_localTimestamp` が該当レコードの `aq_localTimestamp` **以上**の場合、Delta を用いてレコードを更新します。このとき、Delta のキーはプロパティの keyPath に相当し、値はプロパティの値に相当します。（`AQDelta` は `NSDictionary` なので、通常 `- updateObjectFromDictionary:` 等のメソッドでこれが行われます。）
+ *   **注意: 通常行われるべき aq_dirty や aq_localTimestamp の更新を行わないようにしてください。**
+ *  - でないならば、該当レコードの方がユーザの最新の操作によって変更されたものと見なされるので、更新は行いません。
+ *
  *  @param deltaPack A DeltaPack to merge.
  *
  *  @see https://github.com/AQAquamarine/aquasync-protocol#pullsync
@@ -38,6 +60,10 @@
 
 /**
  *  This method should return a number of object which needs synchronization.
+ *  For do this, simply query `aq_isDirty == YES`.
+ *
+ *  このメソッドでは同期が必要なレコードの数を返してください。
+ *  最も単純な実装では、`aq_isDirty == YES` のクエリでこれを行うことが出来ます。
  *
  *  @return A number of object that needs synchronization.
  */
@@ -48,6 +74,9 @@
  *  The method to gather a DeltaPack is described at https://github.com/AQAquamarine/aquasync-protocol#pushsync
  *
  *  Refer https://github.com/AQAquamarine/aquasync-protocol#pushsync for detailed description.
+ *
+ *  このメソッドでは、PushSync 同期のための DeltaPack をビルドし、返してください。
+ *  PushSync 同期のために DeltaPack をビルドする方法は https://github.com/AQAquamarine/aquasync-protocol#pushsync で解説されています。
  *
  *  @return A DeltaPack to push sync.
  *
@@ -60,6 +89,13 @@
  *  Make sure you should NOT mark as read if the object's `localTimestamp` is newer than the object extracted from the DeltaPack.
  *
  *  Refer https://github.com/AQAquamarine/aquasync-protocol#undirty for detailed description.
+ *
+ *  このメソッドでは、PushSync 同期に使った DeltaPack を用いて、レコードを Push 済みにマークしてください。
+ *  マークの際は、`aq_localTimestamp` が変更されていないかを必ずチェックしてください。
+ *
+ *  より詳しい解説は https://github.com/AQAquamarine/aquasync-protocol#undirty を参照してください。
+ *
+ *  **この操作の最中は、通常行われるべき aq_isDirty, aq_localTimestamp の更新を行わないでください。**
  *
  *  @param deltaPack A DeltaPack that contains pushed objects.
  *
