@@ -12,6 +12,31 @@
 #import "AQAquaSyncClient.h"
 #import <AFHTTPRequestOperationManager.h>
 
+# pragma mark - Command Notification Keys
+/** @name Command Notification Keys */
+
+NSString *const kAQAquaSyncRequestSynchronizationNotification = @"AQAquaSyncRequestSynchronization";
+
+# pragma mark - Notification Keys
+/** @name Notification Keys */
+
+NSString *const kAQAquaSyncSynchronizationDidSuccessNotification = @"AQAquaSyncSynchronizationDidSuccess";
+NSString *const kAQAquaSyncSynchronizationDidFailNotification = @"AQAquaSyncSynchronizationDidFail";
+
+# pragma mark - Notification UserInfo Property Keys
+/** @name Notification UserInfo Property Keys */
+
+# pragma mark - kAQAquaSyncSynchronizationDidSuccessNotification UserInfo Property Keys
+
+NSString *const kAQAquaSyncSynchronizationDidSuccessNotificationPushedDeltaPackKey = @"AQAquaSyncSynchronizationDidSuccessNotificationPushedDeltaPack";
+NSString *const kAQAquaSyncSynchronizationDidSuccessNotificationPulledDeltaPackKey = @"AQAquaSyncSynchronizationDidSuccessNotificationPulledDeltaPack";
+
+# pragma mark - kAQAquaSyncSynchronizationDidFailNotification UserInfo Property Keys
+
+NSString *const kAQAquaSyncSynchronizationDidFailNotificationErrorKey = @"AQAquaSyncSynchronizationDidFailNotificationError";
+
+# pragma mark -
+
 @interface AQAquaSyncService ()
 
 @property (nonatomic, strong) NSOperationQueue *operationQueue;
