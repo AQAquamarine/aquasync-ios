@@ -78,6 +78,9 @@
  *  このメソッドでは、PushSync 同期のための DeltaPack をビルドし、返してください。
  *  PushSync 同期のために DeltaPack をビルドする方法は https://github.com/AQAquamarine/aquasync-protocol#pushsync で解説されています。
  *
+ *  1. `aq_isDirty == YES` のレコードを全て集めてください
+ *  2. `AQDeltaPack` に、それぞれのレコードを `NSDictionary`(`AQDelta`) で表現したものを入れます。
+ *
  *  @return A DeltaPack to push sync.
  *
  *  @see https://github.com/AQAquamarine/aquasync-protocol#pushsync
@@ -91,7 +94,7 @@
  *  Refer https://github.com/AQAquamarine/aquasync-protocol#undirty for detailed description.
  *
  *  このメソッドでは、PushSync 同期に使った DeltaPack を用いて、レコードを Push 済みにマークしてください。
- *  マークの際は、`aq_localTimestamp` が変更されていないかを必ずチェックしてください。
+ *  マークの際は、`aq_localTimestamp` が変更されていないかを必ずチェックしてください。（つまり、レコードの `aq_localTimestamp` が Delta の `aq_localTimestamp` よりも大きい場合は更新をスキップしてください。）
  *
  *  より詳しい解説は https://github.com/AQAquamarine/aquasync-protocol#undirty を参照してください。
  *
