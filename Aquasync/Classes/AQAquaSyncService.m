@@ -13,27 +13,37 @@
 #import <AFHTTPRequestOperationManager.h>
 
 # pragma mark - Command Notification Keys
-/** @name Command Notification Keys */
 
 NSString *const kAQAquaSyncRequestSynchronizationNotification = @"AQAquaSyncRequestSynchronization";
 
 # pragma mark - Notification Keys
-/** @name Notification Keys */
 
-NSString *const kAQAquaSyncSynchronizationDidSuccessNotification = @"AQAquaSyncSynchronizationDidSuccess";
-NSString *const kAQAquaSyncSynchronizationDidFailNotification = @"AQAquaSyncSynchronizationDidFail";
+NSString *const kAQAquaSyncPushSyncDidSuccessNotification = @"AQAquaSyncPushSyncDidSuccess";
+NSString *const kAQAquaSyncPushSyncDidFailNotification = @"AQAquaSyncPushSyncDidFail";
+NSString *const kAQAquaSyncPullSyncDidSuccessNotification = @"AQAquaSyncPullSyncDidSuccess";
+NSString *const kAQAquaSyncPullSyncDidFailNotification = @"AQAquaSyncPullSyncDidFail";
 
 # pragma mark - Notification UserInfo Property Keys
-/** @name Notification UserInfo Property Keys */
 
-# pragma mark - kAQAquaSyncSynchronizationDidSuccessNotification UserInfo Property Keys
+# pragma mark - kAQAquaSyncPushSyncDidSuccessNotification UserInfo Property Keys
 
-NSString *const kAQAquaSyncSynchronizationDidSuccessNotificationPushedDeltaPackKey = @"AQAquaSyncSynchronizationDidSuccessNotificationPushedDeltaPack";
-NSString *const kAQAquaSyncSynchronizationDidSuccessNotificationPulledDeltaPackKey = @"AQAquaSyncSynchronizationDidSuccessNotificationPulledDeltaPack";
+// AQDeltaPack
+NSString *const kAQAquaSyncPushSyncDidSuccessNotificationPushedDeltaPackKey = @"AQAquaSyncPushSyncDidSuccessNotificationPushedDeltaPack";
 
-# pragma mark - kAQAquaSyncSynchronizationDidFailNotification UserInfo Property Keys
+# pragma mark - kAQAquaSyncPushSyncDidFailNotification UserInfo Property Keys
 
-NSString *const kAQAquaSyncSynchronizationDidFailNotificationErrorKey = @"AQAquaSyncSynchronizationDidFailNotificationError";
+// NSError
+NSString *const kAQAquaSyncPushSyncDidFailNotificationErrorKey = @"AQAquaSyncPushSyncDidFailNotificationError";
+
+# pragma mark - kAQAquaSyncPullSyncDidSuccessNotification UserInfo Property Keys
+
+// AQDeltaPack
+NSString *const kAQAquaSyncPullSyncDidSuccessNotificationPulledDeltaPackKey = @"AQAquaSyncPullSyncDidSuccessNotificationPulledDeltaPack";
+
+# pragma mark - kAQAquaSyncPullSyncDidFailNotification UserInfo Property Keys
+
+// NSError
+NSString *const kAQAquaSyncPullSyncDidFailNotificationErrorKey = @"AQAquaSyncPullSyncDidFailNotificationError";
 
 # pragma mark -
 

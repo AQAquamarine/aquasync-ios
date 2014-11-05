@@ -23,65 +23,93 @@ extern NSString *const kAQAquaSyncRequestSynchronizationNotification;
 /** @name Notification Keys */
 
 /**
- *  A notification that will be posted when every synchronization processes succeed.
+ *  A notification that will be posted when every PushSync processes succeed.
  *
  *  It contains following userInfo.
  *
  *  - userInfo
- *    - kAQAquaSyncSynchronizationDidSuccessNotificationPushedDeltaPackKey: AQDeltaPack
- *    - kAQAquaSyncSynchronizationDidSuccessNotificationPulledDeltaPackKey: AQDeltaPack
+ *    - kAQAquaSyncPushSyncDidSuccessNotificationPushedDeltaPackKey: AQDeltaPack
  *
- *  For detailed information, @see [kAQAquaSyncSynchronizationDidSuccessNotification UserInfo Property Keys]
+ *  For detailed information, @see [kAQAquaSyncPushSyncDidSuccessNotification UserInfo Property Keys]
  */
-extern NSString *const kAQAquaSyncSynchronizationDidSuccessNotification;
+extern NSString *const kAQAquaSyncPushSyncDidSuccessNotification;
 
 /**
- *  A notification that will be posted if any synchroization processes failed.
+ *  A notification that will be posted if any PushSync processes failed.
  *
  *  It contains following userInfo.
  *
  *  - userInfo
- *    - kAQAquaSyncSynchronizationDidFailNotificationErrorKey: NSError
+ *    - kAQAquaSyncPushSyncDidFailNotificationErrorKey: NSError
  *
- *  For detailed information, @see [kAQAquaSyncSynchronizationDidFailNotification UserInfo Property Keys]
+ *  For detailed information, @see [kAQAquaSyncPushSyncDidFailNotification UserInfo Property Keys]
  */
-extern NSString *const kAQAquaSyncSynchronizationDidFailNotification;
+extern NSString *const kAQAquaSyncPushSyncDidFailNotification;
+
+/**
+ *  A notification that will be posted when every PullSync processes succeed.
+ *
+ *  - userInfo
+ *    - kAQAquaSyncPullSyncDidSuccessNotificationPulledDeltaPackKey: AQDeltaPack
+ */
+extern NSString *const kAQAquaSyncPullSyncDidSuccessNotification;
+
+/**
+ *  A notification that will be posted if any PullSync processes failed.
+ *
+ *  - userInfo
+ *    - kAQAquaSyncPullSyncDidFailNotificationErrorKey: NSError
+ */
+extern NSString *const kAQAquaSyncPullSyncDidFailNotification;
 
 # pragma mark - Notification UserInfo Property Keys
 /** @name Notification UserInfo Property Keys */
 
-# pragma mark - kAQAquaSyncSynchronizationDidSuccessNotification UserInfo Property Keys
-/** @name kAQAquaSyncSynchronizationDidSuccessNotification UserInfo Property Keys */
+# pragma mark - kAQAquaSyncPushSyncDidSuccessNotification UserInfo Property Keys
+/** @name kAQAquaSyncPushSyncDidSuccessNotification UserInfo Property Keys */
 
 /**
  *  A DeltaPack that used to push the changes.
  *
- *  @userInfo kAQAquaSyncSynchronizationDidSuccessNotification
+ *  @userInfo kAQAquaSyncPushSyncDidSuccessNotification
  *  @type AQDeltapack
  *
  *  @see https://github.com/AQAquamarine/aquasync-protocol/blob/master/deltapack.md
  */
-extern NSString *const kAQAquaSyncSynchronizationDidSuccessNotificationPushedDeltaPackKey;
+extern NSString *const kAQAquaSyncPushSyncDidSuccessNotificationPushedDeltaPackKey;
+
+
+# pragma mark - kAQAquaSyncPushSyncDidFailNotification UserInfo Property Keys
+/** @name kAQAquaSyncPushSyncDidFailNotification UserInfo Property Keys */
+
+/**
+ *  @userInfo kAQAquaSyncPushSyncDidFailNotification
+ *  @type NSError
+ */
+extern NSString *const kAQAquaSyncPushSyncDidFailNotificationErrorKey;
+
+# pragma mark - kAQAquaSyncPullSyncDidSuccessNotification UserInfo Property Keys
+/** @name kAQAquaSyncPullSyncDidSuccessNotification UserInfo Property Keys */
 
 /**
  *  A DeltaPack that is pulled from the backend for synchronization.
  *  It contains full patch for perform synchronization.
  *
- *  @userInfo kAQAquaSyncSynchronizationDidSuccessNotification
+ *  @userInfo kAQAquaSyncPullSyncDidSuccessNotification
  *  @type AQDeltaPack
  *
  *  @see https://github.com/AQAquamarine/aquasync-protocol/blob/master/deltapack.md
  */
-extern NSString *const kAQAquaSyncSynchronizationDidSuccessNotificationPulledDeltaPackKey;
+extern NSString *const kAQAquaSyncPullSyncDidSuccessNotificationPulledDeltaPackKey;
 
-# pragma mark - kAQAquaSyncSynchronizationDidFailNotification UserInfo Property Keys
-/** @name kAQAquaSyncSynchronizationDidFailNotification UserInfo Property Keys */
+# pragma mark - kAQAquaSyncPullSyncDidFailNotification UserInfo Property Keys
+/** @name kAQAquaSyncPullSyncDidFailNotification UserInfo Property Keys */
 
 /**
- *  @userInfo kAQAquaSyncSynchronizationDidFailNotification
+ *  @userInfo kAQAquaSyncPullSyncDidFailNotification
  *  @type NSError
  */
-extern NSString *const kAQAquaSyncSynchronizationDidFailNotificationErrorKey;
+extern NSString *const kAQAquaSyncPullSyncDidFailNotificationErrorKey;
 
 # pragma mark -
 
