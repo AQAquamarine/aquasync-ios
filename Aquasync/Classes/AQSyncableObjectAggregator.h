@@ -109,16 +109,44 @@
 # pragma mark - UST
 /** @name UST */
 
+/**
+ *  最後に pullSync をした timestamp を保管します。
+ *
+ *  @warning このプロパティはアプリのアンインストールで消えても問題ありません。ですので、`NSUserDefaults` 等を使った実装で問題有りません。
+ *
+ *  @param UST
+ */
 - (void)setUST:(NSInteger)UST;
+
+/**
+ *  最後に pullSync をした timestamp を返します。
+ *  `- setUST:` で保管した timestamp を返してください。
+ *
+ *  @return 最後に pullSync をした timestamp
+ */
 - (NSInteger)UST;
 
 # pragma mark - Device Token
 /** @name Device Token */
 
+/**
+ *  デバイスを識別するための識別子を返してください。
+ *  `aq_deviceToken` のために用いるものと同じ識別子を返してください。
+ *
+ *  @warning この識別子は、アプリのアンインストールの際に変わらないようにしてください。そうすることで、アプリが再度インストールされたときに、前の状態の復元をすることが可能になります。
+ *
+ *  @return デバイスを識別するための識別子
+ */
 - (NSString *)deviceToken;
 
 # pragma mark - Request Authentication
+/** @name Request Authentication */
 
+/**
+ *  リクエストに認証を付与するための AQRequestAuthenticationSpecification を返してください。
+ *
+ *  @return リクエストに認証を付与するための AQRequestAuthenticationSpecification
+ */
 - (AQRequestAuthenticationSpecification *)requestAuthenticationSpecification;
 
 @end
