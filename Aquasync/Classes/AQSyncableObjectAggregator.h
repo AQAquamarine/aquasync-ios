@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
+@class AQRequestAuthenticationSpecification;
 @class AQDeltaPack;
 
 /**
@@ -76,5 +77,9 @@
 /** @name Device Token */
 
 - (NSString *)deviceToken;
+
+# pragma mark - Request Authentication
+
+- (AQRequestAuthenticationSpecification *)requestAuthenticationSpecification;
 
 @end

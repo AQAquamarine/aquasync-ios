@@ -134,20 +134,13 @@ extern NSString *const kAQAquaSyncPullSyncDidFailNotificationErrorKey;
 /**
  *  Instantiate and initialize the service.
  *
- *  @param manager Dependency
- *
- *  @return Initialized service
- */
-- (instancetype)initWithAFHTTPRequestOperationManager:(AFHTTPRequestOperationManager *)manager;
-
-/**
- *  Instantiate and initialize the service.
- *
  *  @param syncableObjectAggregator An object that implements AQSyncableObjectAggregator protocol.
+ *  @param requestOperationmanager  manager Dependency
  *
  *  @return Initialized service
  */
-- (instancetype)initWithSyncableObjectAggregator:(id<AQSyncableObjectAggregator>)syncableObjectAggregator;
+- (instancetype)initWithSyncableObjectAggregator:(id<AQSyncableObjectAggregator>)syncableObjectAggregator
+                     withRequestOperationManager:(AFHTTPRequestOperationManager *)requestOperationManager;
 
 # pragma mark - Starting the Service
 /** @name Starting the Service */

@@ -10,6 +10,10 @@
 
 typedef NS_ENUM(NSUInteger, AQRequestAuthenticationStrategy) {
     /**
+     *  Do not do authentication
+     */
+    AQRequestAuthenticationStrategyNone,
+    /**
      *  BASIC Authentication
      */
     AQRequestAuthenticationStrategyBasic

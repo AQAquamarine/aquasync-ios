@@ -15,6 +15,7 @@
 #import "AQAquaSyncPullSyncOperationDelegate.h"
 #import "AQAquaSyncPushSyncOperation.h"
 #import "AQAquaSyncPullSyncOperation.h"
+#import "AQSyncableObjectAggregator.h"
 
 # pragma mark - Command Notification Keys
 
@@ -62,26 +63,20 @@ NSString *const kAQAquaSyncPullSyncDidFailNotificationErrorKey = @"AQAquaSyncPul
 @implementation AQAquaSyncService
 
 - (instancetype)init {
-    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
-    return [self initWithAFHTTPRequestOperationManager:manager];
-}
-
-- (instancetype)initWithAFHTTPRequestOperationManager:(AFHTTPRequestOperationManager *)manager {
-    self = [super init];
-    if (self) {
-        self.operationQueue = [[NSOperationQueue alloc] init];
-        self.operationQueue.maxConcurrentOperationCount = 1;
-        self.client = [[AQAquaSyncClient alloc] initWithAFHTTPRequestOperationManager:manager];
-    }
-    return self;
+    return [self initWithSyncableObjectAggregator:nil];
 }
 
 - (instancetype)initWithSyncableObjectAggregator:(id<AQSyncableObjectAggregator>)syncableObjectAggregator {
+    return [self initWithSyncableObjectAggregator:syncableObjectAggregator withRequestOperationManager:[AFHTTPRequestOperationManager manager]];
+}
+
+- (instancetype)initWithSyncableObjectAggregator:(id<AQSyncableObjectAggregator>)syncableObjectAggregator
+                     withRequestOperationManager:(AFHTTPRequestOperationManager *)requestOperationmanager{
     self = [super init];
     if (self) {
-        AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
         self.operationQueue = [[NSOperationQueue alloc] init];
-        self.client = [[AQAquaSyncClient alloc] initWithAFHTTPRequestOperationManager:manager];
+        self.client = [[AQAquaSyncClient alloc] initWithAFHTTPRequestOperationManager:requestOperationmanager
+                                               withRequestAuthenticationSpecification:[syncableObjectAggregator requestAuthenticationSpecification]];
         self.syncableObjectAggregator = syncableObjectAggregator;
     }
     return self;

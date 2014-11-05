@@ -10,6 +10,7 @@
 
 #import <AFNetworking.h>
 #import "AQDeltaPack.h"
+#import "AQRequestAuthenticationSpecification.h"
 
 @interface AQAquaSyncClient ()
 
@@ -23,6 +24,16 @@
     self = [super init];
     if (self) {
         self.manager = manager;
+    }
+    return self;
+}
+
+- (instancetype)initWithAFHTTPRequestOperationManager:(AFHTTPRequestOperationManager *)manager
+               withRequestAuthenticationSpecification:(AQRequestAuthenticationSpecification *)requestAuthenticationSpecification {
+    self = [super init];
+    if (self) {
+        self.manager = [self enchantAuthenticationStrategyForRequestOperationManager:manager
+                                              withRequestAuthenticationSpecification:requestAuthenticationSpecification];
     }
     return self;
 }
@@ -55,6 +66,36 @@
               } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
                   failure(error);
               }];
+}
+
+# pragma mark - Helpers (Authentication)
+
+- (AFHTTPRequestOperationManager *)enchantAuthenticationStrategyForRequestOperationManager:(AFHTTPRequestOperationManager *)manager withRequestAuthenticationSpecification:(AQRequestAuthenticationSpecification *)specification {
+    switch (specification.authenticationStrategy) {
+        case AQRequestAuthenticationStrategyNone:
+            return manager;
+            break;
+        case AQRequestAuthenticationStrategyBasic:
+            return [self enchantBasicAuthenticationForRequestOperationManager:manager withRequestAuthenticationSpecification:specification];
+            break;
+        default:
+            return manager;
+            break;
+    }
+}
+
+- (AFHTTPRequestOperationManager *)enchantBasicAuthenticationForRequestOperationManager:(AFHTTPRequestOperationManager *)manager withRequestAuthenticationSpecification:(AQRequestAuthenticationSpecification *)specification {
+    AFHTTPRequestSerializer *serializer = [self basicAuthRequestSerializerWithRequestAuthenticationSpecification:specification];
+    [manager setRequestSerializer:serializer];
+    
+    return manager;
+}
+
+- (AFHTTPRequestSerializer *)basicAuthRequestSerializerWithRequestAuthenticationSpecification:(AQRequestAuthenticationSpecification *)requestAuthenticationSpecification {
+    AFHTTPRequestSerializer *serializer = [AFHTTPRequestSerializer serializer];
+    [serializer setAuthorizationHeaderFieldWithUsername:requestAuthenticationSpecification.userToken password:requestAuthenticationSpecification.secretKey];
+    
+    return serializer;
 }
 
 @end

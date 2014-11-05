@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 
 @class AQDeltaPack;
+@class AQRequestAuthenticationSpecification;
 
 //{@dependencies
 @class AFHTTPRequestOperationManager;
@@ -54,6 +55,8 @@ typedef void(^AQAquaSyncClientPullFailureBlock)(NSError *error);
 /** @name Initialization */
 
 - (instancetype)initWithAFHTTPRequestOperationManager:(AFHTTPRequestOperationManager *)manager;
+- (instancetype)initWithAFHTTPRequestOperationManager:(AFHTTPRequestOperationManager *)manager
+               withRequestAuthenticationSpecification:(AQRequestAuthenticationSpecification *)requestAuthenticationSpecification;
 
 # pragma mark - Perform Requests
 /** @name Perform Requests */
