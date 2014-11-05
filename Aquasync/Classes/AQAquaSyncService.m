@@ -8,12 +8,13 @@
 
 #import "AQAquaSyncService.h"
 
-#import "AQAquaSyncPushSyncOperation.h"
 #import "AQAquaSyncClient.h"
 #import <AFHTTPRequestOperationManager.h>
 
 #import "AQAquaSyncPushSyncOperationDelegate.h"
 #import "AQAquaSyncPullSyncOperationDelegate.h"
+#import "AQAquaSyncPushSyncOperation.h"
+#import "AQAquaSyncPullSyncOperation.h"
 
 # pragma mark - Command Notification Keys
 
@@ -69,6 +70,7 @@ NSString *const kAQAquaSyncPullSyncDidFailNotificationErrorKey = @"AQAquaSyncPul
     self = [super init];
     if (self) {
         self.operationQueue = [[NSOperationQueue alloc] init];
+        self.operationQueue.maxConcurrentOperationCount = 1;
         self.client = [[AQAquaSyncClient alloc] initWithAFHTTPRequestOperationManager:manager];
     }
     return self;
@@ -88,9 +90,30 @@ NSString *const kAQAquaSyncPullSyncDidFailNotificationErrorKey = @"AQAquaSyncPul
 # pragma mark - Starting the Service
 
 - (void)start {
-#warning MOCK
-    AQAquaSyncPushSyncOperation *operation = [[AQAquaSyncPushSyncOperation alloc] initWithSyncableObjectAggregator:self.syncableObjectAggregator delegate:self aquaSyncClient:self.client];
-    [self.operationQueue addOperation:operation];
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(requestSynchronizationNotification:)
+                                                 name:kAQAquaSyncRequestSynchronizationNotification
+                                               object:nil];
+}
+
+- (void)stop {
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
+
+# pragma mark - NSNotification Observer
+
+- (void)requestSynchronizationNotification:(NSNotification *)notification {
+    [self startSynchronizationOperation];
+}
+
+# pragma mark - Helpers (Starting the Service)
+
+- (void)startSynchronizationOperation {
+    AQAquaSyncPullSyncOperation *pullSyncOperation = [[AQAquaSyncPullSyncOperation alloc] initWithSyncableObjectAggregator:self.syncableObjectAggregator delegate:self aquaSyncClient:self.client];
+    [self.operationQueue addOperation:pullSyncOperation];
+
+    AQAquaSyncPushSyncOperation *pushSyncOperation = [[AQAquaSyncPushSyncOperation alloc] initWithSyncableObjectAggregator:self.syncableObjectAggregator delegate:self aquaSyncClient:self.client];
+    [self.operationQueue addOperation:pushSyncOperation];
 }
 
 # pragma mark - AQAquaSyncPushSyncOperationDelegate
