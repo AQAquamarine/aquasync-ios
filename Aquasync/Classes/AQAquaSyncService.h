@@ -13,6 +13,10 @@
 # pragma mark - Command Notification Keys
 /** @name Command Notification Keys */
 
+/**
+ *  A notification that can be used to request synchronization to current AquaSync service.
+ *  To invoke synhronization process, simply post the notification.
+ */
 extern NSString *const kAQAquaSyncRequestSynchronizationNotification;
 
 # pragma mark - Notification Keys
