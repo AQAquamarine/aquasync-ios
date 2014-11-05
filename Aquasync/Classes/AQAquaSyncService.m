@@ -12,6 +12,9 @@
 #import "AQAquaSyncClient.h"
 #import <AFHTTPRequestOperationManager.h>
 
+#import "AQAquaSyncPushSyncOperationDelegate.h"
+#import "AQAquaSyncPullSyncOperationDelegate.h"
+
 # pragma mark - Command Notification Keys
 
 NSString *const kAQAquaSyncRequestSynchronizationNotification = @"AQAquaSyncRequestSynchronization";
@@ -47,7 +50,7 @@ NSString *const kAQAquaSyncPullSyncDidFailNotificationErrorKey = @"AQAquaSyncPul
 
 # pragma mark -
 
-@interface AQAquaSyncService ()
+@interface AQAquaSyncService () <AQAquaSyncPushSyncOperationDelegate, AQAquaSyncPullSyncOperationDelegate>
 
 @property (nonatomic, strong) NSOperationQueue *operationQueue;
 @property (nonatomic, strong) AQAquaSyncClient *client;
@@ -93,11 +96,41 @@ NSString *const kAQAquaSyncPullSyncDidFailNotificationErrorKey = @"AQAquaSyncPul
 # pragma mark - AQAquaSyncPushSyncOperationDelegate
 
 - (void)pushSyncOperation:(AQAquaSyncPushSyncOperation *)operation didSuccessWithDeltaPack:(AQDeltaPack *)deltaPack {
-#warning TODO: Notification
+    NSDictionary *userInfo = @{
+                               kAQAquaSyncPushSyncDidSuccessNotificationPushedDeltaPackKey: deltaPack
+                               };
+    [[NSNotificationCenter defaultCenter] postNotificationName:kAQAquaSyncPushSyncDidSuccessNotification
+                                                        object:nil
+                                                      userInfo:userInfo];
 }
 
 - (void)pushSyncOperation:(AQAquaSyncPushSyncOperation *)operation didFailureWithError:(NSError *)error {
-#warning TODO: Notification
+    NSDictionary *userInfo = @{
+                               kAQAquaSyncPushSyncDidFailNotificationErrorKey: error
+                               };
+    [[NSNotificationCenter defaultCenter] postNotificationName:kAQAquaSyncPushSyncDidFailNotification
+                                                        object:nil
+                                                      userInfo:userInfo];
+}
+
+# pragma mark - AQAquaSyncPullSyncOperationDelegate
+
+- (void)pullSyncOperation:(AQAquaSyncPullSyncOperation *)operation didSuccessWithDeltaPack:(AQDeltaPack *)deltaPack {
+    NSDictionary *userInfo = @{
+                               kAQAquaSyncPullSyncDidSuccessNotificationPulledDeltaPackKey: deltaPack
+                               };
+    [[NSNotificationCenter defaultCenter] postNotificationName:kAQAquaSyncPullSyncDidSuccessNotification
+                                                        object:nil
+                                                      userInfo:userInfo];
+}
+
+- (void)pullSyncOperation:(AQAquaSyncPullSyncOperation *)operation didFailureWithError:(NSError *)error {
+    NSDictionary *userInfo = @{
+                               kAQAquaSyncPullSyncDidFailNotificationErrorKey: error
+                               };
+    [[NSNotificationCenter defaultCenter] postNotificationName:kAQAquaSyncPullSyncDidFailNotification
+                                                        object:nil
+                                                      userInfo:userInfo];
 }
 
 @end

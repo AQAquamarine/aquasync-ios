@@ -14,6 +14,11 @@
 
 #import "AQAquaSyncService.h"
 #import "AQAquaSyncPushSyncOperationDelegate.h"
+#import "AQAquaSyncPullSyncOperationDelegate.h"
+#import "AQDeltaPack.h"
+
+@interface AQAquaSyncService () <AQAquaSyncPushSyncOperationDelegate, AQAquaSyncPullSyncOperationDelegate>
+@end
 
 @interface AQAquaSyncServiceTests : XCTestCase
 
@@ -35,6 +40,42 @@
     AQAquaSyncService *service = [[AQAquaSyncService alloc] init];
     
     expect(service).to.conformTo(@protocol(AQAquaSyncPushSyncOperationDelegate));
+}
+
+- (void)testItNotifiesPushSyncDidSuccessNotification {
+    AQAquaSyncService *service = [[AQAquaSyncService alloc] init];
+    AQDeltaPack *deltaPack = [[AQDeltaPack alloc] init];
+    
+    expect(^{
+        [service pushSyncOperation:nil didSuccessWithDeltaPack:deltaPack];
+    }).to.notify(kAQAquaSyncPushSyncDidSuccessNotification);
+}
+
+- (void)testItNotifiesPushSyncDidFailNotification {
+    AQAquaSyncService *service = [[AQAquaSyncService alloc] init];
+    NSError *error = [[NSError alloc] init];
+    
+    expect(^{
+        [service pushSyncOperation:nil didFailureWithError:error];
+    }).to.notify(kAQAquaSyncPushSyncDidFailNotification);
+}
+
+- (void)testItNotifiesPullSyncDidSuccessNotification {
+    AQAquaSyncService *service = [[AQAquaSyncService alloc] init];
+    AQDeltaPack *deltaPack = [[AQDeltaPack alloc] init];
+    
+    expect(^{
+        [service pullSyncOperation:nil didSuccessWithDeltaPack:deltaPack];
+    }).to.notify(kAQAquaSyncPullSyncDidSuccessNotification);
+}
+
+- (void)testItNotifiesPullSyncDidFailNotification {
+    AQAquaSyncService *service = [[AQAquaSyncService alloc] init];
+    NSError *error = [[NSError alloc] init];
+    
+    expect(^{
+        [service pullSyncOperation:nil didFailureWithError:error];
+    }).to.notify(kAQAquaSyncPullSyncDidFailNotification);
 }
 
 @end

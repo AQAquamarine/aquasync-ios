@@ -8,8 +8,6 @@
 
 #import <Foundation/Foundation.h>
 
-#import "AQAquaSyncPushSyncOperationDelegate.h"
-
 # pragma mark - Command Notification Keys
 /** @name Command Notification Keys */
 
@@ -128,7 +126,7 @@ extern NSString *const kAQAquaSyncPullSyncDidFailNotificationErrorKey;
  *
  *  @see https://github.com/AQAquamarine/aquasync-protocol
  */
-@interface AQAquaSyncService : NSObject <AQAquaSyncPushSyncOperationDelegate>
+@interface AQAquaSyncService : NSObject
 
 # pragma mark - Initialization
 /** @name Initialization */
