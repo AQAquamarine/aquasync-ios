@@ -1,6 +1,5 @@
-.DS_Store
-aquasync.xcodeproj
-aquasync.xcodeproj/*
+# Xcode
+#
 build/
 *.pbxuser
 !default.pbxuser
@@ -17,7 +16,6 @@ DerivedData
 *.hmap
 *.ipa
 *.xcuserstate
-*.pbxproj
 
 # CocoaPods
 #

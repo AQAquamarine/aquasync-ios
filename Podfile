@@ -1,13 +1,11 @@
 platform :ios, '7.0'
 
-target :aquasync do
+target "Aquasync" do
   pod "AFNetworking"
-  pod "ObjectiveRecord"
-  pod "LUKeychainAccess"
 end
 
-target :aquasyncTests do
-  pod "Specta"
+target "AquasyncTests" do
   pod "Expecta"
-  pod "OCMockito"
+  pod "OHHTTPStubs"
+  pod "OCMock"
 end

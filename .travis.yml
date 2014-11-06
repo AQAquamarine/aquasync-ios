@@ -1,0 +1,14 @@
+language: objective-c
+branches:
+  only:
+  - master
+notifications:
+  email: false
+  
+before_install: 
+  - gem install cocoapods
+  - gem install xcpretty
+  
+script: 
+  - pod install
+  - ./.travis_test.sh
