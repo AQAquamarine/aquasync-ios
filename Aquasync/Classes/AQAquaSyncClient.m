@@ -92,7 +92,7 @@
 }
 
 - (AFHTTPRequestSerializer *)basicAuthRequestSerializerWithRequestAuthenticationSpecification:(AQRequestAuthenticationSpecification *)requestAuthenticationSpecification {
-    AFHTTPRequestSerializer *serializer = [AFHTTPRequestSerializer serializer];
+    AFHTTPRequestSerializer *serializer = [AFJSONRequestSerializer serializer];
     [serializer setAuthorizationHeaderFieldWithUsername:requestAuthenticationSpecification.userToken password:requestAuthenticationSpecification.secretKey];
     
     return serializer;
