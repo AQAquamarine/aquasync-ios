@@ -12,6 +12,8 @@
 #import "AQSyncableObjectAggregator.h"
 #import "AQDeltaPack.h"
 
+static const NSUInteger kAQAquaSyncPullSyncOperationFailCountThreshold = 5;
+
 @interface AQAquaSyncPullSyncOperation ()
 
 @property (nonatomic, assign) BOOL isFinished;
@@ -23,6 +25,9 @@
  */
 @property (nonatomic, weak) AQAquaSyncClient *client;
 //}
+
+@property (nonatomic, assign) NSUInteger failCount;
+@property (nonatomic, strong) NSTimer *failTimer;
 
 @end
 
@@ -44,7 +49,12 @@
 
 # pragma mark - NSOperation
 
-- (void)main {
+- (void)start {
+    if (self.failTimer) {
+        [self.failTimer invalidate];
+        self.failTimer = nil;
+    }
+    
     __weak typeof(self) weakSelf = self;
     NSInteger UST = [self.syncableObjectAggregator UST];
     NSString *deviceToken = [self.syncableObjectAggregator deviceToken];
@@ -53,16 +63,43 @@
         [weakSelf.syncableObjectAggregator setUST:deltaPack.UST];
         [weakSelf.delegate pullSyncOperation:weakSelf didSuccessWithDeltaPack:deltaPack];
         
-        weakSelf.isFinished = YES;
+        [weakSelf finishOperation];
     } failure:^(NSError *error) {
-        [weakSelf.delegate pullSyncOperation:weakSelf didFailureWithError:error];
-        
-        weakSelf.isFinished = YES;
+        [weakSelf didFailWithError:error];
     }];
 }
 
 - (BOOL)isConcurrent {
     return YES;
+}
+
+- (void)finishOperation {
+    [self willChangeValueForKey:@"isFinished"];
+    self.isFinished = YES;
+    [self didChangeValueForKey:@"isFinished"];
+}
+
+# pragma mark - Retryable Operation
+
+- (void)didFailWithError:(NSError *)error {
+    if (self.failCount >= kAQAquaSyncPullSyncOperationFailCountThreshold) {
+        [self failOperationWithError:error];
+        return;
+    }
+    self.failCount += 1;
+    
+    NSTimeInterval interval = [self waitForFailCount:self.failCount];
+    self.failTimer = [NSTimer scheduledTimerWithTimeInterval:interval target:self selector:@selector(start) userInfo:nil repeats:NO];
+}
+
+- (void)failOperationWithError:(NSError *)error {
+    [self.delegate pullSyncOperation:self didFailureWithError:error];
+    
+    [self finishOperation];
+}
+
+- (NSTimeInterval)waitForFailCount:(NSUInteger)failCount {
+    return pow(failCount, 2) * 2;
 }
 
 @end

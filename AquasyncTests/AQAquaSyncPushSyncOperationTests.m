@@ -61,6 +61,42 @@
     [OHHTTPStubs removeAllStubs];
 }
 
+- (void)testItFinishesItsOperationWhenSuccess {
+    [OHHTTPStubs stubRequestsPassingTest:^BOOL(NSURLRequest *request) {
+        return YES;
+    } withStubResponse:^OHHTTPStubsResponse *(NSURLRequest *request) {
+        return [OHHTTPStubsResponse responseWithFileAtPath:@"pushSync_deltas_201.json" statusCode:201 headers:nil];
+    }];
+    //
+    
+    id aggregatorMock = [OCMockObject niceMockForProtocol:@protocol(AQSyncableObjectAggregator)];
+    id delegateMock = [OCMockObject niceMockForProtocol:@protocol(AQAquaSyncPushSyncOperationDelegate)];
+    AFHTTPRequestOperationManager *manager = [[AFHTTPRequestOperationManager alloc] initWithBaseURL:[NSURL URLWithString:@"http://example.com/"]];
+    AQAquaSyncClient *client = [[AQAquaSyncClient alloc] initWithAFHTTPRequestOperationManager:manager];
+    AQAquaSyncPushSyncOperation *operation = [[AQAquaSyncPushSyncOperation alloc] initWithSyncableObjectAggregator:aggregatorMock delegate:delegateMock aquaSyncClient:client];
+    
+    [[aggregatorMock expect] deltaPackForSynchronization];
+    [[aggregatorMock expect] markAsPushedUsingDeltaPack:[OCMArg any]];
+    [[delegateMock expect] pushSyncOperation:operation didSuccessWithDeltaPack:[OCMArg any]];
+    
+    XCTestExpectation *expectation = [self expectationWithDescription:@"it finishes its operation"];
+    
+    NSOperationQueue *queue = [[NSOperationQueue alloc] init];
+    operation.completionBlock = ^{
+        [expectation fulfill];
+        
+        [delegateMock verify];
+        [aggregatorMock verify];
+        XCTAssertEqual(queue.operationCount, 0);
+    };
+    [queue addOperation:operation];
+    
+    
+    [self waitForExpectationsWithTimeout:10.0 handler:^(NSError *error) {
+        [OHHTTPStubs removeAllStubs];
+    }];
+}
+
 - (void)testItInvokesFailureDelegateIfFailure {
     [OHHTTPStubs stubRequestsPassingTest:^BOOL(NSURLRequest *request) {
         return YES;
@@ -74,11 +110,13 @@
     AQAquaSyncClient *client = [[AQAquaSyncClient alloc] initWithAFHTTPRequestOperationManager:[AFHTTPRequestOperationManager manager]];
     AQAquaSyncPushSyncOperation *operation = [[AQAquaSyncPushSyncOperation alloc] initWithSyncableObjectAggregator:aggregatorMock delegate:delegateMock aquaSyncClient:client];
     
-    [[delegateMock expect] pushSyncOperation:[OCMArg any] didFailureWithError:[OCMArg any]];
+    [[delegateMock reject] pushSyncOperation:[OCMArg any] didFailureWithError:[OCMArg any]];
     
-    [[[NSOperationQueue alloc] init] addOperation:operation];
+    NSOperationQueue *queue = [[NSOperationQueue alloc] init];
+    [queue addOperation:operation];
     
     [delegateMock verifyWithDelay:0.1];
+    XCTAssertEqual(queue.operationCount, 1);
     
     //
     [OHHTTPStubs removeAllStubs];

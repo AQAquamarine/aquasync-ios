@@ -25,7 +25,12 @@
 @property (nonatomic, weak) AQAquaSyncClient *client;
 //}
 
+@property (nonatomic, assign) NSUInteger failCount;
+@property (nonatomic, strong) NSTimer *failTimer;
+
 @end
+
+static const NSUInteger kAQAquaSyncPushSyncOperationFailCountThreshold = 5;
 
 @implementation AQAquaSyncPushSyncOperation
 
@@ -44,22 +49,54 @@
 # pragma mark - NSOperation
 
 - (void)main {
+    if (self.failTimer) {
+        [self.failTimer invalidate];
+        self.failTimer = nil;
+    }
+    
     AQDeltaPack *deltaPack = [self.syncableObjectAggregator deltaPackForSynchronization];
     __weak typeof(self) weakSelf = self;
     [self.client pushDeltaPack:deltaPack success:^(id response) {
         [weakSelf.delegate pushSyncOperation:weakSelf didSuccessWithDeltaPack:deltaPack];
         [weakSelf.syncableObjectAggregator markAsPushedUsingDeltaPack:deltaPack];
         
-        weakSelf.isFinished = YES;
+        [weakSelf finishOperation];
     } failure:^(NSError *error) {
-        [weakSelf.delegate pushSyncOperation:weakSelf didFailureWithError:error];
-        
-        weakSelf.isFinished = YES;
+        [weakSelf didFailWithError:error];
     }];
 }
 
 - (BOOL)isConcurrent {
     return YES;
+}
+
+- (void)finishOperation {
+    [self willChangeValueForKey:@"isFinished"];
+    self.isFinished = YES;
+    [self didChangeValueForKey:@"isFinished"];
+}
+
+# pragma mark - Retryable Operation
+
+- (void)didFailWithError:(NSError *)error {
+    if (self.failCount >= kAQAquaSyncPushSyncOperationFailCountThreshold) {
+        [self failOperationWithError:error];
+        return;
+    }
+    self.failCount += 1;
+    
+    NSTimeInterval interval = [self waitForFailCount:self.failCount];
+    self.failTimer = [NSTimer scheduledTimerWithTimeInterval:interval target:self selector:@selector(start) userInfo:nil repeats:NO];
+}
+
+- (void)failOperationWithError:(NSError *)error {
+    [self.delegate pushSyncOperation:self didFailureWithError:error];
+    
+    [self finishOperation];
+}
+
+- (NSTimeInterval)waitForFailCount:(NSUInteger)failCount {
+    return pow(failCount, 2) * 2;
 }
 
 @end
