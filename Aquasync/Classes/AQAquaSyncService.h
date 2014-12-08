@@ -150,4 +150,9 @@ extern NSString *const kAQAquaSyncPullSyncDidFailNotificationErrorKey;
  */
 - (void)start;
 
+/**
+ *  Requests synchronization process.
+ */
+- (void)requestSynchronization;
+
 @end
