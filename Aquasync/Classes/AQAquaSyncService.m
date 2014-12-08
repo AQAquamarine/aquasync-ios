@@ -85,6 +85,17 @@ NSString *const kAQAquaSyncPullSyncDidFailNotificationErrorKey = @"AQAquaSyncPul
 # pragma mark - Starting the Service
 
 - (void)start {
+    [self startObserveRequestNotification];
+    [self startSynchronizationOperation];
+}
+
+- (void)requestSynchronization {
+    [self startSynchronizationOperation];
+}
+
+# pragma mark - Observation
+
+- (void)startObserveRequestNotification {
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(requestSynchronizationNotification:)
                                                  name:kAQAquaSyncRequestSynchronizationNotification
@@ -104,6 +115,11 @@ NSString *const kAQAquaSyncPullSyncDidFailNotificationErrorKey = @"AQAquaSyncPul
 # pragma mark - Helpers (Starting the Service)
 
 - (void)startSynchronizationOperation {
+    // Current Job * 2 + Waiting Job * 2
+    if (self.operationQueue.operationCount >= 4) {
+        return;
+    }
+    
     AQAquaSyncPullSyncOperation *pullSyncOperation = [[AQAquaSyncPullSyncOperation alloc] initWithSyncableObjectAggregator:self.syncableObjectAggregator delegate:self aquaSyncClient:self.client];
     [self.operationQueue addOperation:pullSyncOperation];
 

@@ -84,6 +84,33 @@
     expect([deltaPack arrayForKey:nil]).to.beNil;
 }
 
+- (void)testItReturnsAllModelKeys {
+    NSDictionary *dictionary = @{
+                                 @"_id": @"someid",
+                                 @"_ust": @(20000000),
+                                 @"Author": @[
+                                         @{
+                                             @"name": @"taro"
+                                             },
+                                         @{
+                                             @"name": @"jack"
+                                             }
+                                         ],
+                                 @"Book": @[
+                                         @{
+                                             @"title": @"harrypotter",
+                                             @"author": @"taro"
+                                             }
+                                         ]
+                                 };
+    AQDeltaPack *deltaPack = [AQDeltaPack deltaPackWithDictionary:dictionary];
+    
+    expect(deltaPack.allModelKeys).to.contain(@"Author");
+    expect(deltaPack.allModelKeys).to.contain(@"Book");
+    expect(deltaPack.allModelKeys).notTo.contain(@"_id");
+    expect(deltaPack.allModelKeys).notTo.contain(@"_ust");
+}
+
 - (void)testItDoesNotRaiseExceptionForAddingNil {
     AQDeltaPack *deltaPack = [[AQDeltaPack alloc] init];
     

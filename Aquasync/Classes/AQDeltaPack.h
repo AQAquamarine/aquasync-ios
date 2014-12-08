@@ -86,6 +86,13 @@ typedef NSDictionary AQDelta;
  */
 - (NSArray /* <AQDelta> */ *)arrayForKey:(NSString *)key;
 
+/**
+ *  Returns an array that contains all keys for models.
+ *
+ *  @return an array that contains all keys for models.
+ */
+- (NSArray /* <NSString> */ *)allModelKeys;
+
 # pragma mark - Transform from/to NSDictionary
 /** @name Transform from/to NSDictionary */
 

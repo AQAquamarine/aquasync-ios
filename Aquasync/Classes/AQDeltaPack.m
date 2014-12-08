@@ -55,6 +55,15 @@
     return [self deltaArrayForKey:key];
 }
 
+- (NSArray *)allModelKeys {
+    NSMutableArray *keys = [NSMutableArray array];
+    for (NSString *key in self.actualDictionary.allKeys) {
+        if ([key isEqualToString:@"_id"] || [key isEqualToString:@"_ust"]) { continue; }
+        [keys addObject:key];
+    }
+    return keys;
+}
+
 # pragma mark - Getting another Representation
 
 - (NSDictionary *)dictionaryRepresentation {

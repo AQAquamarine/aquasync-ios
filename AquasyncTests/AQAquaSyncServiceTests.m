@@ -81,16 +81,4 @@
     }).to.notify(kAQAquaSyncPullSyncDidFailNotification);
 }
 
-- (void)testItKicksOperationAfterPostingRequestSychronizationNotification {
-    AQAquaSyncService *service = [[AQAquaSyncService alloc] init];
-    [service start];
-    id serviceMock = [OCMockObject partialMockForObject:service];
-    
-    [[serviceMock expect] startSynchronizationOperation];
-    
-    [[NSNotificationCenter defaultCenter] postNotificationName:kAQAquaSyncRequestSynchronizationNotification object:nil];
-    
-    [serviceMock verifyWithDelay:0.1];
-}
-
 @end
