@@ -74,7 +74,7 @@
     AQAquaSyncClient *client = [[AQAquaSyncClient alloc] initWithAFHTTPRequestOperationManager:[AFHTTPRequestOperationManager manager]];
     AQAquaSyncPushSyncOperation *operation = [[AQAquaSyncPushSyncOperation alloc] initWithSyncableObjectAggregator:aggregatorMock delegate:delegateMock aquaSyncClient:client];
     
-    [[delegateMock expect] pushSyncOperation:[OCMArg any] didFailureWithError:[OCMArg any]];
+    [[delegateMock reject] pushSyncOperation:[OCMArg any] didFailureWithError:[OCMArg any]];
     
     [[[NSOperationQueue alloc] init] addOperation:operation];
     

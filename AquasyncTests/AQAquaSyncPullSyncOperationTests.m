@@ -82,7 +82,8 @@
     OCMStub([aggregatorMock UST]).andReturn(10000000);
     OCMStub([aggregatorMock deviceToken]).andReturn(@"someuuid");
     
-    [[delegateMock expect] pullSyncOperation:operation didFailureWithError:[OCMArg any]];
+    // Expect not to invoke at failing once.
+    [[delegateMock reject] pullSyncOperation:operation didFailureWithError:[OCMArg any]];
     
     [[[NSOperationQueue alloc] init] addOperation:operation];
     
