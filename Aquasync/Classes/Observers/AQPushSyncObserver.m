@@ -30,6 +30,7 @@
         _block = block;
         [self startObservation];
     }
+    return self;
 }
 
 # pragma mark - Lifecycle
