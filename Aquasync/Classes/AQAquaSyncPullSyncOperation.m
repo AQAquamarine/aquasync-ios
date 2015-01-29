@@ -50,11 +50,10 @@ static const NSUInteger kAQAquaSyncPullSyncOperationFailCountThreshold = 5;
 # pragma mark - NSOperation
 
 - (void)start {
-    if (self.failTimer) {
-        [self.failTimer invalidate];
-        self.failTimer = nil;
-    }
-    
+    [self performOperation];
+}
+
+- (void)performOperation {
     __weak typeof(self) weakSelf = self;
     NSInteger UST = [self.syncableObjectAggregator UST];
     NSString *deviceToken = [self.syncableObjectAggregator deviceToken];
@@ -89,7 +88,7 @@ static const NSUInteger kAQAquaSyncPullSyncOperationFailCountThreshold = 5;
     self.failCount += 1;
     
     NSTimeInterval interval = [self waitForFailCount:self.failCount];
-    self.failTimer = [NSTimer scheduledTimerWithTimeInterval:interval target:self selector:@selector(start) userInfo:nil repeats:NO];
+    self.failTimer = [NSTimer scheduledTimerWithTimeInterval:interval target:self selector:@selector(performOperation) userInfo:nil repeats:NO];
 }
 
 - (void)failOperationWithError:(NSError *)error {
