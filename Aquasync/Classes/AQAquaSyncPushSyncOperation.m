@@ -48,12 +48,11 @@ static const NSUInteger kAQAquaSyncPushSyncOperationFailCountThreshold = 5;
 
 # pragma mark - NSOperation
 
-- (void)main {
-    if (self.failTimer) {
-        [self.failTimer invalidate];
-        self.failTimer = nil;
-    }
-    
+- (void)start {
+    [self performOperation];
+}
+
+- (void)performOperation {
     AQDeltaPack *deltaPack = [self.syncableObjectAggregator deltaPackForSynchronization];
     __weak typeof(self) weakSelf = self;
     [self.client pushDeltaPack:deltaPack success:^(id response) {
@@ -86,7 +85,7 @@ static const NSUInteger kAQAquaSyncPushSyncOperationFailCountThreshold = 5;
     self.failCount += 1;
     
     NSTimeInterval interval = [self waitForFailCount:self.failCount];
-    self.failTimer = [NSTimer scheduledTimerWithTimeInterval:interval target:self selector:@selector(start) userInfo:nil repeats:NO];
+    self.failTimer = [NSTimer scheduledTimerWithTimeInterval:interval target:self selector:@selector(performOperation) userInfo:nil repeats:NO];
 }
 
 - (void)failOperationWithError:(NSError *)error {
